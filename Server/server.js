@@ -6,12 +6,12 @@ import cookieParser from 'cookie-parser';
 
 dotenv.config();
 
-// const URI = process.env.MONGODB_URI;
-// if (!URI) {
-//   throw new Error("MONGODB_URI is not defined in the environment variables");
-// }
+const URI = process.env.MONGODB_URI;
+if (!URI) {
+  throw new Error("MONGODB_URI is not defined in the environment variables");
+}
 
-// mongoose.connect(URI);
+mongoose.connect(URI);
 
 const PORT = process.env.PORT || 3001;
 const app = express();
