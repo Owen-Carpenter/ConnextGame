@@ -1,0 +1,14 @@
+body, html {
+    background-color: #F2F2F2;
+}
+
+h1 {
+    font-family: 'Kirang Haerang', regular; /* Use the Kirang Haerang font */
+    font-size: 96px; /* Set the font size to 96px */
+    text-align: center; /* Center the text */
+    margin: 20px 0; /* Add some margin */
+  }
+
+h2 {
+    color: #47E752;
+}
