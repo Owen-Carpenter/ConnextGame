@@ -1,14 +1,158 @@
+/* General Styles */
 body, html {
-    background-color: #F2F2F2;
+    background: linear-gradient(135deg, #f2f2f2, #e8f5e9);
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    scroll-behavior: smooth;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Typography */
+h1, h2, h3 {
+    font-family: 'Chewy', cursive !important;
+    color: #47E752;
+    letter-spacing: 2px;
 }
 
 h1 {
-    font-family: 'Kirang Haerang', regular; /* Use the Kirang Haerang font */
-    font-size: 96px; /* Set the font size to 96px */
-    text-align: center; /* Center the text */
-    margin: 20px 0; /* Add some margin */
-  }
+    font-size: 90px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    letter-spacing: 12px;
+    background: linear-gradient(#47e752, #1b5e20);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
 h2 {
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+h3 {
+    font-size: 22px;
+    color: #333;
+}
+
+.navlink-button {
+    padding-left: 5px;
+    background: rgba(0, 0, 0, 0.8);
     color: #47E752;
+    border: 2px solid #47E752;
+    padding: 15px 25px;
+    font-size: 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;  /* Same as button1, button2 */
+    max-width: 90px;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.navlink-button:hover {
+    background-color: #2e7d32;
+    transform: translateY(-3px);
+}
+
+.home_buttons div {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.home_buttons {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+
+.button1, .button2 {
+    background: rgba(0, 0, 0, 0.8);
+    color: #47E752;
+    border: 2px solid #47E752;
+    padding: 15px 25px;
+    font-size: 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    text-align: center;
+    width: 100%; /* Makes buttons take up the full width of the ovals */
+    max-width: 150px; /* Keeps them from growing too wide */
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.button1:hover, .button2:hover, .button3:hover {
+    background-color: #2e7d32;
+    transform: translateY(-3px);
+}
+
+.home_buttons a {
+    text-decoration: none;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+/* Footer */
+.bottom {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 14px;
+    color: #444;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 70px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    .button1, .button2, .button3 {
+        width: 150px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 50px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    .button1, .button2, .button3 {
+        width: 100%;
+        padding: 10px;
+    }
 }

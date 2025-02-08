@@ -1,3 +1,4 @@
+import React from 'react';
 import { HomePage } from "./pages/Home";
 import { GamePage } from "./pages/Game";
 // import { About } from "./pages/About";
@@ -7,17 +8,18 @@ import { GamePage } from "./pages/Game";
 import './Styles/General.css';
 
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
-function App() {
+
+const App: React.FC = () => {
   return (
     <>
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/Game" element={<GamePage/>}/>
-          {/* <Route path="/About" element={<About/>}/>
-          <Route path="/Contact" element={<Contact/>}/>
-          <Route path="/Services" element={<Services/>}/>
-          <Route path="/Gallery" element={<Gallery/>}/> */}
+          <Route path="/Game" element={<GamePage />} />
+          {/* <Route path="/About" element={<About />} />
+          <Route path="/Contact" element={<Contact />} />
+          <Route path="/Services" element={<Services />} />
+          <Route path="/Gallery" element={<Gallery />} /> */}
         </Routes>
       </Router>
     </>
