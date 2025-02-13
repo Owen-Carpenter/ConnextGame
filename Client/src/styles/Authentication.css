@@ -1,0 +1,158 @@
+.auth-section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-container {
+    padding: 50px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 400px;
+    margin: 0 auto;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    justify-content: center;
+}
+
+.auth-container button {
+    cursor: pointer;
+    width: 100%;
+    padding: 5px 0px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: transparent;
+    border: 1px solid #39e75f;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Indie Flower', sans-serif;
+    color: #39e75f;
+    font-weight: 600;
+    transition: .3s ease;
+}
+
+.auth-container .auth-logo {
+    height: 50px;
+    width: 50px;
+}
+
+.auth-container .auth-logo img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.auth-container button:hover {
+    background-color: #39e75f;
+    color: white;
+}
+
+.auth-container h1 {
+    font-family: 'Indie Flower', sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: #39e75f;
+    margin: 10px 0;
+}
+
+.auth-container h4 {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 10px 0px;
+    padding-top: 20px;
+}
+
+.auth-container span {
+    font-size: 16px;
+    font-weight: 500;
+    color: #39e75f;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: all .3s ease;
+}
+
+.auth-container span:hover {
+    color: #39e75f;
+    text-decoration: underline;
+}
+
+.auth-container label {
+    color: black;
+}
+
+.auth-container input {
+    background-color: transparent;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 5px;
+    color: black;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.auth-container input:focus {
+    border-color: black;
+    background-color: transparent;
+}
+
+body{
+    background: #f2f2f2;
+    overflow: hidden;
+}
+
+.scene{
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    overflow: hidden;
+    perspective: 10vmin;
+}
+
+.scene div{
+    width: 1.5vmin;
+    height: 1.5vmin;
+    transform: 
+    translateZ(-100vmin)
+    rotateY(90deg)
+    rotateX(var(--rx))
+    translateZ(var(--x))
+    scaleX(1);
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    color: #39e75f;
+    animation:  animate 2s infinite ease-out;
+}
+
+@keyframes animate {
+    0%, 90%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        transform: 
+        translateZ(0vmin)
+        rotateY(90deg)
+        rotateX(var(--rx))
+        translateZ(var(--x))
+    }
+}
