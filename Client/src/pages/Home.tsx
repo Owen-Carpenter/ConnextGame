@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 export function Home(){
     const nav = useNavigate();
     const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem("userToken"));
-
+    
     useEffect(() => {
         const handleStorageChange = () => {
             setIsAuthenticated(!!localStorage.getItem("userToken"));
