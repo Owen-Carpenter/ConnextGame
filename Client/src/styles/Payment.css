@@ -1,0 +1,61 @@
+.payment-card{
+    display: flex;
+    border: 3px solid black;
+    border-radius: 50px;
+    height: 150px;
+    width: 90%;
+    margin-bottom: 25px;
+    max-width: 600px;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    transition: all .15s ease;
+}
+
+.payment-card .payment-left-side{
+    display: flex;
+    flex-direction: column;
+}
+
+.payment-card .payment-right-side{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+}
+
+.payment-card .payment-left-side .payment-time{
+    font-size: 32px;
+}
+
+.payment-card .payment-left-side .payment-deal{
+    font-size: 24px;
+}
+
+.payment-card .payment-right-side .payment-rate{
+    font-size: 28px;
+}
+
+.payment-card .payment-right-side .payment-saving{
+    font-size: 20px;
+}
+
+.payment-card:hover{
+    border-color: #39e75f;
+}
+
+.payment-card .tag{
+    position: absolute;
+    top: -20px;
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    right: 20%;
+    transition: all .15s ease;
+}
+
+.payment-card:hover .tag{
+    background-color: #39e75f;
+}
