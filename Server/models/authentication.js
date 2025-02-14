@@ -13,7 +13,40 @@ const authenticationSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true
-    }
+    },
+    games: {
+        classic: {
+            topScore: { type: Number, default: 0 }
+        },
+        infinite: {
+            topScore: { type: Number, default: 0 }
+        },
+        versus: {
+            topScore: { type: Number, default: 0 }
+        }
+    },
+    role: {
+        type: String,
+        enum: ["free", "premium"],
+        default: "free"
+    },
+    transactions: [
+        {
+            type: {
+                String,
+                enum: ["Monthly", "Yearly", "Lifetime"],
+                required: true
+            },
+            amount: {
+                type: Number,
+                required: true
+            },
+            date: {
+                type: Date,
+                default: Date.now
+            }
+        }
+    ]
 });
 
 const AuthenticationModel = mongoose.model("Player", authenticationSchema);
