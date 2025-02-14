@@ -32,8 +32,8 @@ const authenticationSchema = new mongoose.Schema({
     },
     transactions: [
         {
-            type: {
-                String,
+            rate: {
+                type: String,
                 enum: ["Monthly", "Yearly", "Lifetime"],
                 required: true
             },

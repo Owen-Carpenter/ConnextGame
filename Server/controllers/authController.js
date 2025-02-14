@@ -1,4 +1,4 @@
-import BookingModel from "../models/authentication.js";
+import AuthenticationModel from "../models/authentication.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
@@ -14,7 +14,7 @@ const handleLogin = {
             if (!username || !password) return res.status(400).json({ 'message': 'Username and password are required' });
 
             // Find the user
-            const foundUser = await BookingModel.findOne({ username });
+            const foundUser = await AuthenticationModel.findOne({ username });
             if (!foundUser) return res.sendStatus(401); // Unauthorized
 
             // Check for match

@@ -1,4 +1,4 @@
-import BookingModel from "../models/authentication.js";
+import AuthenticationModel from "../models/authentication.js";
 import bcrypt from 'bcrypt';
 
 const handleNewUser = {
@@ -15,7 +15,7 @@ const handleNewUser = {
             try {
                 const hashedPwd = await bcrypt.hash(password, 10);
 
-                const result = await BookingModel.create({
+                const result = await AuthenticationModel.create({
                     "username": username,
                     "password": hashedPwd,
                     "email": email,

@@ -1,4 +1,4 @@
-import BookingModel from '../models/authentication.js';
+import AuthenticationModel from '../models/authentication.js';
 
 const handleLogout = {
     logout: async(req, res) => {
@@ -8,7 +8,7 @@ const handleLogout = {
         const refreshToken = cookies.jwt;
 
         //Check refreshToken
-        const foundUser = await BookingModel.findOne({ username })
+        const foundUser = await AuthenticationModel.findOne({ username })
         if(!foundUser){
             res.clearCookie('jwt', {httpOnly: true, sameSite: 'None', secure: true});
             return res.sendStatus(204);
