@@ -9,6 +9,7 @@ body{
     position: absolute;
     overflow: hidden;
     perspective: 10vmin;
+    z-index: -1;
 }
 
 .scene div{
