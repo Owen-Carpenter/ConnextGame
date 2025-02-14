@@ -16,27 +16,6 @@
     align-items: center;
 }
 
-.home .header-container{
-    padding-top: 50px;
-    padding-bottom: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.home .header-container .logo{
-    width: 100px;
-    height: 100px;
-}
-
-.home .header-container .title {
-    font-size: 100px;
-    font-family: 'Indie Flower', sans-serif;
-    color: #39e75f; 
-    text-shadow: 2px 2px 0 #000; 
-}
-
 .home .game-selection-container {
     display: flex;
     gap: 20px;
@@ -61,6 +40,12 @@
 .home .game-select-card:hover{
     box-shadow: 0 5px 25px 0 #39e75f;
     background-color: #39e75f2d;
+}
+
+.home .game-link{
+    text-decoration: none;
+    color: black;
+    border: none;
 }
 
 .home .card-title {

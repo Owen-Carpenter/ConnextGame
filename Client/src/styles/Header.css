@@ -1,0 +1,20 @@
+.header-container{
+    padding-top: 50px;
+    padding-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-container .logo{
+    width: 100px;
+    height: 100px;
+}
+
+.header-container .title {
+    font-size: 100px;
+    font-family: 'Indie Flower', sans-serif;
+    color: #39e75f; 
+    text-shadow: 2px 2px 0 #000; 
+}

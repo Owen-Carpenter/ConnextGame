@@ -79,7 +79,7 @@ export function Login() {
         try {
             const result = await axios.post("http://localhost:8080/auth", { username, password });
             if (result.data.message === "Login successful") {
-                localStorage.setItem("isAuthenticated", "true");
+                localStorage.setItem("userToken", result.data.accessToken);
                 navigate('/Home', { replace: true });
             } else if (result.data.message === "Incorrect password") {
                 alert("Incorrect email or password");

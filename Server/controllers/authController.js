@@ -24,13 +24,13 @@ const handleLogin = {
                 const accessToken = jwt.sign(
                     { "username": foundUser.username },
                     process.env.ACCESS_TOKEN_SECRET,
-                    { expiresIn: '30s' }
+                    { expiresIn: '15m' }
                 );
 
                 const refreshToken = jwt.sign(
                     { "username": foundUser.username },
                     process.env.REFRESH_TOKEN_SECRET,
-                    { expiresIn: '1d' }
+                    { expiresIn: '7d' }
                 );
 
                 // Save refreshToken with current user
