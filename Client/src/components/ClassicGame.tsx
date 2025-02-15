@@ -9,7 +9,6 @@ import { useState, useRef, useEffect } from "react";
 
 const livesImages = [fiveLives, fourLives, threeLives, twoLives, oneLife];
 
-//Hard coded word list for testing game logic
 const wordList = ["dog", "house", "key", "chain", "fence", "yard", "garden", "flower", "bee", "honey"];
 
 export function ClassicGame() {
@@ -67,7 +66,8 @@ export function ClassicGame() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
-    if (newValue.startsWith(hint)) {
+    const currentWord = wordList[currentWordIndex + 1];
+    if (newValue.startsWith(hint) && newValue.length <= currentWord.length) {
       setInputValue(newValue);
     }
   };
@@ -101,6 +101,7 @@ export function ClassicGame() {
                       onKeyPress={handleKeyPress}
                       placeholder={hint}
                       ref={inputRef}
+                      maxLength={currentWord.length} // Prevents exceeding word length
                     />
                     <div className="blanks">{blanks}</div>
                   </div>
