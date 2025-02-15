@@ -3,67 +3,67 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
-  
-  .word-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .word-item {
-    margin: 10px 0; /* Add some margin for spacing */
-  }
-  
-  .hidden-word {
-    width: 10px; /* Adjust the width as needed */
-    height: auto;
-  }
-  
-  .input-container {
-    position: relative;
-  }
-  
-  input[type="text"] {
-    margin: 10px 0; /* Add some margin for spacing */
-    padding: 5px;
-    font-size: 16px;
-    border: none; /* Remove the border */
-    outline: none; /* Remove the outline */
-  }
-  
-  .blanks {
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    transform: translateY(-50%);
-    color: #ccc; /* Light gray color for blanks */
-    pointer-events: none; /* Make sure the blanks are not interactive */
-  }
-  
-  .streak-container {
-    display: flex;
-    align-items: center;
-    margin: 10px 0; /* Add some margin for spacing */
-  }
-  
-  .streak-label {
-    font-size: 18px;
-    font-weight: bold;
-    margin-right: 5px;
-  }
-  
-  .streak-count {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  button {
-    margin: 10px 0; /* Add some margin for spacing */
-    padding: 10px 20px;
-    font-size: 16px;
-  }
-  
-  .completed-word {
-    color: #39e75f; /* Set the color for completed words */
-  }
+}
+
+.infinite-container .word-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.infinite-container .word-item {
+  margin: 10px 0; /* Add some margin for spacing */
+}
+
+.infinite-container .hidden-word {
+  width: 10px; /* Adjust the width as needed */
+  height: auto;
+}
+
+.input-container {
+  position: relative;
+}
+
+.infinite-container input[type="text"] {
+  margin: 10px 0; /* Add some margin for spacing */
+  padding: 5px;
+  font-size: 16px;
+  border: none; /* Remove the border */
+  outline: none; /* Remove the outline */
+}
+
+.infinite-container .blanks {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  color: #ccc; /* Light gray color for blanks */
+  pointer-events: none; /* Make sure the blanks are not interactive */
+}
+
+.infinite-container .streak-container {
+  display: flex;
+  align-items: center;
+  margin: 10px 0; /* Add some margin for spacing */
+}
+
+.infinite-container .streak-label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.infinite-container .streak-count {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.infinite-container button {
+  margin: 10px 0; /* Add some margin for spacing */
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.infinite-container .completed-word {
+  color: #39e75f; /* Set the color for completed words */
+}
