@@ -9,45 +9,80 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
-  
-  .word-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .word-item {
-    margin: 10px 0; 
-  }
-  
-  .hidden-word {
-    width: 10px; 
-    height: auto;
-  }
-  
-  input[type="text"] {
-    margin: 10px 0;
-    padding: 5px;
-    font-size: 16px;
-  }
-  
-  button {
-    margin: 10px 0; 
-    padding: 10px 20px;
-    font-size: 16px;
-  }
-  
-  .completed-word {
-    color: #39e75f; 
-  }
+}
 
-  input {
-    border: none;
-    outline: none; 
-    background: transparent;
-    font-size: 1.5rem; 
-    text-align: center;
-    color: #f4862b;
-    width: auto; 
-  }
+.classic-container .health-banner{
+  max-width: 600px;
+  width: 100%;
+  height: auto;
+  padding: 25px 25px;
+}
+
+.classic-container .completed-word{
+  font-size: 24px;
+  font-family: 'Indie Flower', sans-serif;
+  font-weight: 600;
+}
+
+.classic-container .blanks{
+  text-align: center;
+  margin-top: -40px;
+  margin-bottom: 40px;
+  
+}
+
+.classic-container .word-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.classic-container .word-item {
+  margin: 10px 0; 
+}
+
+.classic-container .hidden-word {
+  width: 10px; 
+  height: auto;
+}
+
+.classic-container input[type="text"] {
+  margin: 10px 0;
+  padding: 5px;
+  font-size: 24px;
+  font-family: 'Indie Flower', sans-serif;
+  font-weight: 600;
+}
+
+.classic-container .completed-word {
+  color: #39e75f; 
+}
+
+.classic-container input {
+  border: none;
+  outline: none; 
+  background: transparent;
+  font-size: 1.5rem; 
+  text-align: center;
+  color: #f4862b;
+  width: auto; 
+}
+
+.classic-container .submit-btn{
+  border: 3px solid #39e75f;
+  border-radius: 20px;
+  color: #39e75f;
+  font-weight: 600;
+  font-family: 'Indie Flower', sans-serif;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all .3s ease;
+  margin: 10px 0; 
+  padding: 10px 20px;
+}
+
+.classic-container .submit-btn:hover{
+  background-color: #39e75f;
+  color: white;
+}

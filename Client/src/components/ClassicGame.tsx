@@ -9,6 +9,7 @@ import { useState, useRef, useEffect } from "react";
 
 const livesImages = [fiveLives, fourLives, threeLives, twoLives, oneLife];
 
+//Hard coded word list for testing game logic
 const wordList = ["dog", "house", "key", "chain", "fence", "yard", "garden", "flower", "bee", "honey"];
 
 export function ClassicGame() {
@@ -83,7 +84,7 @@ export function ClassicGame() {
   return (
     <>
       <section className="classic-container">
-        <img src={livesImages[5 - lives]} alt={`Lives ${lives}`} />
+        <img className="health-banner" src={livesImages[5 - lives]} alt={`Lives ${lives}`} />
 
         <div className="word-list">
           {wordList.map((word, index) => (
@@ -111,7 +112,7 @@ export function ClassicGame() {
           ))}
         </div>
 
-        <button onClick={handleGuess} style={{ visibility: gameOver ? 'hidden' : 'visible' }}>Submit</button>
+        <button className="submit-btn" onClick={handleGuess} style={{ visibility: gameOver ? 'hidden' : 'visible' }}>Submit</button>
       </section>
     </>
   );
