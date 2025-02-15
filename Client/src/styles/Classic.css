@@ -3,3 +3,51 @@
     justify-content: center;
     align-items: center;
 }
+
+.classic-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .word-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .word-item {
+    margin: 10px 0; 
+  }
+  
+  .hidden-word {
+    width: 10px; 
+    height: auto;
+  }
+  
+  input[type="text"] {
+    margin: 10px 0;
+    padding: 5px;
+    font-size: 16px;
+  }
+  
+  button {
+    margin: 10px 0; 
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+  
+  .completed-word {
+    color: #39e75f; 
+  }
+
+  input {
+    border: none;
+    outline: none; 
+    background: transparent;
+    font-size: 1.5rem; 
+    text-align: center;
+    color: #f4862b;
+    width: auto; 
+  }
