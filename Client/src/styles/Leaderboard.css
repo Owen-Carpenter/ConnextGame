@@ -61,3 +61,17 @@
     font-family: 'Indie Flower', sans-serif;
     font-weight: 1000;
 }
+
+/* Change Swiper pagination bullet color and add shadow */
+.swiper-pagination-bullet {
+    background-color: #39e75f !important; /* ✅ Green color */
+    opacity: 1;
+    box-shadow: 0 0 5px rgba(57, 231, 95, 0.8); /* ✅ Soft green glow */
+    transition: box-shadow 0.3s ease-in-out; /* ✅ Smooth transition */
+}
+
+/* Highlight active bullet */
+.swiper-pagination-bullet-active {
+    background-color: #39e75f !important;
+    box-shadow: 0 0 10px rgba(57, 231, 95, 1); /* ✅ Stronger glow for active bullet */
+}
