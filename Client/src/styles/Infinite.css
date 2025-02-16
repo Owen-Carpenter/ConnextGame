@@ -1,69 +1,106 @@
-.infinite-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.infinite{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.infinite-container .word-list {
+.infinite-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+
+.infinite-container .health-banner{
+max-width: 600px;
+width: 100%;
+height: auto;
+padding: 25px 25px;
+}
+
+.infinite-container .completed-word{
+font-size: 24px;
+font-family: 'Indie Flower', sans-serif;
+font-weight: 600;
+}
+
+.infinite-container .blanks{
+text-align: center;
+margin-top: -40px;
+margin-bottom: 40px;
+
+}
+
+.infinite-container .word-list {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 }
 
 .infinite-container .word-item {
-  margin: 10px 0; /* Add some margin for spacing */
+margin: 10px 0; 
 }
 
 .infinite-container .hidden-word {
-  width: 10px; /* Adjust the width as needed */
-  height: auto;
-}
-
-.input-container {
-  position: relative;
+width: 10px; 
+height: auto;
 }
 
 .infinite-container input[type="text"] {
-  margin: 10px 0; /* Add some margin for spacing */
-  padding: 5px;
-  font-size: 16px;
-  border: none; /* Remove the border */
-  outline: none; /* Remove the outline */
-}
-
-.infinite-container .blanks {
-  position: absolute;
-  top: 50%;
-  left: 5px;
-  transform: translateY(-50%);
-  color: #ccc; /* Light gray color for blanks */
-  pointer-events: none; /* Make sure the blanks are not interactive */
-}
-
-.infinite-container .streak-container {
-  display: flex;
-  align-items: center;
-  margin: 10px 0; /* Add some margin for spacing */
-}
-
-.infinite-container .streak-label {
-  font-size: 18px;
-  font-weight: bold;
-  margin-right: 5px;
-}
-
-.infinite-container .streak-count {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.infinite-container button {
-  margin: 10px 0; /* Add some margin for spacing */
-  padding: 10px 20px;
-  font-size: 16px;
+margin: 10px 0;
+padding: 5px;
+font-size: 32px;
+font-family: 'Indie Flower', sans-serif;
+font-weight: 600;
 }
 
 .infinite-container .completed-word {
-  color: #39e75f; /* Set the color for completed words */
+color: #39e75f; 
+}
+
+.infinite-container input {
+border: none;
+outline: none; 
+background: transparent;
+font-size: 1.5rem; 
+text-align: center;
+color: #f4862b;
+width: auto; 
+}
+
+.infinite-container .submit-btn{
+border: 3px solid #39e75f;
+border-radius: 20px;
+color: #39e75f;
+font-weight: 600;
+font-family: 'Indie Flower', sans-serif;
+font-size: 24px;
+cursor: pointer;
+transition: all .3s ease;
+margin: 10px 0; 
+padding: 10px 20px;
+}
+
+.infinite-container .submit-btn:hover{
+background-color: #39e75f;
+color: white;
+}
+
+.infinite-container .streak-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0px;
+}
+
+.infinite-container .streak-container .streak-label{
+  font-family: 'Indie flower', sans-serif;
+  font-size: 28px;
+}
+
+.infinite-container .streak-container .streak-count{
+  font-family: 'Indie flower', sans serif;
+  font-size: 28px;
+  padding-left: 10px;
 }

@@ -1,5 +1,5 @@
 import "../styles/Infinite.css";
-import hiddenWord from "../assets/Hidden_Word.png";
+//import hiddenWord from "../assets/Hidden_Word.png";
 import fiveLives from "../assets/Five_Lives.png";
 import fourLives from "../assets/Four_Lives.png";
 import threeLives from "../assets/Three_Lives.png";
@@ -81,7 +81,7 @@ export function InfiniteGame() {
   return (
     <>
       <section className="infinite-container">
-        <img src={livesImages[5 - lives]} alt={`Lives ${lives}`} />
+        <img className="health-banner" src={livesImages[5 - lives]} alt={`Lives ${lives}`} />
 
         <div className="word-list">
           
@@ -112,7 +112,7 @@ export function InfiniteGame() {
           <span className="streak-count">{streak}</span>
         </div>
 
-        <button onClick={handleGuess} style={{ visibility: gameOver ? 'hidden' : 'visible' }}>Submit</button>
+        <button className="submit-btn" onClick={handleGuess} style={{ visibility: gameOver ? 'hidden' : 'visible' }}>Submit</button>
       </section>
     </>
   );
