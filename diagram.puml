@@ -1,0 +1,67 @@
+@startuml
+
+' Client side
+package "Client" {
+}
+
+' Server side
+package "Server" {
+    package "Controllers" <<Rectangle>> {
+        
+        ' class for controller
+        class "authController" {
+            + handleLogin(): void
+            + handleLogout(): void
+        }
+        class "registerController" {
+            + handleRegister(): void
+        }
+        class "gameController" {
+            + createGame(): void
+            + deleteGame(): void
+            + getGame(): void
+            + updateGame(): void
+        }
+        class "leaderboardController" {
+            + leaderboardRefresh(): Leaderboard
+        }
+    }
+    package "Models" <<Rectangle>> {
+        class "authentication" {
+            + authenticationSchema: mongoose.model
+        }
+    }
+
+    ' env file resource
+    class "env" {
+        + MONGO_URI: string
+        + PORT: string
+        + SECRET: string
+    }
+
+    class "MongoClient" {
+        + db: MongoClient.db
+    }
+
+    authentication -- authController
+    authentication -- registerController
+
+    MongoClient -left- env
+    MongoClient -- authController
+    MongoClient -- registerController
+}
+
+package "ConnextUsers" <<Database>> {
+    ' class for table
+    class "User" {
+        + id: int
+        + email: string
+        + games : Game[]
+        + password: string
+        + role: string
+        + transactions: Transaction[]
+        + username: string
+    }
+}
+
+@enduml
