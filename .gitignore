@@ -1,3 +1,4 @@
 # Other files and directories to ignore
 node_modules/
 dist/
+*.bin
