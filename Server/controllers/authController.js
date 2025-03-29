@@ -11,11 +11,21 @@ const handleLogin = {
             const { username, password } = req.body;
 
             // User/Pwd Not Found
-            if (!username || !password) return res.status(400).json({ 'message': 'Username and password are required' });
+            if (!username || !password) {
+                return res.status(400).json({ 
+                    'message': 'Username and password are required',
+                    'status': 'error'
+                });
+            }
 
             // Find the user
             const foundUser = await AuthenticationModel.findOne({ username });
-            if (!foundUser) return res.sendStatus(401); // Unauthorized
+            if (!foundUser) {
+                return res.status(401).json({ 
+                    'message': 'Invalid username or password',
+                    'status': 'error'
+                });
+            }
 
             // Check for match
             const userMatch = await bcrypt.compare(password, foundUser.password);
@@ -38,14 +48,30 @@ const handleLogin = {
                 await foundUser.save();
 
                 // Send refresh token as a cookie and access token as a response
-                res.cookie('jwt', refreshToken, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 24 * 60 * 60 * 1000 });
-                res.json({ 'message': 'Login successful', accessToken });
+                res.cookie('jwt', refreshToken, { 
+                    httpOnly: true, 
+                    secure: process.env.NODE_ENV === 'production', 
+                    sameSite: 'lax', 
+                    maxAge: 24 * 60 * 60 * 1000 
+                });
+                res.json({ 
+                    'message': 'Login successful', 
+                    'status': 'success',
+                    accessToken 
+                });
             } else {
-                res.sendStatus(401); // Unauthorized
+                res.status(401).json({ 
+                    'message': 'Invalid username or password',
+                    'status': 'error'
+                });
             }
         } catch (err) {
             console.error("Login error:", err);
-            res.status(500).json({ 'message': err.message });
+            res.status(500).json({ 
+                'message': 'An error occurred during login',
+                'status': 'error',
+                'error': process.env.NODE_ENV === 'development' ? err.message : undefined
+            });
         }
     }
 };

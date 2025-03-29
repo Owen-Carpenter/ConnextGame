@@ -9,7 +9,7 @@ const handleNewUser = {
             // User/Pwd Not Found
             if (!username || !password) return res.status(400).json({ 'message': 'Username and password are required' });
 
-            const duplicateUser = await BookingModel.findOne({ email });
+            const duplicateUser = await AuthenticationModel.findOne({ email });
             if (duplicateUser) return res.status(409).json({ 'message': 'User already exists' });
 
             try {

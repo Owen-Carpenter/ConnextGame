@@ -19,9 +19,30 @@ export function Paywall(){
             <section className="paywall">
                 <div className="content-container">
                     <Header />
-                    <Payment time="Monthly" deal="3 days free" rate="$0.99/month" saving="base" tag=""/>
-                    <Payment time="Yearly" deal="1 week free" rate="$9.99/year" saving="$0.83/month" tag="Save 15%" />
-                    <Payment time="Lifetime" deal="forever..." rate="$24.99" saving="one-time" tag="Best Deal" />
+                    <Payment 
+                        time="Monthly" 
+                        deal="3 days free" 
+                        rate="$0.99/month" 
+                        saving="base" 
+                        tag=""
+                        subscriptionType="Monthly"
+                    />
+                    <Payment 
+                        time="Yearly" 
+                        deal="1 week free" 
+                        rate="$9.99/year" 
+                        saving="$0.83/month" 
+                        tag="Save 15%" 
+                        subscriptionType="Yearly"
+                    />
+                    <Payment 
+                        time="Lifetime" 
+                        deal="forever..." 
+                        rate="$24.99" 
+                        saving="one-time" 
+                        tag="Best Deal" 
+                        subscriptionType="Lifetime"
+                    />
                 </div>
             </section>
         </>

@@ -1,0 +1,90 @@
+.payment-result-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+}
+
+.payment-result {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.success-icon, .error-icon, .cancel-icon {
+    font-size: 48px;
+    margin-bottom: 1rem;
+}
+
+.success-icon {
+    color: #4CAF50;
+}
+
+.error-icon {
+    color: #f44336;
+}
+
+.cancel-icon {
+    color: #ff9800;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #39e75f;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.payment-result h2 {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.payment-result p {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.payment-result button {
+    background-color: #39e75f;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.payment-result button:hover {
+    background-color: #39e75f;
+}
+
+.payment-result.success {
+    border-top: 5px solid #4CAF50;
+}
+
+.payment-result.error {
+    border-top: 5px solid #f44336;
+}
+
+.payment-result.cancelled {
+    border-top: 5px solid #ff9800;
+}

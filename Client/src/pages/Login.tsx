@@ -78,7 +78,15 @@ export function Login() {
         }
 
         try {
-            const result = await axios.post("http://localhost:8080/auth", { username, password });
+            const result = await axios.post("http://localhost:8080/auth", 
+                { username, password },
+                { 
+                    withCredentials: true,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+            );
             if (result.data.message === "Login successful") {
                 localStorage.setItem("userToken", result.data.accessToken);
                 navigate('/Home', { replace: true });
@@ -86,7 +94,18 @@ export function Login() {
                 alert("Incorrect email or password");
             }
         } catch (err) {
-            console.log(err);
+            if (axios.isAxiosError(err)) {
+                if (err.response?.status === 401) {
+                    alert("Invalid username or password");
+                } else if (err.response?.status === 400) {
+                    alert(err.response.data.message);
+                } else {
+                    alert("An error occurred during login. Please try again.");
+                }
+            } else {
+                alert("An unexpected error occurred. Please try again.");
+            }
+            console.error("Login error:", err);
         }
     };
 

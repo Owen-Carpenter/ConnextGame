@@ -7,10 +7,12 @@ import { Leaderboard } from './pages/Leaderboard';
 import { Classic } from './pages/Classic';
 import { Infinite } from './pages/Infinite';
 import { Versus } from './pages/Versus';
+import PaymentSuccess from './components/PaymentSuccess';
+import PaymentCancel from './components/PaymentCancel';
 //import { GamePage } from "./pages/Game";
 import './Styles/General.css';
 
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 const App: React.FC = () => {
   return (
@@ -26,6 +28,8 @@ const App: React.FC = () => {
           <Route path="/Infinite" element={<Infinite/>}/>
           <Route path="/Versus" element={<Versus/>}/>
           <Route path="/Leaderboard" element={<Leaderboard/>}/>
+          <Route path="/payment-success" element={<PaymentSuccess />} />
+          <Route path="/payment-cancel" element={<PaymentCancel />} />
         </Routes>
       </Router>
     </>
