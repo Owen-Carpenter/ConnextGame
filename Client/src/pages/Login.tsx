@@ -88,7 +88,21 @@ export function Login() {
                 }
             );
             if (result.data.message === "Login successful") {
+                // Clear any cached scores first
+                localStorage.removeItem("classicStreak");
+                localStorage.removeItem("infiniteTopScore");
+                
+                // Then set the authentication token
                 localStorage.setItem("userToken", result.data.accessToken);
+                
+                // Dispatch storage event to notify other components
+                window.dispatchEvent(new StorageEvent('storage', {
+                    key: 'userToken',
+                    newValue: result.data.accessToken,
+                    oldValue: null,
+                    storageArea: localStorage
+                }));
+                
                 navigate('/Home', { replace: true });
             } else if (result.data.message === "Incorrect password") {
                 alert("Incorrect email or password");

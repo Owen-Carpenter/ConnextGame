@@ -9,6 +9,7 @@ import { Infinite } from './pages/Infinite';
 import { Versus } from './pages/Versus';
 import PaymentSuccess from './components/PaymentSuccess';
 import PaymentCancel from './components/PaymentCancel';
+import { GameStats } from './pages/GameStats';
 //import { GamePage } from "./pages/Game";
 import './Styles/General.css';
 
@@ -30,6 +31,7 @@ const App: React.FC = () => {
           <Route path="/Leaderboard" element={<Leaderboard/>}/>
           <Route path="/payment-success" element={<PaymentSuccess />} />
           <Route path="/payment-cancel" element={<PaymentCancel />} />
+          <Route path="/GameStats" element={<GameStats/>}/>
         </Routes>
       </Router>
     </>

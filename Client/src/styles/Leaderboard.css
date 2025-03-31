@@ -75,3 +75,63 @@
     background-color: #39e75f !important;
     box-shadow: 0 0 10px rgba(57, 231, 95, 1); /* ✅ Stronger glow for active bullet */
 }
+
+.loading, .error, .empty-leaderboard {
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+.loading {
+    color: #39e75f;
+    font-weight: bold;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.error {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.empty-leaderboard p {
+    font-style: italic;
+    color: #555;
+    margin: 0;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.6;
+    }
+}
+
+.refresh-button {
+    background-color: rgba(57, 231, 95, 0.2);
+    color: #333;
+    border: 2px solid #39e75f;
+    padding: 8px 15px;
+    border-radius: 20px;
+    margin: 10px auto;
+    display: block;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.refresh-button:hover:not(:disabled) {
+    background-color: #39e75f;
+    color: white;
+    box-shadow: 0 0 8px rgba(57, 231, 95, 0.8);
+}
+
+.refresh-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

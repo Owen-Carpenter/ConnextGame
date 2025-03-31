@@ -1,14 +1,92 @@
 import "../styles/Leaderboard.css";
 import Header from "../components/Header";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../styles/Background.css"
 import "swiper/css"; 
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
+
+// Define types for the leaderboard data
+interface ClassicLeaderboardEntry {
+    username: string;
+    games: {
+        classic: {
+            streak: number;
+        };
+    };
+}
+
+interface InfiniteLeaderboardEntry {
+    username: string;
+    games: {
+        infinite: {
+            topScore: number;
+        };
+    };
+}
 
 export function Leaderboard() {
     const sceneRef = useRef<HTMLElement>(null);
+    const [classicLeaderboard, setClassicLeaderboard] = useState<ClassicLeaderboardEntry[]>([]);
+    const [infiniteLeaderboard, setInfiniteLeaderboard] = useState<InfiniteLeaderboardEntry[]>([]);
+    const [loading, setLoading] = useState({
+        classic: true,
+        infinite: true
+    });
+    const [error, setError] = useState({
+        classic: "",
+        infinite: ""
+    });
+    const location = useLocation();
+    
+    // Function to fetch classic leaderboard data
+    const fetchClassicLeaderboard = async () => {
+        try {
+            setLoading(prev => ({ ...prev, classic: true }));
+            console.log("Fetching classic leaderboard data...");
+            const response = await axios.get("http://localhost:8080/game/leaderboard/classic");
+            console.log("Classic leaderboard data:", response.data);
+            setClassicLeaderboard(response.data.leaderboard);
+            setError(prev => ({ ...prev, classic: "" }));
+        } catch (err) {
+            console.error("Error fetching classic leaderboard:", err);
+            setError(prev => ({ 
+                ...prev, 
+                classic: "Failed to load classic leaderboard data. Please try again later."
+            }));
+        } finally {
+            setLoading(prev => ({ ...prev, classic: false }));
+        }
+    };
+    
+    // Function to fetch infinite leaderboard data
+    const fetchInfiniteLeaderboard = async () => {
+        try {
+            setLoading(prev => ({ ...prev, infinite: true }));
+            console.log("Fetching infinite leaderboard data...");
+            const response = await axios.get("http://localhost:8080/game/leaderboard/infinite");
+            console.log("Infinite leaderboard data:", response.data);
+            setInfiniteLeaderboard(response.data.leaderboard);
+            setError(prev => ({ ...prev, infinite: "" }));
+        } catch (err) {
+            console.error("Error fetching infinite leaderboard:", err);
+            setError(prev => ({ 
+                ...prev, 
+                infinite: "Failed to load infinite leaderboard data. Please try again later."
+            }));
+        } finally {
+            setLoading(prev => ({ ...prev, infinite: false }));
+        }
+    };
+    
+    // Fetch data when component mounts or location changes
+    useEffect(() => {
+        fetchClassicLeaderboard();
+        fetchInfiniteLeaderboard();
+    }, [location.key]); // Re-fetch when location changes
     
     const randomWords = [
         "Galaxy", "Nebula", "Star", "Cosmos", "Meteor", "Orbit", "Asteroid", 
@@ -66,6 +144,68 @@ export function Leaderboard() {
         };
     }, []);
 
+    // Helper function to render classic leaderboard entries
+    const renderClassicLeaderboard = () => {
+        if (loading.classic) {
+            return <div className="loading">Loading leaderboard data...</div>;
+        }
+        
+        if (error.classic) {
+            return <div className="error">{error.classic}</div>;
+        }
+        
+        if (!classicLeaderboard || classicLeaderboard.length === 0) {
+            return (
+                <div className="empty-leaderboard">
+                    <p>No streak data available yet. Be the first to set a record!</p>
+                </div>
+            );
+        }
+        
+        return (
+            <ul>
+                {classicLeaderboard.map((entry, index) => (
+                    <li key={index}>
+                        <h3 className="position">{index + 1}.</h3>
+                        <h3 className="name">{entry.username}</h3>
+                        <h3 className="points">{entry.games.classic.streak} Streak</h3>
+                    </li>
+                ))}
+            </ul>
+        );
+    };
+    
+    // Helper function to render infinite leaderboard entries
+    const renderInfiniteLeaderboard = () => {
+        if (loading.infinite) {
+            return <div className="loading">Loading leaderboard data...</div>;
+        }
+        
+        if (error.infinite) {
+            return <div className="error">{error.infinite}</div>;
+        }
+        
+        if (!infiniteLeaderboard || infiniteLeaderboard.length === 0) {
+            return (
+                <div className="empty-leaderboard">
+                    <p>No score data available yet. Be the first to set a record!</p>
+                </div>
+            );
+        }
+        
+        return (
+            <ul>
+                {infiniteLeaderboard.map((entry, index) => (
+                    <li key={index}>
+                        <h3 className="position">{index + 1}.</h3>
+                        <h3 className="name">{entry.username}</h3>
+                        <h3 className="points">{entry.games.infinite.topScore} Words</h3>
+                    </li>
+                ))}
+            </ul>
+        );
+    };
+
     return (
         <>
             <main className="scene" ref={sceneRef}></main>
@@ -82,46 +222,14 @@ export function Leaderboard() {
                             <SwiperSlide>
                                 <div className="leaderboard-box">
                                     <h2>Classic Leaderboard</h2>
-                                    <ul>
-                                        <li>
-                                            <h3 className="position">1.</h3>
-                                            <h3 className="name">Player A</h3>
-                                            <h3 className="points">1200 pts</h3>
-                                        </li>
-                                        <li>
-                                            <h3 className="position">2.</h3>
-                                            <h3 className="name">Player B</h3>
-                                            <h3 className="points">1100 pts</h3>
-                                        </li>
-                                        <li>
-                                            <h3 className="position">3.</h3>
-                                            <h3 className="name">Player C</h3>
-                                            <h3 className="points">1050 pts</h3>
-                                        </li>
-                                    </ul>
+                                    {renderClassicLeaderboard()}
                                 </div>
                             </SwiperSlide>
 
                             <SwiperSlide>
                                 <div className="leaderboard-box">
                                     <h2>Infinite Leaderboard</h2>
-                                    <ul>
-                                        <li>
-                                            <h3 className="position">1.</h3>
-                                            <h3 className="name">Player X</h3>
-                                            <h3 className="points">97 Words</h3>
-                                        </li>
-                                        <li>
-                                            <h3 className="position">2.</h3>
-                                            <h3 className="name">Player Y</h3>
-                                            <h3 className="points">54 Words</h3>
-                                        </li>
-                                        <li>
-                                            <h3 className="position">3.</h3>
-                                            <h3 className="name">Player Z</h3>
-                                            <h3 className="points">22 Words</h3>
-                                        </li>
-                                    </ul>
+                                    {renderInfiniteLeaderboard()}
                                 </div>
                             </SwiperSlide>
 

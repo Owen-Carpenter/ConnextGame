@@ -6,6 +6,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .home .content-container{
@@ -14,6 +16,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 2;
+    animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 .home .game-selection-container {
@@ -22,19 +31,42 @@
     justify-content: center;
     flex-wrap: wrap;
     padding-bottom: 100px;
+    animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .home .game-select-card {
     height: 300px;
     width: 300px;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     border: 1px solid #f2f2f2;
     box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.25);
     border-radius: 25px;
     cursor: pointer;
     padding: 20px;
+    position: relative;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+    animation: cardAppear 0.5s ease-out;
+    animation-fill-mode: both;
+}
+
+.home .game-select-card:nth-child(1) { animation-delay: 0.1s; }
+.home .game-select-card:nth-child(2) { animation-delay: 0.3s; }
+.home .game-select-card:nth-child(3) { animation-delay: 0.5s; }
+
+@keyframes cardAppear {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .home .game-select-card:hover{
@@ -60,6 +92,9 @@
     justify-content: space-around;
     align-items: center;
     padding-bottom: 50px;
+    animation: fadeIn 1s ease-out;
+    animation-delay: 0.7s;
+    animation-fill-mode: both;
 }
 
 .home .home-btn{
@@ -82,7 +117,27 @@
     color: white;
 }
 
+.home .card-streak {
+    background-color: rgba(57, 231, 95, 0.2);
+    padding: 8px 15px;
+    border-radius: 20px;
+    position: absolute;
+    bottom: 5px;
+    width: fit-content;
+    font-weight: bold;
+    color: #333;
+    border: 2px solid #39e75f;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
 
+.home .card-streak span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
 .classic-bg {
     background-image: url('/backgrounds/classic-icon.png');
@@ -105,7 +160,7 @@
     background-position: center;
     background-repeat: no-repeat;
     transition: all .3s ease;
-    background-position: center bottom 50px;
+    background-position: center calc(100% - 60px);
 }
 
 .classic-bg:hover .card-title {

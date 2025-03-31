@@ -1,0 +1,98 @@
+.versus {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.content-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.versus-placeholder {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.versus-placeholder h2 {
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.versus-placeholder p {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.versus-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.play-btn {
+  background-color: #4a90e2;
+  color: white;
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.play-btn:hover {
+  background-color: #3a80d2;
+  transform: translateY(-2px);
+}
+
+.home-btn {
+  background-color: #f0f2f5;
+  color: #555;
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.home-btn:hover {
+  background-color: #e0e2e5;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .versus-placeholder {
+    padding: 20px;
+  }
+  
+  .versus-buttons {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .play-btn, .home-btn {
+    width: 100%;
+  }
+}

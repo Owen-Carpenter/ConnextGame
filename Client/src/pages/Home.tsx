@@ -7,10 +7,25 @@ import { useState, useEffect } from "react";
 export function Home(){
     const nav = useNavigate();
     const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem("userToken"));
+    const [refreshTrigger, setRefreshTrigger] = useState(0);
     
     useEffect(() => {
         const handleStorageChange = () => {
-            setIsAuthenticated(!!localStorage.getItem("userToken"));
+            const newAuthState = !!localStorage.getItem("userToken");
+            
+            // If authentication state changed (login or logout)
+            if (newAuthState !== isAuthenticated) {
+                setIsAuthenticated(newAuthState);
+                
+                // If user just logged in, reset cached scores to prevent seeing previous user's scores
+                if (newAuthState) {
+                    localStorage.removeItem("classicStreak");
+                    localStorage.removeItem("infiniteTopScore");
+                }
+                
+                // Force refresh to update streak display
+                setRefreshTrigger(prev => prev + 1);
+            }
         };
 
         // local storage change
@@ -19,7 +34,7 @@ export function Home(){
         return () => {
             window.removeEventListener("storage", handleStorageChange);
         };
-    }, []);
+    }, [isAuthenticated]);
 
     const handleGameSelection = (path: string) => {
         if (!isAuthenticated) {
@@ -42,13 +57,13 @@ export function Home(){
                     <Header />
                     <div className="game-selection-container">
                         <button className="game-link" onClick={() => handleGameSelection("/Classic")}>
-                            <GameType title="Classic"/>
+                            <GameType title="Classic" key={`classic-${refreshTrigger}`} />
                         </button>
                         <button className="game-link" onClick={() => handleGameSelection("/Infinite")}>
-                            <GameType title="Infinite"/>
+                            <GameType title="Infinite" key={`infinite-${refreshTrigger}`} />
                         </button>
                         <button className="game-link" onClick={() => handleGameSelection("/Versus")}>
-                            <GameType title="Versus"/>
+                            <GameType title="Versus" />
                         </button>
                     </div>
                     <div className="button-container">

@@ -16,13 +16,16 @@ const authenticationSchema = new mongoose.Schema({
     },
     games: {
         classic: {
-            topScore: { type: Number, default: 0 }
+            topScore: { type: Number, default: 0 },
+            streak: { type: Number, default: 0 }
         },
         infinite: {
-            topScore: { type: Number, default: 0 }
+            topScore: { type: Number, default: 0 },
+            streak: { type: Number, default: 0 }
         },
         versus: {
-            topScore: { type: Number, default: 0 }
+            topScore: { type: Number, default: 0 },
+            streak: { type: Number, default: 0 }
         }
     },
     role: {

@@ -16,3 +16,32 @@
     color: #39e75f; 
     text-shadow: 2px 2px 0 #000; 
 }
+
+/* More compact header for game pages */
+.classic .header-container, .infinite .header-container {
+    flex-direction: row;
+    padding: 5px 0;
+}
+
+.classic .header-container .logo, .infinite .header-container .logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.classic .header-container .title,  .infinite .header-container .title {
+    font-size: 40px;
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-height: 700px) {
+    .classic .header-container .logo {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .classic .header-container .title {
+        font-size: 30px;
+    }
+}
