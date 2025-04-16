@@ -1,4 +1,4 @@
-import "../styles/paywall.css";
+import "../styles/Paywall.css";
 import Payment from "../components/PaymentCard";
 import Header from "../components/Header";
 import { useEffect } from "react";
