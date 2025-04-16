@@ -11,7 +11,7 @@ import PaymentSuccess from './components/PaymentSuccess';
 import PaymentCancel from './components/PaymentCancel';
 import { GameStats } from './pages/GameStats';
 //import { GamePage } from "./pages/Game";
-import './Styles/General.css';
+import './styles/General.css';
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
