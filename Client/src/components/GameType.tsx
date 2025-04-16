@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function GameType({ title }: { title: string }) {  
     const [streak, setStreak] = useState(0);
