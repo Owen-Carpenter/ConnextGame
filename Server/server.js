@@ -8,6 +8,8 @@ import logoutRoutes from './routes/logout.js'
 import paymentRoutes from './routes/payment.js';
 import gameRoutes from './routes/game.js';
 import cookieParser from 'cookie-parser';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
 
@@ -17,18 +19,26 @@ if(!URI){
 }
 
 const PORT = process.env.PORT || 8080;
+const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173';
 
 mongoose.connect(URI);
 
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: CLIENT_URL,
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(cookieParser());
+
+// Get the directory name
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Serve static files from the Client/dist directory
+app.use(express.static(path.join(__dirname, '../Client/dist')));
 
 // Request logging middleware
 app.use((req, res, next) => {
@@ -62,6 +72,13 @@ app.post('/test', (req, res) => {
   res.status(200).json({ message: "Test route working" });
 });
 
+// Serve index.html for all other routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../Client/dist/index.html'));
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
+    console.log(`Serving static files from: ${path.join(__dirname, '../Client/dist')}`);
+    console.log(`CORS configured for: ${CLIENT_URL}`);
 })
