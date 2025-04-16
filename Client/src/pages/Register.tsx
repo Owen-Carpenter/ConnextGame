@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import "../styles/Background.css";
+import { API_BASE_URL } from '../config';
 
 export function Register() {
     const[username, setUsername] = useState("");
@@ -84,7 +85,7 @@ export function Register() {
             return;
         }
         
-        axios.post("http://localhost:8080/register", {username, password, email})
+        axios.post(`${API_BASE_URL}/register`, {username, password, email})
         .then(result => {
             setSuccess("Registration successful")
             console.log(result);

@@ -8,6 +8,7 @@ import oneLife from "../assets/One_Life.png";
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_BASE_URL } from '../config';
   
 const livesImages = [fiveLives, fourLives, threeLives, twoLives, oneLife];
 
@@ -39,7 +40,7 @@ export function InfiniteGame() {
       if (token) {
         try {
           // Try to get user info from server
-          const response = await axios.get("http://localhost:8080/game/user", {
+          const response = await axios.get(`${API_BASE_URL}/game/user`, {
             headers: {
               Authorization: `Bearer ${token}`
             }
@@ -48,7 +49,7 @@ export function InfiniteGame() {
           if (response.data && response.data.username) {
             // Get the user's current top score from the server
             try {
-              const leaderboardResponse = await axios.get("http://localhost:8080/game/leaderboard/infinite");
+              const leaderboardResponse = await axios.get(`${API_BASE_URL}/game/leaderboard/infinite`);
               const userEntry = leaderboardResponse.data.leaderboard.find(
                 (entry: { username: string, games?: { infinite?: { topScore?: number } } }) => 
                   entry.username === response.data.username
@@ -118,7 +119,7 @@ export function InfiniteGame() {
     if (token) {
       try {
         // Try to get user info from server
-        const response = await axios.get("http://localhost:8080/game/user", {
+        const response = await axios.get(`${API_BASE_URL}/game/user`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -170,7 +171,7 @@ export function InfiniteGame() {
           // First try to get username from server
           let username;
           try {
-            const userResponse = await axios.get("http://localhost:8080/game/user", {
+            const userResponse = await axios.get(`${API_BASE_URL}/game/user`, {
               headers: {
                 Authorization: `Bearer ${token}`
               }
@@ -205,7 +206,7 @@ export function InfiniteGame() {
             // First try the test route to see if basic communication works
             try {
               console.log("Testing server connection with test route...");
-              const testResponse = await axios.post("http://localhost:8080/test", 
+              const testResponse = await axios.post(`${API_BASE_URL}/test`, 
                 { 
                   test: true,
                   username: username
@@ -217,7 +218,7 @@ export function InfiniteGame() {
             }
             
             // Then try the actual route
-            const url = "http://localhost:8080/game/infinite/score";
+            const url = `${API_BASE_URL}/game/infinite/score`;
             console.log("Attempting to POST to URL:", url);
             
             try {

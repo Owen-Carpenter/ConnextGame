@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import { API_BASE_URL } from '../config';
 
 // Define types for the leaderboard data
 interface ClassicLeaderboardEntry {
@@ -47,7 +48,7 @@ export function Leaderboard() {
         try {
             setLoading(prev => ({ ...prev, classic: true }));
             console.log("Fetching classic leaderboard data...");
-            const response = await axios.get("http://localhost:8080/game/leaderboard/classic");
+            const response = await axios.get(`${API_BASE_URL}/game/leaderboard/classic`);
             console.log("Classic leaderboard data:", response.data);
             setClassicLeaderboard(response.data.leaderboard);
             setError(prev => ({ ...prev, classic: "" }));
@@ -67,7 +68,7 @@ export function Leaderboard() {
         try {
             setLoading(prev => ({ ...prev, infinite: true }));
             console.log("Fetching infinite leaderboard data...");
-            const response = await axios.get("http://localhost:8080/game/leaderboard/infinite");
+            const response = await axios.get(`${API_BASE_URL}/game/leaderboard/infinite`);
             console.log("Infinite leaderboard data:", response.data);
             setInfiniteLeaderboard(response.data.leaderboard);
             setError(prev => ({ ...prev, infinite: "" }));

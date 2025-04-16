@@ -6,6 +6,7 @@ import { useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import "../styles/Background.css";
+import { API_BASE_URL } from '../config';
 
 export function Login() {
     const [username, setUsername] = useState("");
@@ -78,7 +79,7 @@ export function Login() {
         }
 
         try {
-            const result = await axios.post("http://localhost:8080/auth", 
+            const result = await axios.post(`${API_BASE_URL}/auth`, 
                 { username, password },
                 { 
                     withCredentials: true,

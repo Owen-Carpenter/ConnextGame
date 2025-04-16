@@ -8,6 +8,7 @@ import oneLife from "../assets/One_Life.png";
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_BASE_URL } from '../config';
 
 const livesImages = [fiveLives, fourLives, threeLives, twoLives, oneLife];
 
@@ -37,7 +38,7 @@ export function ClassicGame() {
       if (token) {
         try {
           // Try to get user info from server
-          const response = await axios.get("http://localhost:8080/game/user", {
+          const response = await axios.get(`${API_BASE_URL}/game/user`, {
             headers: {
               Authorization: `Bearer ${token}`
             }
@@ -46,7 +47,7 @@ export function ClassicGame() {
           if (response.data && response.data.username) {
             // Get the user's current streak from the server
             try {
-              const leaderboardResponse = await axios.get("http://localhost:8080/game/leaderboard/classic");
+              const leaderboardResponse = await axios.get(`${API_BASE_URL}/game/leaderboard/classic`);
               const userEntry = leaderboardResponse.data.leaderboard.find(
                 (entry: { username: string, games?: { classic?: { streak?: number } } }) => 
                   entry.username === response.data.username
@@ -128,7 +129,7 @@ export function ClassicGame() {
             // First try to get username from server
             let username;
             try {
-              const userResponse = await axios.get("http://localhost:8080/game/user", {
+              const userResponse = await axios.get(`${API_BASE_URL}/game/user`, {
                 headers: {
                   Authorization: `Bearer ${token}`
                 }
@@ -160,7 +161,7 @@ export function ClassicGame() {
             if (username) {
               console.log("Sending streak update with username:", username);
               
-              const response = await axios.post("http://localhost:8080/game/classic/streak", 
+              const response = await axios.post(`${API_BASE_URL}/game/classic/streak`, 
                 { 
                   username: username,
                   streak: newStreak 
@@ -277,7 +278,7 @@ export function ClassicGame() {
     if (token) {
       try {
         // Try to get user info from server
-        const response = await axios.get("http://localhost:8080/game/user", {
+        const response = await axios.get(`${API_BASE_URL}/game/user`, {
           headers: {
             Authorization: `Bearer ${token}`
           }

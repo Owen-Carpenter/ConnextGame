@@ -1,6 +1,7 @@
 import "../styles/Payment.css";
 import { useState } from "react";
 import axios, { AxiosError } from "axios";
+import { API_BASE_URL } from '../config';
 
 interface PaymentProps {
     time: string;
@@ -30,7 +31,7 @@ function Payment({ time, deal, rate, saving, tag, subscriptionType }: PaymentPro
             });
 
             const response = await axios.post(
-                "http://localhost:8080/payment/create-checkout-session",
+                `${API_BASE_URL}/payment/create-checkout-session`,
                 { subscriptionType },
                 {
                     withCredentials: true,

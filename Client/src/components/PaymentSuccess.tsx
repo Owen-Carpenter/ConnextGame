@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/PaymentResult.css';
 import "../styles/Background.css";
+import { API_BASE_URL } from '../config';
 
 function PaymentSuccess() {
     const [searchParams] = useSearchParams();
@@ -92,7 +93,7 @@ function PaymentSuccess() {
                     console.log('Sending verification request to server...');
                     
                     const response = await axios.get(
-                        `http://localhost:8080/payment/success?session_id=${sessionId}`,
+                        `${API_BASE_URL}/payment/success?session_id=${sessionId}`,
                         {
                             headers: {
                                 'Authorization': `Bearer ${token}`
