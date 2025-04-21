@@ -1,5 +1,6 @@
 import json
 import random
+import sys
 
 def load_binomials(filename):
     with open(filename, 'r') as f:
@@ -42,12 +43,21 @@ def generate_word_chain(binomials, length=10):
     return []  # No chain found
 
 if __name__ == "__main__":
-    binomials = load_binomials("linked_binomials.json")
-    chain = generate_word_chain(binomials, length=10)
-
-    if chain:
-        print("\nGenerated Word Chain:")
-        for w1, w2 in chain:
-            print(f"{w1} -> {w2}")
+    # Get parameters from command line
+    if len(sys.argv) >= 3:
+        binomials_file = sys.argv[1]
+        chain_length = int(sys.argv[2])
     else:
-        print("No valid word chain found.")
+        binomials_file = "linked_binomials.json"
+        chain_length = 10
+    
+    binomials = load_binomials(binomials_file)
+    chain = generate_word_chain(binomials, length=chain_length)
+
+    # Output the chain as JSON for easier parsing by Node.js
+    if chain:
+        # Convert tuples to lists for JSON serialization
+        json_chain = [[w1, w2] for w1, w2 in chain]
+        print(json.dumps(json_chain))
+    else:
+        print("[]")  # Empty array if no chain found

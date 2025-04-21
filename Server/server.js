@@ -7,6 +7,7 @@ import authRoutes from './routes/auth.js';
 import logoutRoutes from './routes/logout.js'
 import paymentRoutes from './routes/payment.js';
 import gameRoutes from './routes/game.js';
+import chainRoutes from './routes/chain.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -65,11 +66,17 @@ app.use('/register', registerRoutes);
 app.use('/logout', logoutRoutes);
 app.use('/payment', paymentRoutes);
 app.use('/game', gameRoutes);
+app.use('/chain', chainRoutes);
 
-// Test route
+// Test routes
 app.post('/test', (req, res) => {
-  console.log("Test route hit:", req.body);
+  console.log("Test POST route hit:", req.body);
   res.status(200).json({ message: "Test route working" });
+});
+
+app.get('/test', (req, res) => {
+  console.log("Test GET route hit for ping");
+  res.status(200).json({ message: "Server is running", timestamp: new Date().toISOString() });
 });
 
 // Serve index.html for all other routes
