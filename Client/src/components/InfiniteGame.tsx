@@ -9,55 +9,22 @@ import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_BASE_URL } from '../config';
-import useWordChain from '../hooks/useWordChain';
   
 const livesImages = [fiveLives, fourLives, threeLives, twoLives, oneLife];
 
-// Fallback word list in case API fails
-const fallbackWordList = ["dog", "house", "key", "chain", "fence", "yard", "garden", "flower", "bee", "honey"];
+const wordList = ["dog", "house", "key", "chain", "fence", "yard", "garden", "flower", "bee", "honey"];
 
 export function InfiniteGame() {
-  // Use word chain hook to fetch words from the API
-  const { wordChain, loading, error, refresh, isReady } = useWordChain('infinite');
-  
   const [currentWordIndex, setCurrentWordIndex] = useState(1); // Start from the second word
-  const [inputValue, setInputValue] = useState(''); // Will be set when word chain loads
+  const [inputValue, setInputValue] = useState(wordList[1][0]); // Initial input value includes the hint for the second word
   const [lives, setLives] = useState(5);
   const [gameOver, setGameOver] = useState(false);
-  const [hint, setHint] = useState(''); // Will be set when word chain loads
+  const [hint, setHint] = useState(wordList[1][0]); // Initial hint for the second word
   const [streak, setStreak] = useState(0); // State variable to keep track of the streak
   const [topScore, setTopScore] = useState(0); // Track the top score
   const [countAnimation, setCountAnimation] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
-
-  // Transformed word list from the chain API
-  const [wordList, setWordList] = useState<string[]>(fallbackWordList);
-
-  // Update word list when the word chain is loaded
-  useEffect(() => {
-    if (isReady && wordChain.length > 0) {
-      // Transform the word pairs into a flat list of words
-      // Each pair in wordChain is [word1, word2]
-      const words: string[] = [];
-      wordChain.forEach(([word1, word2]: [string, string], index: number) => {
-        if (index === 0) {
-          words.push(word1);
-        }
-        words.push(word2);
-      });
-      
-      // Update the word list
-      setWordList(words);
-      
-      // Set initial hint and input value
-      if (words.length > 1) {
-        const initialHint = words[1][0];
-        setHint(initialHint);
-        setInputValue(initialHint);
-      }
-    }
-  }, [wordChain, isReady]);
 
   // Load top score from localStorage on component mount
   useEffect(() => {
@@ -139,16 +106,11 @@ export function InfiniteGame() {
 
   const resetGame = () => {
     setCurrentWordIndex(1); // Reset to the second word
-    // Reset the hint and inputValue based on the current word list
-    if (wordList.length > 1) {
-      setInputValue(wordList[1][0]);
-      setHint(wordList[1][0]);
-    }
+    setInputValue(wordList[1][0]);
     setLives(5);
     setGameOver(false);
+    setHint(wordList[1][0]);
     setStreak(0); // Reset the streak
-    // Get a new set of words
-    refresh();
   };
   
   // Function to check user info from token for debugging
@@ -156,52 +118,29 @@ export function InfiniteGame() {
     const token = localStorage.getItem("userToken");
     if (token) {
       try {
-        // Check if token is expired based on its payload
-        try {
-          const tokenParts = token.split('.');
-          if (tokenParts.length === 3) {
-            const payload = JSON.parse(atob(tokenParts[1]));
-            console.log("Token payload:", payload);
-            
-            // Check if token is expired
-            if (payload.exp && payload.exp * 1000 < Date.now()) {
-              console.log("Token is expired, removing from localStorage");
-              localStorage.removeItem("userToken");
-              return;
-            }
-            
-            // If we have a username in the token, we can use it directly
-            if (payload.username) {
-              console.log("Using username from token payload:", payload.username);
-              return payload.username;
-            }
-          }
-        } catch (decodeError) {
-          console.error("Error decoding token:", decodeError);
-        }
-        
-        // If we're still here, try getting user info from server
+        // Try to get user info from server
         const response = await axios.get(`${API_BASE_URL}/game/user`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
         });
         console.log("User info from token:", response.data);
-        return response.data.username;
       } catch (error) {
         console.error("Error getting user info:", error);
         
-        // If we get a 401 or 403, the token is invalid or expired
-        if (axios.isAxiosError(error) && (error.response?.status === 401 || error.response?.status === 403)) {
-          console.warn("Authentication token is invalid or expired, removing it");
-          localStorage.removeItem("userToken");
+        // Try to manually decode the token for debugging
+        try {
+          const tokenParts = token.split('.');
+          if (tokenParts.length === 3) {
+            const payload = JSON.parse(atob(tokenParts[1]));
+            console.log("Manually decoded token payload:", payload);
+          }
+        } catch (decodeError) {
+          console.error("Error decoding token:", decodeError);
         }
-        
-        return null;
       }
     } else {
       console.log("No user token found, user is not logged in");
-      return null;
     }
   };
   
@@ -229,14 +168,56 @@ export function InfiniteGame() {
       const token = localStorage.getItem("userToken");
       if (token) {
         try {
-          // Get username using our improved function
-          const username = await checkUserInfo();
+          // First try to get username from server
+          let username;
+          try {
+            const userResponse = await axios.get(`${API_BASE_URL}/game/user`, {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            });
+            
+            if (userResponse.data && userResponse.data.username) {
+              username = userResponse.data.username;
+              console.log("Got username from server:", username);
+            }
+          } catch (userError) {
+            console.error("Error getting username from server:", userError);
+          }
+          
+          // If we couldn't get the username from the server, try to decode the token
+          if (!username) {
+            try {
+              const tokenParts = token.split('.');
+              if (tokenParts.length === 3) {
+                const payload = JSON.parse(atob(tokenParts[1]));
+                username = payload.username;
+                console.log("Decoded username from token:", username);
+              }
+            } catch (decodeError) {
+              console.error("Error decoding token:", decodeError);
+            }
+          }
           
           // If we have a username, send the top score update
           if (username) {
             console.log("Sending infinite top score update with username:", username);
             
-            // Send the actual score update
+            // First try the test route to see if basic communication works
+            try {
+              console.log("Testing server connection with test route...");
+              const testResponse = await axios.post(`${API_BASE_URL}/test`, 
+                { 
+                  test: true,
+                  username: username
+                }
+              );
+              console.log("Test route response:", testResponse.data);
+            } catch (testError) {
+              console.error("Test route failed:", testError);
+            }
+            
+            // Then try the actual route
             const url = `${API_BASE_URL}/game/infinite/score`;
             console.log("Attempting to POST to URL:", url);
             
@@ -255,15 +236,16 @@ export function InfiniteGame() {
               
               console.log("Top score update response:", response.data);
             } catch (error) {
-              console.error("Error updating score:", error);
+              console.error("Axios error details:", error);
               
               // Type guard to check if this is an Axios error
               if (axios.isAxiosError(error)) {
                 if (error.response) {
                   console.error("Response data:", error.response.data);
                   console.error("Response status:", error.response.status);
+                  console.error("Response headers:", error.response.headers);
                 } else if (error.request) {
-                  console.error("Request made but no response received");
+                  console.error("Request made but no response received:", error.request);
                 } else {
                   console.error("Error setting up request:", error.message);
                 }
@@ -289,7 +271,6 @@ export function InfiniteGame() {
   };
 
   const handleGuess = () => {
-    // Use modulo to cycle through the word list for infinite mode
     const currentWord = wordList[currentWordIndex % wordList.length];
     const userGuess = inputValue.toLowerCase(); // Use the entire input value
 
@@ -303,11 +284,6 @@ export function InfiniteGame() {
       // Trigger animation
       setCountAnimation(true);
       setTimeout(() => setCountAnimation(false), 500); // Reset animation after 500ms
-      
-      // If we've gone through almost all the words, refresh the chain
-      if (currentWordIndex % wordList.length === wordList.length - 2) {
-        refresh();
-      }
     } else {
       const newLives = lives - 1;
       setLives(newLives);
@@ -352,6 +328,7 @@ export function InfiniteGame() {
     }
   };
 
+<<<<<<< HEAD
   // Get current word and blanks only if the word list is loaded
   const currentWord = wordList[currentWordIndex % wordList.length] || '';
   const blanks = currentWord ? "_".repeat(currentWord.length - inputValue.length) : '';
@@ -401,6 +378,10 @@ export function InfiniteGame() {
       </div>
     );
   }
+=======
+  const currentWord = wordList[currentWordIndex % wordList.length];
+  const blanks = "_".repeat(currentWord.length - inputValue.length);
+>>>>>>> parent of ae0eda7 (Connext word chain routed to frontend)
 
   return (
     <>
