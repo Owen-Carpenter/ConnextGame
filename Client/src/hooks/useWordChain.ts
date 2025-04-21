@@ -43,7 +43,12 @@ const FALLBACK_CHAINS: Record<GameType, Array<[string, string]>> = {
     ["sweet", "cake"],
     ["cake", "party"],
     ["party", "friend"],
-    ["friend", "trust"]
+    ["friend", "trust"],
+    ["trust", "bond"],
+    ["bond", "link"],
+    ["link", "chain"],
+    ["chain", "lock"],
+    ["lock", "key"]
   ]
 };
 
@@ -65,6 +70,15 @@ export default function useWordChain(gameType: GameType = 'classic'): WordChainH
     setError(null);
     
     try {
+      // Skip API calls entirely and use fallbacks if we're in development
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        console.log("Running locally - using fallback word chain without API call");
+        setWordChain(FALLBACK_CHAINS[gameType]);
+        setUsedFallback(true);
+        setLoading(false);
+        return;
+      }
+      
       const url = `${API_BASE_URL}/chain/${gameType}${refresh ? '?refresh=true' : ''}`;
       console.log(`Fetching word chain from: ${url}`);
       
@@ -72,7 +86,7 @@ export default function useWordChain(gameType: GameType = 'classic'): WordChainH
       try {
         await axios.get(`${API_BASE_URL}/test`, { timeout: 2000 });
       } catch (pingError) {
-        console.warn("Server ping failed, likely not running locally:", pingError);
+        console.warn("Server ping failed, likely not running:", pingError);
         console.log("Using fallback word chain and skipping API call");
         setWordChain(FALLBACK_CHAINS[gameType]);
         setUsedFallback(true);
@@ -81,19 +95,39 @@ export default function useWordChain(gameType: GameType = 'classic'): WordChainH
         return;
       }
       
-      const response = await axios.get(url, { timeout: 5000 }); // Add timeout to prevent long waits
-      
-      if (response.data.success && response.data.wordChain && Array.isArray(response.data.wordChain)) {
-        setWordChain(response.data.wordChain);
-        setUsedFallback(false);
-      } else {
-        console.warn('Invalid response format from chain API:', response.data);
+      try {
+        const response = await axios.get(url, { timeout: 8000 }); // Longer timeout for the chain generation
+        
+        if (response.data.success && response.data.wordChain && Array.isArray(response.data.wordChain)) {
+          setWordChain(response.data.wordChain);
+          setUsedFallback(false);
+        } else {
+          console.warn('Invalid response format from chain API:', response.data);
+          if (!usedFallback) {
+            console.log(`Using fallback word chain for ${gameType} mode`);
+            setWordChain(FALLBACK_CHAINS[gameType]);
+            setUsedFallback(true);
+          }
+          throw new Error(response.data.message || 'Invalid response from word chain API');
+        }
+      } catch (requestError) {
+        if (axios.isAxiosError(requestError)) {
+          // If it's a 500 error, the server is running but encountered an internal error
+          if (requestError.response?.status === 500) {
+            console.error("Server encountered an internal error (500):", requestError);
+            setError(`Server error: The word chain generation service is currently experiencing issues. Using default word list instead.`);
+          } else {
+            setError(`API error: ${requestError.message}. Using default word list.`);
+          }
+        } else {
+          setError(`Request error: ${requestError instanceof Error ? requestError.message : String(requestError)}. Using default word list.`);
+        }
+        
         if (!usedFallback) {
-          console.log(`Using fallback word chain for ${gameType} mode`);
+          console.log(`Using fallback word chain for ${gameType} mode due to API error`);
           setWordChain(FALLBACK_CHAINS[gameType]);
           setUsedFallback(true);
         }
-        throw new Error(response.data.message || 'Invalid response from word chain API');
       }
     } catch (err) {
       console.error(`Error fetching ${gameType} word chain:`, err);

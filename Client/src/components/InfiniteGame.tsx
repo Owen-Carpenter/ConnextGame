@@ -372,9 +372,31 @@ export function InfiniteGame() {
     return (
       <div className="infinite">
         <section className="infinite-container">
-          <h2>Error loading word chain</h2>
-          <p>{error}</p>
-          <button className="submit-btn" onClick={refresh}>Retry</button>
+          <div style={{ 
+            padding: '20px', 
+            backgroundColor: 'rgba(255, 235, 235, 0.5)', 
+            borderRadius: '10px',
+            textAlign: 'center',
+            marginBottom: '20px'
+          }}>
+            <h2 style={{ marginBottom: '10px', color: '#d32f2f' }}>Notice</h2>
+            <p style={{ marginBottom: '15px' }}>{error}</p>
+            <p style={{ marginBottom: '15px' }}>Game will continue with default word list.</p>
+            <button 
+              className="submit-btn" 
+              onClick={refresh} 
+              style={{
+                backgroundColor: '#4caf50',
+                color: 'white',
+                padding: '10px 15px',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: 'pointer'
+              }}
+            >
+              Continue
+            </button>
+          </div>
         </section>
       </div>
     );
