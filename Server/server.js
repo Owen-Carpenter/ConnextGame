@@ -11,8 +11,24 @@ import chainRoutes from './routes/chain.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { initializeChains } from './chaingen/initialize.js';
 
 dotenv.config();
+
+// Initialize word chains at startup
+console.log("Initializing word chain system...");
+initializeChains()
+  .then(success => {
+    if (success) {
+      console.log("Word chain system initialized successfully!");
+    } else {
+      console.warn("Word chain initialization had issues, fallbacks will be used");
+    }
+  })
+  .catch(error => {
+    console.error("Word chain initialization error:", error);
+    console.warn("Fallback word chains will be used");
+  });
 
 const URI = process.env.MONGODB_URI;
 if(!URI){
