@@ -41,8 +41,6 @@ export function InfiniteGame() {
   const [score, setScore] = useState(0);
   const [topScore, setTopScore] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [streak, setStreak] = useState(0); // State variable to keep track of the streak
-  const [countAnimation, setCountAnimation] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
@@ -160,10 +158,6 @@ export function InfiniteGame() {
       window.removeEventListener("storage", handleStorageChange);
     };
   }, []);
-
-  useEffect(() => {
-    console.log("Current streak value:", streak);
-  }, [streak]);
 
   // Function to fetch more words when nearing the end of the list
   const fetchMoreWords = async () => {
@@ -463,92 +457,101 @@ export function InfiniteGame() {
     <>
       <div className="infinite">
         <section className="infinite-container">
-          <img className="health-banner" src={livesImages[5 - lives]} alt={`Lives ${lives}`} />
+          {loading ? (
+            <div className="loading">Loading word chain...</div>
+          ) : (
+            <>
+              <img className="health-banner" src={livesImages[5 - lives]} alt={`Lives ${lives}`} />
 
-          <div className="word-list">
-            
-            {Array.from({ length: 4 }, (_, i) => currentWordIndex - 3 + i).map((index) => (
-              <div key={index} className="word-item">
-                {index < 0 || index <= currentWordIndex - 4 ? null : index === currentWordIndex ? (
-                  <div className="input-container">
-                    <input
-                      type="text"
-                      value={inputValue}
-                      onChange={handleInputChange}
-                      onKeyPress={handleKeyPress}
-                      placeholder={hint}
-                      ref={inputRef}
-                      maxLength={currentWord.length} // Set the maxLength attribute
-                    />
-                    <div className="blanks">{blanks}</div>
+              <div className="word-list">
+                {Array.from({ length: 4 }, (_, i) => currentWordIndex - 3 + i).map((index) => (
+                  <div key={index} className="word-item">
+                    {index < 0 || index <= currentWordIndex - 4 ? null : index === currentWordIndex ? (
+                      <div className="input-container">
+                        <input
+                          type="text"
+                          value={inputValue}
+                          onChange={handleInputChange}
+                          onKeyPress={handleKeyPress}
+                          placeholder={hint}
+                          ref={inputRef}
+                          maxLength={currentWord.length} // Set the maxLength attribute
+                        />
+                        <div className="blanks">{blanks}</div>
+                      </div>
+                    ) : (
+                      <span className="completed-word">{wordList[index][0]}</span>
+                    )}
                   </div>
-                ) : (
-                  <span className="completed-word">{wordList[index][0]}</span>
+                ))}
+              </div>
+
+              {/* Word count display with inline styles for visibility */}
+              <div 
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  backgroundColor: 'rgba(57, 231, 95, 0.2)',
+                  padding: '8px 15px',
+                  borderRadius: '20px',
+                  margin: '15px auto',
+                  fontWeight: 'bold',
+                  border: '2px solid #39e75f',
+                  boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+                  zIndex: 10,
+                  position: 'relative',
+                }}
+              >
+                <span style={{ marginRight: '8px', fontFamily: 'Indie Flower, sans-serif', fontSize: '20px', color: '#333' }}>
+                  Words Connected:
+                </span>
+                <span 
+                  style={{ 
+                    fontFamily: 'Indie Flower, sans-serif', 
+                    fontSize: '24px', 
+                    fontWeight: 'bold', 
+                    color: '#39e75f',
+                  }}
+                >
+                  {currentWordIndex - 1}
+                </span>
+                {topScore > 0 && (
+                  <div style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    marginLeft: '15px', 
+                    paddingLeft: '15px', 
+                    borderLeft: '2px solid rgba(57, 231, 95, 0.3)' 
+                  }}>
+                    <span style={{ 
+                      fontWeight: 'bold', 
+                      fontFamily: 'Indie Flower, sans-serif', 
+                      color: '#333', 
+                      marginRight: '5px', 
+                      fontSize: '18px' 
+                    }}>
+                      Best:
+                    </span>
+                    <span style={{ 
+                      fontWeight: 'bold', 
+                      fontFamily: 'Indie Flower, sans-serif', 
+                      color: '#f4862b', 
+                      fontSize: '22px' 
+                    }}>
+                      {topScore}
+                    </span>
+                  </div>
                 )}
               </div>
-            ))}
-          </div>
 
-          {/* Word count display with inline styles for visibility */}
-          <div 
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              backgroundColor: 'rgba(57, 231, 95, 0.2)',
-              padding: '8px 15px',
-              borderRadius: '20px',
-              margin: '15px auto',
-              fontWeight: 'bold',
-              border: '2px solid #39e75f',
-              boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
-              zIndex: 10,
-              position: 'relative',
-            }}
-          >
-            <span style={{ marginRight: '8px', fontFamily: 'Indie Flower, sans-serif', fontSize: '20px', color: '#333' }}>
-              Words Connected:
-            </span>
-            <span 
-              style={{ 
-                fontFamily: 'Indie Flower, sans-serif', 
-                fontSize: '24px', 
-                fontWeight: 'bold', 
-                color: '#39e75f',
-                ...(countAnimation ? { animation: 'countPulse 0.5s ease-in-out' } : {})
-              }}
-            >
-              {streak}
-            </span>
-            {topScore > 0 && (
-              <div style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                marginLeft: '15px', 
-                paddingLeft: '15px', 
-                borderLeft: '2px solid rgba(57, 231, 95, 0.3)' 
-              }}>
-                <span style={{ 
-                  fontWeight: 'bold', 
-                  fontFamily: 'Indie Flower, sans-serif', 
-                  color: '#333', 
-                  marginRight: '5px', 
-                  fontSize: '18px' 
-                }}>
-                  Best:
-                </span>
-                <span style={{ 
-                  fontWeight: 'bold', 
-                  fontFamily: 'Indie Flower, sans-serif', 
-                  color: '#f4862b', 
-                  fontSize: '22px' 
-                }}>
-                  {topScore}
-                </span>
-              </div>
-            )}
-          </div>
-
-          <button className="submit-btn" onClick={handleGuess} style={{ visibility: gameOver ? 'hidden' : 'visible' }}>Submit</button>
+              <button className="submit-btn" onClick={handleGuess} style={{ visibility: gameOver ? 'hidden' : 'visible' }}>Submit</button>
+              
+              {/* Add a reset button to make use of resetGame function */}
+              {gameOver && (
+                <button className="reset-btn" onClick={resetGame}>Play Again</button>
+              )}
+            </>
+          )}
         </section>
       </div>
     </>

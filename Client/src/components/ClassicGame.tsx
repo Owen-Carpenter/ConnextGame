@@ -403,40 +403,46 @@ export function ClassicGame() {
     <>
       <div className="classic">
         <section className="classic-container">
-          <img className="health-banner" src={livesImages[5 - lives]} alt={`Lives ${lives}`} />
+          {loading ? (
+            <div className="loading">Loading word chain...</div>
+          ) : (
+            <>
+              <img className="health-banner" src={livesImages[5 - lives]} alt={`Lives ${lives}`} />
 
-          <div className="word-list">
-            {wordList.map((word, index) => (
-              <div key={index} className="word-item">
-                {index === 0 || index <= currentWordIndex || gameOver ? (
-                  <span className="completed-word">{word}</span>
-                ) : index === currentWordIndex + 1 && !gameOver ? (
-                  <>
-                    <div className="input-container">
-                      <input
-                        type="text"
-                        value={inputValue}
-                        onChange={handleInputChange}
-                        onKeyPress={handleKeyPress}
-                        placeholder={hint}
-                        ref={inputRef}
-                        maxLength={currentWord.length} // Prevents exceeding word length
-                      />
-                      <div className="blanks">{blanks}</div>
-                    </div>
-                  </>
-                ) : (
-                  <img src={hiddenWord} alt="Hidden Word" className="hidden-word" />
-                )}
+              <div className="word-list">
+                {wordList.map((word, index) => (
+                  <div key={index} className="word-item">
+                    {index === 0 || index <= currentWordIndex || gameOver ? (
+                      <span className="completed-word">{word}</span>
+                    ) : index === currentWordIndex + 1 && !gameOver ? (
+                      <>
+                        <div className="input-container">
+                          <input
+                            type="text"
+                            value={inputValue}
+                            onChange={handleInputChange}
+                            onKeyPress={handleKeyPress}
+                            placeholder={hint}
+                            ref={inputRef}
+                            maxLength={currentWord.length} // Prevents exceeding word length
+                          />
+                          <div className="blanks">{blanks}</div>
+                        </div>
+                      </>
+                    ) : (
+                      <img src={hiddenWord} alt="Hidden Word" className="hidden-word" />
+                    )}
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
 
-          <div className="streak-counter">
-            <span>Streak: {streak}</span>
-          </div>
+              <div className="streak-counter">
+                <span>Streak: {streak}</span>
+              </div>
 
-          <button className="submit-btn" onClick={handleGuess} style={{ visibility: gameOver ? 'hidden' : 'visible' }}>Submit</button>
+              <button className="submit-btn" onClick={handleGuess} style={{ visibility: gameOver ? 'hidden' : 'visible' }}>Submit</button>
+            </>
+          )}
         </section>
       </div>
     </>
