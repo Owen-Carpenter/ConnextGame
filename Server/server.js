@@ -7,6 +7,7 @@ import authRoutes from './routes/auth.js';
 import logoutRoutes from './routes/logout.js'
 import paymentRoutes from './routes/payment.js';
 import gameRoutes from './routes/game.js';
+import chaingenRoutes from './routes/chaingen.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -65,6 +66,7 @@ app.use('/register', registerRoutes);
 app.use('/logout', logoutRoutes);
 app.use('/payment', paymentRoutes);
 app.use('/game', gameRoutes);
+app.use('/chaingen', chaingenRoutes);
 
 // Test route
 app.post('/test', (req, res) => {

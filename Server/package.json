@@ -6,7 +6,10 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "setup:chaingen": "pip install -r chaingen/requirements.txt",
+    "chaingen:build": "cd chaingen && python createbinomials.py && python pruneunlinked.py"
   },
   "keywords": [],
   "author": "",

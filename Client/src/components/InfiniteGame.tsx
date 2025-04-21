@@ -12,16 +12,36 @@ import { API_BASE_URL } from '../config';
   
 const livesImages = [fiveLives, fourLives, threeLives, twoLives, oneLife];
 
-const wordList = ["dog", "house", "key", "chain", "fence", "yard", "garden", "flower", "bee", "honey"];
+// Fallback word list in case API fails
+const fallbackWordList = [
+  ["start", "dog"],
+  ["dog", "house"],
+  ["house", "key"],
+  ["key", "chain"],
+  ["chain", "fence"],
+  ["fence", "yard"],
+  ["yard", "garden"],
+  ["garden", "flower"],
+  ["flower", "bee"],
+  ["bee", "honey"],
+  ["honey", "sweet"],
+  ["sweet", "cake"],
+  ["cake", "party"],
+  ["party", "friend"],
+  ["friend", "trust"]
+];
 
 export function InfiniteGame() {
   const [currentWordIndex, setCurrentWordIndex] = useState(1); // Start from the second word
-  const [inputValue, setInputValue] = useState(wordList[1][0]); // Initial input value includes the hint for the second word
+  const [wordList, setWordList] = useState<string[][]>(fallbackWordList);
+  const [inputValue, setInputValue] = useState("");
   const [lives, setLives] = useState(5);
   const [gameOver, setGameOver] = useState(false);
-  const [hint, setHint] = useState(wordList[1][0]); // Initial hint for the second word
+  const [hint, setHint] = useState("");
+  const [score, setScore] = useState(0);
+  const [topScore, setTopScore] = useState(0);
+  const [loading, setLoading] = useState(true);
   const [streak, setStreak] = useState(0); // State variable to keep track of the streak
-  const [topScore, setTopScore] = useState(0); // Track the top score
   const [countAnimation, setCountAnimation] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
@@ -77,6 +97,47 @@ export function InfiniteGame() {
     checkUserInfo();
   }, []);
 
+  // Fetch word chain from the server when component mounts
+  useEffect(() => {
+    const fetchWordChain = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.post(`${API_BASE_URL}/chaingen/generate`, {
+          gameType: 'infinite',
+          length: 20 // Start with more words for infinite mode
+        });
+        
+        if (response.data && response.data.wordChain) {
+          setWordList(response.data.wordChain);
+          // Get the first character of the second word as the hint
+          if (response.data.wordChain[1] && response.data.wordChain[1][0]) {
+            const initialHint = response.data.wordChain[1][0].charAt(0);
+            setInputValue(initialHint);
+            setHint(initialHint);
+          }
+        } else {
+          console.error("Invalid response format from chaingen API");
+          setWordList(fallbackWordList);
+          // Get the first character of the second word as the hint
+          const initialHint = fallbackWordList[1][0].charAt(0);
+          setInputValue(initialHint);
+          setHint(initialHint);
+        }
+      } catch (error) {
+        console.error("Error fetching word chain:", error);
+        setWordList(fallbackWordList);
+        // Get the first character of the second word as the hint
+        const initialHint = fallbackWordList[1][0].charAt(0);
+        setInputValue(initialHint);
+        setHint(initialHint);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchWordChain();
+  }, []);
+
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
@@ -104,15 +165,79 @@ export function InfiniteGame() {
     console.log("Current streak value:", streak);
   }, [streak]);
 
+  // Function to fetch more words when nearing the end of the list
+  const fetchMoreWords = async () => {
+    try {
+      const response = await axios.post(`${API_BASE_URL}/chaingen/generate`, {
+        gameType: 'infinite',
+        length: 10 // Fetch 10 more words
+      });
+      
+      if (response.data && response.data.wordChain) {
+        // Skip the first word in the new chain (which is a "start" word)
+        // and append the rest to the current word list
+        const newWords = response.data.wordChain.slice(1);
+        setWordList(prevList => [...prevList, ...newWords]);
+      } else {
+        console.error("Invalid response format from chaingen API when fetching more words");
+      }
+    } catch (error) {
+      console.error("Error fetching more words:", error);
+    }
+  };
+
+  // Check if we need to fetch more words
+  useEffect(() => {
+    if (wordList.length - currentWordIndex < 5 && !loading) {
+      fetchMoreWords();
+    }
+  }, [currentWordIndex, wordList.length, loading]);
+
   const resetGame = () => {
-    setCurrentWordIndex(1); // Reset to the second word
-    setInputValue(wordList[1][0]);
+    // Fetch a new word chain from the server
+    const fetchNewWordChain = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.post(`${API_BASE_URL}/chaingen/generate`, {
+          gameType: 'infinite',
+          length: 20 // Start with more words for infinite mode
+        });
+        
+        if (response.data && response.data.wordChain) {
+          setWordList(response.data.wordChain);
+          // Get the first character of the second word as the hint
+          if (response.data.wordChain[1] && response.data.wordChain[1][0]) {
+            const initialHint = response.data.wordChain[1][0].charAt(0);
+            setInputValue(initialHint);
+            setHint(initialHint);
+          }
+        } else {
+          console.error("Invalid response format from chaingen API");
+          setWordList(fallbackWordList);
+          // Get the first character of the second word as the hint
+          const initialHint = fallbackWordList[1][0].charAt(0);
+          setInputValue(initialHint);
+          setHint(initialHint);
+        }
+      } catch (error) {
+        console.error("Error fetching word chain:", error);
+        setWordList(fallbackWordList);
+        // Get the first character of the second word as the hint
+        const initialHint = fallbackWordList[1][0].charAt(0);
+        setInputValue(initialHint);
+        setHint(initialHint);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchNewWordChain();
+    setCurrentWordIndex(1);
+    setScore(0);
     setLives(5);
     setGameOver(false);
-    setHint(wordList[1][0]);
-    setStreak(0); // Reset the streak
   };
-  
+
   // Function to check user info from token for debugging
   const checkUserInfo = async () => {
     const token = localStorage.getItem("userToken");
@@ -271,46 +396,49 @@ export function InfiniteGame() {
   };
 
   const handleGuess = () => {
-    const currentWord = wordList[currentWordIndex % wordList.length];
-    const userGuess = inputValue.toLowerCase(); // Use the entire input value
-
+    const userGuess = inputValue;
+    // Get the full target word from the word list
+    const currentWord = wordList[currentWordIndex][0];
+    
     if (userGuess === currentWord) {
-      setCurrentWordIndex(currentWordIndex + 1);
-      const nextHint = wordList[(currentWordIndex + 1) % wordList.length][0];
-      setInputValue(nextHint); // Set input value to the next hint
-      setHint(nextHint); // Update hint to next word's first letter
-      setStreak(streak + 1); // Increment the streak
+      // Increase score based on word length
+      const wordScore = currentWord.length * 10;
+      setScore(prevScore => prevScore + wordScore);
       
-      // Trigger animation
-      setCountAnimation(true);
-      setTimeout(() => setCountAnimation(false), 500); // Reset animation after 500ms
+      // Move to the next word
+      setCurrentWordIndex(prevIndex => prevIndex + 1);
+      
+      // Set hint for the next word
+      if (currentWordIndex + 1 < wordList.length) {
+        const nextHint = wordList[currentWordIndex + 1][0].charAt(0);
+        setInputValue(nextHint);
+        setHint(nextHint);
+      }
     } else {
       const newLives = lives - 1;
       setLives(newLives);
+      
       if (newLives === 0) {
         setGameOver(true);
-        // Calculate score based on streak
-        const score = streak * 100;
-        
-        // Update top score and then navigate to game stats
-        updateTopScore(streak).then(newTopScore => {
-          resetGame();
+        // Game over logic
+        updateTopScore(score).then(newTopScore => {
           navigate('/GameStats', { 
             state: { 
               gameMode: 'Infinite', 
               score: score,
-              wordsCompleted: streak,
-              livesRemaining: 0,
+              wordsCompleted: currentWordIndex,
               topScore: newTopScore
             } 
           });
         });
       } else {
-        // Reveal more letters in the hint
-        const nextHintLength = hint.length + 1;
-        const newHint = wordList[currentWordIndex % wordList.length].slice(0, nextHintLength);
-        setHint(newHint);
-        setInputValue(newHint); // Update input value to include the new hint
+        // Give more of the current word as a hint
+        if (currentWord && hint.length < currentWord.length) {
+          const nextHintLength = hint.length + 1;
+          const newHint = currentWord.substring(0, nextHintLength);
+          setHint(newHint);
+          setInputValue(newHint);
+        }
       }
     }
   };
@@ -328,7 +456,7 @@ export function InfiniteGame() {
     }
   };
 
-  const currentWord = wordList[currentWordIndex % wordList.length];
+  const currentWord = wordList[currentWordIndex][0];
   const blanks = "_".repeat(currentWord.length - inputValue.length);
 
   return (
@@ -355,7 +483,7 @@ export function InfiniteGame() {
                     <div className="blanks">{blanks}</div>
                   </div>
                 ) : (
-                  <span className="completed-word">{wordList[index % wordList.length]}</span>
+                  <span className="completed-word">{wordList[index][0]}</span>
                 )}
               </div>
             ))}

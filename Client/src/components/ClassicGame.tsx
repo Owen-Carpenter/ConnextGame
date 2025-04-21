@@ -12,17 +12,72 @@ import { API_BASE_URL } from '../config';
 
 const livesImages = [fiveLives, fourLives, threeLives, twoLives, oneLife];
 
-const wordList = ["dog", "house", "key", "chain", "fence", "yard", "garden", "flower", "bee", "honey"];
+// Fallback word list in case API fails
+const fallbackWordList = [
+  ["start", "dog"],
+  ["dog", "house"],
+  ["house", "key"],
+  ["key", "chain"],
+  ["chain", "fence"],
+  ["fence", "yard"],
+  ["yard", "garden"],
+  ["garden", "flower"],
+  ["flower", "bee"],
+  ["bee", "honey"]
+];
 
 export function ClassicGame() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [inputValue, setInputValue] = useState(wordList[1][0]); 
+  const [wordList, setWordList] = useState<string[][]>(fallbackWordList);
+  const [inputValue, setInputValue] = useState("");
   const [lives, setLives] = useState(5);
   const [gameOver, setGameOver] = useState(false);
-  const [hint, setHint] = useState(wordList[1][0]);
+  const [hint, setHint] = useState("");
   const [streak, setStreak] = useState(0);
+  const [loading, setLoading] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+
+  // Fetch word chain from the server when component mounts
+  useEffect(() => {
+    const fetchWordChain = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.post(`${API_BASE_URL}/chaingen/generate`, {
+          gameType: 'classic',
+          length: 10
+        });
+        
+        if (response.data && response.data.wordChain) {
+          setWordList(response.data.wordChain);
+          // Get the first character of the second word as the hint
+          if (response.data.wordChain[1] && response.data.wordChain[1][0]) {
+            const initialHint = response.data.wordChain[1][0].charAt(0);
+            setInputValue(initialHint);
+            setHint(initialHint);
+          }
+        } else {
+          console.error("Invalid response format from chaingen API");
+          setWordList(fallbackWordList);
+          // Get the first character of the second word as the hint
+          const initialHint = fallbackWordList[1][0].charAt(0);
+          setInputValue(initialHint);
+          setHint(initialHint);
+        }
+      } catch (error) {
+        console.error("Error fetching word chain:", error);
+        setWordList(fallbackWordList);
+        // Get the first character of the second word as the hint
+        const initialHint = fallbackWordList[1][0].charAt(0);
+        setInputValue(initialHint);
+        setHint(initialHint);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchWordChain();
+  }, []);
 
   // Load streak from localStorage on component mount and fetch from server if logged in
   useEffect(() => {
@@ -99,11 +154,47 @@ export function ClassicGame() {
   }, []);
 
   const resetGame = () => {
+    // Fetch a new word chain from the server
+    const fetchNewWordChain = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.post(`${API_BASE_URL}/chaingen/generate`, {
+          gameType: 'classic',
+          length: 10
+        });
+        
+        if (response.data && response.data.wordChain) {
+          setWordList(response.data.wordChain);
+          // Get the first character of the second word as the hint
+          if (response.data.wordChain[1] && response.data.wordChain[1][0]) {
+            const initialHint = response.data.wordChain[1][0].charAt(0);
+            setInputValue(initialHint);
+            setHint(initialHint);
+          }
+        } else {
+          console.error("Invalid response format from chaingen API");
+          setWordList(fallbackWordList);
+          // Get the first character of the second word as the hint
+          const initialHint = fallbackWordList[1][0].charAt(0);
+          setInputValue(initialHint);
+          setHint(initialHint);
+        }
+      } catch (error) {
+        console.error("Error fetching word chain:", error);
+        setWordList(fallbackWordList);
+        // Get the first character of the second word as the hint
+        const initialHint = fallbackWordList[1][0].charAt(0);
+        setInputValue(initialHint);
+        setHint(initialHint);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchNewWordChain();
     setCurrentWordIndex(0);
-    setInputValue(wordList[1][0]);
     setLives(5);
     setGameOver(false);
-    setHint(wordList[1][0]);
   };
 
   const updateStreak = async (isWin: boolean) => {
@@ -199,13 +290,15 @@ export function ClassicGame() {
   };
 
   const handleGuess = () => {
-    const currentWord = wordList[currentWordIndex + 1];
-    const userGuess = inputValue.toLowerCase(); 
-
+    const userGuess = inputValue;
+    // Get the full target word from the word list
+    const currentWord = wordList[currentWordIndex + 1][0];
+    
     if (userGuess === currentWord) {
       if (currentWordIndex < wordList.length - 2) {
         setCurrentWordIndex(currentWordIndex + 1);
-        const nextHint = wordList[currentWordIndex + 2][0];
+        // Get the first character of the next word as the hint
+        const nextHint = wordList[currentWordIndex + 2][0].charAt(0);
         setInputValue(nextHint); 
         setHint(nextHint);
       } else {
@@ -247,10 +340,13 @@ export function ClassicGame() {
           });
         });
       } else {
-        const nextHintLength = hint.length + 1;
-        const newHint = wordList[currentWordIndex + 1].slice(0, nextHintLength);
-        setHint(newHint);
-        setInputValue(newHint);
+        // Give more of the current word as a hint
+        if (currentWord && hint.length < currentWord.length) {
+          const nextHintLength = hint.length + 1;
+          const newHint = currentWord.substring(0, nextHintLength);
+          setHint(newHint);
+          setInputValue(newHint);
+        }
       }
     }
   };
