@@ -97,7 +97,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node Server/server.js",
-    "dev": "concurrently \"cd Client && npm install &&npm run dev\" \"cd Server && npm install && npm run dev\"",
+    "dev": "npm install && concurrently \"cd Client && npm install &&npm run dev\" \"cd Server && npm install && npm run dev\"",
     "build": "cd Client && npm install && npm run build && cd ../Server && npm install",
     "install-dependencies": "npm install && cd Client && npm install && cd ../Server && npm install"
   },
