@@ -1,6 +1,5 @@
 import json
 import random
-<<<<<<< HEAD
 import sys
 import os
 
@@ -36,8 +35,6 @@ FALLBACK_CHAINS = {
         ["friend", "trust"]
     ]
 }
-=======
->>>>>>> parent of ae0eda7 (Connext word chain routed to frontend)
 
 def load_binomials(filename):
     try:
@@ -110,7 +107,6 @@ def generate_word_chain(binomials, length=10):
         return FALLBACK_CHAINS[game_type][:length]
 
 if __name__ == "__main__":
-<<<<<<< HEAD
     try:
         # Get parameters from command line
         if len(sys.argv) >= 3:
@@ -141,14 +137,3 @@ if __name__ == "__main__":
         print(f"Critical error: {str(e)}", file=sys.stderr)
         game_type = "classic" if 'chain_length' in locals() and chain_length <= 10 else "infinite"
         print(json.dumps(FALLBACK_CHAINS[game_type]))
-=======
-    binomials = load_binomials("linked_binomials.json")
-    chain = generate_word_chain(binomials, length=10)
-
-    if chain:
-        print("\nGenerated Word Chain:")
-        for w1, w2 in chain:
-            print(f"{w1} -> {w2}")
-    else:
-        print("No valid word chain found.")
->>>>>>> parent of ae0eda7 (Connext word chain routed to frontend)

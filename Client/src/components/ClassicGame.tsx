@@ -272,53 +272,6 @@ export function ClassicGame() {
   const currentWord = wordList[currentWordIndex + 1];
   const blanks = "_".repeat(currentWord.length - inputValue.length);
 
-<<<<<<< HEAD
-  // Show loading state while fetching the word chain
-  if (loading) {
-    return (
-      <div className="classic">
-        <section className="classic-container">
-          <h2>Loading word chain...</h2>
-        </section>
-      </div>
-    );
-  }
-
-  // Show error state if the API call failed
-  if (error) {
-    return (
-      <div className="classic">
-        <section className="classic-container">
-          <div style={{ 
-            padding: '20px', 
-            backgroundColor: 'rgba(255, 235, 235, 0.5)', 
-            borderRadius: '10px',
-            textAlign: 'center',
-            marginBottom: '20px'
-          }}>
-            <h2 style={{ marginBottom: '10px', color: '#d32f2f' }}>Notice</h2>
-            <p style={{ marginBottom: '15px' }}>{error}</p>
-            <p style={{ marginBottom: '15px' }}>Game will continue with default word list.</p>
-            <button 
-              className="submit-btn" 
-              onClick={refresh} 
-              style={{
-                backgroundColor: '#4caf50',
-                color: 'white',
-                padding: '10px 15px',
-                border: 'none',
-                borderRadius: '5px',
-                cursor: 'pointer'
-              }}
-            >
-              Continue
-            </button>
-          </div>
-        </section>
-      </div>
-    );
-  }
-=======
   // Function to check user info from token for debugging
   const checkUserInfo = async () => {
     const token = localStorage.getItem("userToken");
@@ -349,7 +302,6 @@ export function ClassicGame() {
       console.log("No user token found, user is not logged in");
     }
   };
->>>>>>> parent of ae0eda7 (Connext word chain routed to frontend)
 
   return (
     <>

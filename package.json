@@ -92,12 +92,12 @@
     "utils-merge": "^1.0.1",
     "vary": "^1.1.2",
     "webidl-conversions": "^7.0.0",
-    "whatwg-url": "^14.1.0",
-    "concurrently": "^9.1.2"
+    "whatwg-url": "^14.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node Server/server.js",
+    "dev": "concurrently \"cd Client && npm install &&npm run dev\" \"cd Server && npm install && npm run dev\"",
     "build": "cd Client && npm install && npm run build && cd ../Server && npm install",
     "install-dependencies": "npm install && cd Client && npm install && cd ../Server && npm install"
   },
@@ -105,6 +105,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/react-router-dom": "^5.3.3"
+    "@types/react-router-dom": "^5.3.3",
+    "concurrently": "^9.1.2"
   }
 }
