@@ -297,3 +297,99 @@ box-shadow: 0 4px 8px rgba(57, 231, 95, 0.3);
     font-size: 16px;
   }
 }
+
+/* Word count container styles */
+.word-count-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: rgba(57, 231, 95, 0.2);
+  padding: 8px 15px;
+  border-radius: 20px;
+  margin: 15px auto;
+  font-weight: bold;
+  border: 2px solid #39e75f;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+  width: fit-content;
+}
+
+.count-section {
+  display: flex;
+  align-items: center;
+  margin: 2px 0;
+}
+
+.count-label {
+  margin-right: 8px;
+  font-family: 'Indie Flower', sans-serif;
+  font-size: 18px;
+  color: #333;
+}
+
+.count-value {
+  font-family: 'Indie Flower', sans-serif;
+  font-size: 22px;
+  font-weight: bold;
+  color: #39e75f;
+}
+
+.best-score-section {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+  padding-left: 15px;
+  border-left: 2px solid rgba(57, 231, 95, 0.3);
+}
+
+.best-label {
+  font-weight: bold;
+  font-family: 'Indie Flower', sans-serif;
+  color: #333;
+  margin-right: 5px;
+  font-size: 16px;
+}
+
+.best-value {
+  font-weight: bold;
+  font-family: 'Indie Flower', sans-serif;
+  color: #f4862b;
+  font-size: 20px;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .word-count-container {
+    padding: 6px 10px;
+  }
+  
+  .count-label, .best-label {
+    font-size: 14px;
+  }
+  
+  .count-value, .best-value {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .word-count-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+  }
+  
+  .best-score-section {
+    margin-left: 0;
+    padding-left: 0;
+    margin-top: 5px;
+    padding-top: 5px;
+    border-left: none;
+    border-top: 2px solid rgba(57, 231, 95, 0.3);
+  }
+  
+  .reset-btn {
+    margin-top: 10px;
+  }
+}

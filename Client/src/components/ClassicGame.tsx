@@ -413,20 +413,29 @@ export function ClassicGame() {
                 {wordList.map((word, index) => (
                   <div key={index} className="word-item">
                     {index === 0 || index <= currentWordIndex || gameOver ? (
-                      <span className="completed-word">{word}</span>
+                      <span className="completed-word">{Array.isArray(word) ? word[0] : word}</span>
                     ) : index === currentWordIndex + 1 && !gameOver ? (
                       <>
                         <div className="input-container">
-                          <input
-                            type="text"
-                            value={inputValue}
-                            onChange={handleInputChange}
-                            onKeyPress={handleKeyPress}
-                            placeholder={hint}
-                            ref={inputRef}
-                            maxLength={currentWord.length} // Prevents exceeding word length
-                          />
-                          <div className="blanks">{blanks}</div>
+                          <form onSubmit={(e) => {
+                            e.preventDefault();
+                            handleGuess();
+                          }}>
+                            <input
+                              type="text"
+                              value={inputValue}
+                              onChange={handleInputChange}
+                              onKeyPress={handleKeyPress}
+                              placeholder={hint}
+                              ref={inputRef}
+                              maxLength={currentWord.length}
+                              autoComplete="off"
+                              autoCorrect="off"
+                              spellCheck="false"
+                            />
+                            <div className="blanks">{blanks}</div>
+                            <input type="submit" style={{ display: 'none' }} />
+                          </form>
                         </div>
                       </>
                     ) : (

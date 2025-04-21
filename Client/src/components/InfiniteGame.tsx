@@ -468,16 +468,25 @@ export function InfiniteGame() {
                   <div key={index} className="word-item">
                     {index < 0 || index <= currentWordIndex - 4 ? null : index === currentWordIndex ? (
                       <div className="input-container">
-                        <input
-                          type="text"
-                          value={inputValue}
-                          onChange={handleInputChange}
-                          onKeyPress={handleKeyPress}
-                          placeholder={hint}
-                          ref={inputRef}
-                          maxLength={currentWord.length} // Set the maxLength attribute
-                        />
-                        <div className="blanks">{blanks}</div>
+                        <form onSubmit={(e) => {
+                          e.preventDefault();
+                          handleGuess();
+                        }}>
+                          <input
+                            type="text"
+                            value={inputValue}
+                            onChange={handleInputChange}
+                            onKeyPress={handleKeyPress}
+                            placeholder={hint}
+                            ref={inputRef}
+                            maxLength={currentWord.length}
+                            autoComplete="off"
+                            autoCorrect="off"
+                            spellCheck="false"
+                          />
+                          <div className="blanks">{blanks}</div>
+                          <input type="submit" style={{ display: 'none' }} />
+                        </form>
                       </div>
                     ) : (
                       <span className="completed-word">{wordList[index][0]}</span>
@@ -486,67 +495,22 @@ export function InfiniteGame() {
                 ))}
               </div>
 
-              {/* Word count display with inline styles for visibility */}
-              <div 
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  backgroundColor: 'rgba(57, 231, 95, 0.2)',
-                  padding: '8px 15px',
-                  borderRadius: '20px',
-                  margin: '15px auto',
-                  fontWeight: 'bold',
-                  border: '2px solid #39e75f',
-                  boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
-                  zIndex: 10,
-                  position: 'relative',
-                }}
-              >
-                <span style={{ marginRight: '8px', fontFamily: 'Indie Flower, sans-serif', fontSize: '20px', color: '#333' }}>
-                  Words Connected:
-                </span>
-                <span 
-                  style={{ 
-                    fontFamily: 'Indie Flower, sans-serif', 
-                    fontSize: '24px', 
-                    fontWeight: 'bold', 
-                    color: '#39e75f',
-                  }}
-                >
-                  {currentWordIndex - 1}
-                </span>
+              <div className="word-count-container">
+                <div className="count-section">
+                  <span className="count-label">Words Connected:</span>
+                  <span className="count-value">{currentWordIndex - 1}</span>
+                </div>
+                
                 {topScore > 0 && (
-                  <div style={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    marginLeft: '15px', 
-                    paddingLeft: '15px', 
-                    borderLeft: '2px solid rgba(57, 231, 95, 0.3)' 
-                  }}>
-                    <span style={{ 
-                      fontWeight: 'bold', 
-                      fontFamily: 'Indie Flower, sans-serif', 
-                      color: '#333', 
-                      marginRight: '5px', 
-                      fontSize: '18px' 
-                    }}>
-                      Best:
-                    </span>
-                    <span style={{ 
-                      fontWeight: 'bold', 
-                      fontFamily: 'Indie Flower, sans-serif', 
-                      color: '#f4862b', 
-                      fontSize: '22px' 
-                    }}>
-                      {topScore}
-                    </span>
+                  <div className="best-score-section">
+                    <span className="best-label">Best:</span>
+                    <span className="best-value">{topScore}</span>
                   </div>
                 )}
               </div>
 
               <button className="submit-btn" onClick={handleGuess} style={{ visibility: gameOver ? 'hidden' : 'visible' }}>Submit</button>
               
-              {/* Add a reset button to make use of resetGame function */}
               {gameOver && (
                 <button className="reset-btn" onClick={resetGame}>Play Again</button>
               )}
