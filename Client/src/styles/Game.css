@@ -133,19 +133,29 @@
   }
   
   .help-button {
-    margin-left: 750px;
-    font-family: 'Kirang Haerang'; /* Use the Kirang Haerang font */
-    font-weight: 100;
-    background-color: #f1f1f1;
-    border: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    font-size: 36px;
+    background-color: #39e75f;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    border: none;
     cursor: pointer;
-    background-color: #e9e9e9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
   }
   
   .help-button:hover {
-    background-color: #ddd;
+    background-color: #2bc74e;
+    transform: scale(1.1);
   }
   
   .modal {
@@ -153,7 +163,7 @@
     justify-content: center;
     align-items: center;
     position: fixed;
-    z-index: 1;
+    z-index: 9999;
     left: 0;
     top: 0;
     width: 100%;
@@ -163,29 +173,56 @@
   }
   
   .modal-content {
-    background-color: #fefefe00;
-    margin: auto;
-    padding: 0; /* Remove padding to make the image fill the entire popup */
-    width: 80%;
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     max-width: 500px;
+    width: 90%;
+    position: relative;
+    z-index: 10000;
+  }
+  
+  .modal-content h2 {
+    color: #39e75f;
+    margin-bottom: 20px;
     text-align: center;
-    position: relative; /* Add relative positioning for the close button */
+    font-size: 28px;
+  }
+  
+  .modal-content ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .modal-content li {
+    padding: 10px 15px;
+    margin: 10px 0;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+  }
+  
+  .modal-content li:nth-child(odd) {
+    background-color: #f0f0f0;
   }
   
   .close {
-    color: #aaa;
-    position: absolute; /* Position the close button absolutely */
-    top: 20px; /* Adjust the position of the close button */
-    right: 30px; /* Adjust the position of the close button */
+    position: absolute;
+    top: 10px;
+    right: 15px;
     font-size: 28px;
     font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s ease;
   }
   
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+  .close:hover {
+    color: #333;
   }
   
   .how-to-play-image {

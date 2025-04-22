@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_BASE_URL } from '../config';
 import { HealthChain } from "./HealthChain";
+import { HelpModal } from "./HelpModal";
 
 // Fallback word list in case API fails
 const fallbackWordList = [
@@ -469,6 +470,7 @@ export function ClassicGame() {
     <>
       <div className="classic">
         {renderConfetti()}
+        <HelpModal gameMode="Classic" />
         <section className="classic-container">
           {loading ? (
             <div className="loading">Loading word chain...</div>
