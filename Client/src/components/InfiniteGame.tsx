@@ -38,6 +38,7 @@ export function InfiniteGame() {
   const [gainedLife, setGainedLife] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [lifeChangeAnimation, setLifeChangeAnimation] = useState<"gain" | "lose" | null>(null);
+  const [isProcessingGuess, setIsProcessingGuess] = useState(false); // Add state to track guess processing
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
@@ -393,6 +394,10 @@ export function InfiniteGame() {
   };
 
   const handleGuess = () => {
+    // Prevent multiple rapid submissions
+    if (isProcessingGuess) return;
+    setIsProcessingGuess(true);
+    
     const userGuess = inputValue;
     // Get the full target word from the word list
     const currentWord = wordList[currentWordIndex][0];
@@ -401,8 +406,8 @@ export function InfiniteGame() {
       // Show confetti animation
       createConfetti();
       
-      // Chance to gain life if below max
-      if (lives < 5 && Math.random() < 0.3) { // 30% chance to gain a life
+      // Give player a life back if they're not at max
+      if (lives < 5) {
         setLives(prev => prev + 1);
         setGainedLife(true);
         setLifeChangeAnimation("gain");
@@ -424,13 +429,17 @@ export function InfiniteGame() {
         const nextHint = wordList[currentWordIndex + 1][0].charAt(0);
         setInputValue(nextHint);
         setHint(nextHint);
+        setIsProcessingGuess(false); // Reset processing flag
       }
     } else {
       // Reduce lives by 1
       const newLives = lives - 1;
       setLives(newLives);
       setLifeChangeAnimation("lose");
-      setTimeout(() => setLifeChangeAnimation(null), 1500);
+      setTimeout(() => {
+        setLifeChangeAnimation(null);
+        setIsProcessingGuess(false); // Reset processing flag after animation
+      }, 1500);
       
       if (newLives === 0) {
         setGameOver(true);
@@ -466,12 +475,14 @@ export function InfiniteGame() {
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
+      e.preventDefault(); // Prevent default form submission
       handleGuess();
     }
   };
 
   const currentWord = wordList[currentWordIndex][0];
-  const blanks = "_".repeat(currentWord.length - inputValue.length);
+  // Space out underlines by adding spaces between them
+  const blanks = Array(currentWord.length - inputValue.length).fill("_").join(" ");
 
   // Function to render confetti pieces
   const renderConfetti = () => {
@@ -529,7 +540,7 @@ export function InfiniteGame() {
                     {index < 0 || index <= currentWordIndex - 4 ? null : index === currentWordIndex ? (
                       <div className="input-container">
                         <form onSubmit={(e) => {
-                          e.preventDefault();
+                          e.preventDefault(); // Prevent form submission
                           handleGuess();
                         }}>
                           <input

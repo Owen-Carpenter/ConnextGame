@@ -306,8 +306,8 @@ export function ClassicGame() {
       // Show confetti animation
       createConfetti();
       
-      // Chance to gain life if below max
-      if (lives < 5 && Math.random() < 0.3) { // 30% chance to gain a life
+      // Give player a life back if they're not at max
+      if (lives < 5) {
         setLives(prev => prev + 1);
         setGainedLife(true);
         setLifeChangeAnimation("gain");
@@ -397,7 +397,8 @@ export function ClassicGame() {
   };
 
   const currentWord = wordList[currentWordIndex + 1][0];
-  const blanks = "_".repeat(currentWord.length - inputValue.length);
+  // Space out underlines by adding spaces between them
+  const blanks = Array(currentWord.length - inputValue.length).fill("_").join(" ");
 
   // Function to check user info from token for debugging
   const checkUserInfo = async () => {
