@@ -1,17 +1,10 @@
 import "../styles/Classic.css";
 import hiddenWord from "../assets/Hidden_Word.png";
-import fiveLives from "../assets/Five_Lives.png";
-import fourLives from "../assets/Four_Lives.png";
-import threeLives from "../assets/Three_Lives.png";
-import twoLives from "../assets/Two_Lives.png";
-import oneLife from "../assets/One_Life.png";
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_BASE_URL } from '../config';
 import { HealthChain } from "./HealthChain";
-
-const livesImages = [fiveLives, fourLives, threeLives, twoLives, oneLife];
 
 // Fallback word list in case API fails
 const fallbackWordList = [
