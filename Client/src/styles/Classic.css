@@ -17,7 +17,7 @@
     justify-content: center;
     width: 100%;
     max-width: 800px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: #f2f2f2;
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
@@ -259,5 +259,110 @@
   
   .classic-container input[type="text"] {
     font-size: 20px;
+  }
+}
+
+/* Remove the pulse animation styles but keep the fadeIn, fadeOut for life-gained-message */
+
+.life-gained-message {
+  color: #55ff55;
+  font-weight: bold;
+  margin-left: 10px;
+  animation: fadeIn 0.5s, fadeOut 0.5s 0.5s;
+  text-shadow: 0 0 8px rgba(85, 255, 85, 0.8);
+  font-size: 18px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Keep the confetti animation styles */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #39e75f;
+  animation: confetti-fall linear forwards;
+  z-index: 9999;
+}
+
+.confetti.square {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.confetti.triangle {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.confetti.circle {
+  border-radius: 50%;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Health banner animations */
+.health-banner.lose-life {
+  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+.health-banner.gain-life {
+  animation: pulse-grow 0.5s ease-in-out both;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-3px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(3px, 0, 0);
+  }
+}
+
+@keyframes pulse-grow {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+    filter: brightness(1.2) drop-shadow(0 0 8px rgba(57, 231, 95, 0.8));
+  }
+  100% {
+    transform: scale(1);
   }
 }

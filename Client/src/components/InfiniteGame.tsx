@@ -9,6 +9,7 @@ import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_BASE_URL } from '../config';
+import { HealthChain } from "./HealthChain";
   
 const livesImages = [fiveLives, fourLives, threeLives, twoLives, oneLife];
 
@@ -41,6 +42,9 @@ export function InfiniteGame() {
   const [score, setScore] = useState(0);
   const [topScore, setTopScore] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [gainedLife, setGainedLife] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [lifeChangeAnimation, setLifeChangeAnimation] = useState<"gain" | "lose" | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
@@ -389,12 +393,32 @@ export function InfiniteGame() {
     }
   };
 
+  // Function to create confetti elements
+  const createConfetti = () => {
+    setShowConfetti(true);
+    setTimeout(() => setShowConfetti(false), 2000);
+  };
+
   const handleGuess = () => {
     const userGuess = inputValue;
     // Get the full target word from the word list
     const currentWord = wordList[currentWordIndex][0];
     
     if (userGuess === currentWord) {
+      // Show confetti animation
+      createConfetti();
+      
+      // Chance to gain life if below max
+      if (lives < 5 && Math.random() < 0.3) { // 30% chance to gain a life
+        setLives(prev => prev + 1);
+        setGainedLife(true);
+        setLifeChangeAnimation("gain");
+        setTimeout(() => {
+          setGainedLife(false);
+          setLifeChangeAnimation(null);
+        }, 1500);
+      }
+      
       // Increase score based on word length
       const wordScore = currentWord.length * 10;
       setScore(prevScore => prevScore + wordScore);
@@ -409,8 +433,11 @@ export function InfiniteGame() {
         setHint(nextHint);
       }
     } else {
+      // Reduce lives by 1
       const newLives = lives - 1;
       setLives(newLives);
+      setLifeChangeAnimation("lose");
+      setTimeout(() => setLifeChangeAnimation(null), 1500);
       
       if (newLives === 0) {
         setGameOver(true);
@@ -453,15 +480,55 @@ export function InfiniteGame() {
   const currentWord = wordList[currentWordIndex][0];
   const blanks = "_".repeat(currentWord.length - inputValue.length);
 
+  // Function to render confetti pieces
+  const renderConfetti = () => {
+    if (!showConfetti) return null;
+    
+    const confettiPieces = [];
+    const shapes = ['square', 'triangle', 'circle'];
+    const colors = ['#39e75f', '#55ff55', '#90ee90', '#00cc44', '#00ff00'];
+    
+    for (let i = 0; i < 100; i++) {
+      const left = Math.random() * 100 + '%';
+      const size = Math.random() * 10 + 5 + 'px';
+      const duration = Math.random() * 3 + 2 + 's';
+      const delay = Math.random() * 0.5 + 's';
+      const shape = shapes[Math.floor(Math.random() * shapes.length)];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      
+      confettiPieces.push(
+        <div 
+          key={i}
+          className={`confetti ${shape}`}
+          style={{
+            left,
+            width: size,
+            height: size,
+            backgroundColor: color,
+            animation: `confetti-fall ${duration} linear ${delay} forwards`
+          }}
+        />
+      );
+    }
+    
+    return <div className="confetti-container">{confettiPieces}</div>;
+  };
+
   return (
     <>
       <div className="infinite">
+        {renderConfetti()}
         <section className="infinite-container">
           {loading ? (
             <div className="loading">Loading word chain...</div>
           ) : (
             <>
-              <img className="health-banner" src={livesImages[5 - lives]} alt={`Lives ${lives}`} />
+              <HealthChain 
+                lives={lives}
+                maxLives={5} 
+                gainLife={lifeChangeAnimation === "gain"}
+                loseLife={lifeChangeAnimation === "lose"}
+              />
 
               <div className="word-list">
                 {Array.from({ length: 4 }, (_, i) => currentWordIndex - 3 + i).map((index) => (
@@ -507,6 +574,8 @@ export function InfiniteGame() {
                     <span className="best-value">{topScore}</span>
                   </div>
                 )}
+                
+                {gainedLife && <div className="life-gained-message">+1 Life!</div>}
               </div>
 
               <button className="submit-btn" onClick={handleGuess} style={{ visibility: gameOver ? 'hidden' : 'visible' }}>Submit</button>

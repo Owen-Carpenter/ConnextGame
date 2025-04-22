@@ -9,6 +9,7 @@ import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_BASE_URL } from '../config';
+import { HealthChain } from "./HealthChain";
 
 const livesImages = [fiveLives, fourLives, threeLives, twoLives, oneLife];
 
@@ -35,6 +36,10 @@ export function ClassicGame() {
   const [hint, setHint] = useState("");
   const [streak, setStreak] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [gainedLife, setGainedLife] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [lifeChangeAnimation, setLifeChangeAnimation] = useState<"gain" | "lose" | null>(null);
+  const [isProcessingGuess, setIsProcessingGuess] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
@@ -289,18 +294,43 @@ export function ClassicGame() {
     }
   };
 
+  // Function to create confetti elements
+  const createConfetti = () => {
+    setShowConfetti(true);
+    setTimeout(() => setShowConfetti(false), 2000);
+  };
+
   const handleGuess = () => {
+    // Prevent multiple rapid submissions
+    if (isProcessingGuess) return;
+    setIsProcessingGuess(true);
+    
     const userGuess = inputValue;
     // Get the full target word from the word list
     const currentWord = wordList[currentWordIndex + 1][0];
     
     if (userGuess === currentWord) {
+      // Show confetti animation
+      createConfetti();
+      
+      // Chance to gain life if below max
+      if (lives < 5 && Math.random() < 0.3) { // 30% chance to gain a life
+        setLives(prev => prev + 1);
+        setGainedLife(true);
+        setLifeChangeAnimation("gain");
+        setTimeout(() => {
+          setGainedLife(false);
+          setLifeChangeAnimation(null);
+        }, 1500);
+      }
+      
       if (currentWordIndex < wordList.length - 2) {
         setCurrentWordIndex(currentWordIndex + 1);
         // Get the first character of the next word as the hint
         const nextHint = wordList[currentWordIndex + 2][0].charAt(0);
         setInputValue(nextHint); 
         setHint(nextHint);
+        setIsProcessingGuess(false); // Reset processing flag
       } else {
         setGameOver(true);
         // Update streak on win
@@ -308,6 +338,7 @@ export function ClassicGame() {
           // Calculate score based on remaining lives and words completed
           const score = (currentWordIndex + 1) * 100 + lives * 50;
           resetGame();
+          setIsProcessingGuess(false); // Reset processing flag
           navigate('/GameStats', { 
             state: { 
               gameMode: 'Classic',
@@ -322,6 +353,12 @@ export function ClassicGame() {
     } else {
       const newLives = lives - 1;
       setLives(newLives);
+      setLifeChangeAnimation("lose");
+      setTimeout(() => {
+        setLifeChangeAnimation(null);
+        setIsProcessingGuess(false); // Reset processing flag after animation
+      }, 1500);
+      
       if (newLives === 0) {
         setGameOver(true);
         // Reset streak on loss
@@ -353,7 +390,7 @@ export function ClassicGame() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
-    const currentWord = wordList[currentWordIndex + 1];
+    const currentWord = wordList[currentWordIndex + 1][0];
     if (newValue.startsWith(hint) && newValue.length <= currentWord.length) {
       setInputValue(newValue);
     }
@@ -361,11 +398,12 @@ export function ClassicGame() {
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
+      e.preventDefault(); // Prevent default form submission
       handleGuess();
     }
   };
 
-  const currentWord = wordList[currentWordIndex + 1];
+  const currentWord = wordList[currentWordIndex + 1][0];
   const blanks = "_".repeat(currentWord.length - inputValue.length);
 
   // Function to check user info from token for debugging
@@ -399,15 +437,55 @@ export function ClassicGame() {
     }
   };
 
+  // Function to render confetti pieces
+  const renderConfetti = () => {
+    if (!showConfetti) return null;
+    
+    const confettiPieces = [];
+    const shapes = ['square', 'triangle', 'circle'];
+    const colors = ['#39e75f', '#55ff55', '#90ee90', '#00cc44', '#00ff00'];
+    
+    for (let i = 0; i < 100; i++) {
+      const left = Math.random() * 100 + '%';
+      const size = Math.random() * 10 + 5 + 'px';
+      const duration = Math.random() * 3 + 2 + 's';
+      const delay = Math.random() * 0.5 + 's';
+      const shape = shapes[Math.floor(Math.random() * shapes.length)];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      
+      confettiPieces.push(
+        <div 
+          key={i}
+          className={`confetti ${shape}`}
+          style={{
+            left,
+            width: size,
+            height: size,
+            backgroundColor: color,
+            animation: `confetti-fall ${duration} linear ${delay} forwards`
+          }}
+        />
+      );
+    }
+    
+    return <div className="confetti-container">{confettiPieces}</div>;
+  };
+
   return (
     <>
       <div className="classic">
+        {renderConfetti()}
         <section className="classic-container">
           {loading ? (
             <div className="loading">Loading word chain...</div>
           ) : (
             <>
-              <img className="health-banner" src={livesImages[5 - lives]} alt={`Lives ${lives}`} />
+              <HealthChain 
+                lives={lives}
+                maxLives={5} 
+                gainLife={lifeChangeAnimation === "gain"}
+                loseLife={lifeChangeAnimation === "lose"}
+              />
 
               <div className="word-list">
                 {wordList.map((word, index) => (
@@ -418,7 +496,7 @@ export function ClassicGame() {
                       <>
                         <div className="input-container">
                           <form onSubmit={(e) => {
-                            e.preventDefault();
+                            e.preventDefault(); // Prevent form submission
                             handleGuess();
                           }}>
                             <input
@@ -447,6 +525,7 @@ export function ClassicGame() {
 
               <div className="streak-counter">
                 <span>Streak: {streak}</span>
+                {gainedLife && <span className="life-gained-message">+1 Life!</span>}
               </div>
 
               <button className="submit-btn" onClick={handleGuess} style={{ visibility: gameOver ? 'hidden' : 'visible' }}>Submit</button>

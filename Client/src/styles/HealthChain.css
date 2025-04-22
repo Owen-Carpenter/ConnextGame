@@ -1,0 +1,45 @@
+.health-chain-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 15px 0;
+}
+
+.health-chain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+.lives-image {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Simple blinking animation for correct answer */
+@keyframes blink-correct {
+  0% { opacity: 1; }
+  25% { opacity: 0.3; }
+  50% { opacity: 1; }
+  75% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+.chain-link-correct {
+  animation: blink-correct 1.5s ease-in-out;
+}
+
+/* Simple blinking animation for incorrect answer */
+@keyframes blink-incorrect {
+  0% { opacity: 1; }
+  25% { opacity: 0.3; }
+  50% { opacity: 1; }
+  75% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+.chain-link-incorrect {
+  animation: blink-incorrect 1.5s ease-in-out;
+} 
