@@ -8,14 +8,20 @@ from tqdm import tqdm
 
 # Download NLTK resources
 nltk.download('punkt')
-nltk.download('punkt_tab')
 nltk.download('averaged_perceptron_tagger')
-nltk.download('averaged_perceptron_tagger_eng')
 nltk.download('wordnet')
 nltk.download('omw-1.4')
 
+MAX_WORDLENGTH = 7  # Ignore words longer than this
+MIN_FREQUENCY = 3    # Minimum count for a binomial to be included
+NUM_SAMPLES = 50000  # Number of OpenWebText samples to process
+
 def is_in_dictionary(word):
     return bool(wn.synsets(word.lower()))
+
+def is_plural(word):
+    lemma = wn.morphy(word.lower(), wn.NOUN)
+    return lemma is not None and lemma != word.lower()
 
 def extract_binomials_from_text(text, pair_counts):
     sentences = nltk.sent_tokenize(text)
@@ -42,6 +48,10 @@ def extract_binomials_from_text(text, pair_counts):
                 w2_l = w2.lower()
                 if w1_l == w2_l:
                     continue  # skip duplicates like "time and time"
+                if len(w1_l) > MAX_WORDLENGTH or len(w2_l) > MAX_WORDLENGTH:
+                    continue  # skip overly long words
+                if is_plural(w1_l) or is_plural(w2_l):
+                    continue  # exclude plural forms
                 if is_in_dictionary(w1_l) and is_in_dictionary(w2_l):
                     pair = (w1_l, w2_l)
                     pair_counts[pair] += 1
@@ -68,8 +78,5 @@ def save_to_json(binomials, filename="openwebtext_binomials.json"):
     print(f"\u2705 Saved {len(binomials)} binomial expressions to {filename}")
 
 if __name__ == "__main__":
-    MIN_FREQUENCY = 3
-    NUM_SAMPLES = 50000
-
     binomials = process_openwebtext(num_samples=NUM_SAMPLES, min_frequency=MIN_FREQUENCY)
     save_to_json(binomials)
