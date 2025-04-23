@@ -107,9 +107,19 @@ function PaymentSuccess() {
                     if (response.data.status === 'success') {
                         console.log('Payment verified successfully');
                         setStatus('success');
-                        // Redirect to home after 5 seconds
+                        
+                        // Check for redirect in the response or in URL params
+                        const redirectParam = searchParams.get('redirect');
+                        const redirectUrl = response.data.redirectTo || 
+                                        (redirectParam && redirectParam.trim() !== '') ? 
+                                        `/${redirectParam}` : 
+                                        '/';
+                        
+                        console.log(`Will redirect to: ${redirectUrl}`);
+                        
+                        // Redirect after 5 seconds
                         setTimeout(() => {
-                            navigate('/Home');
+                            navigate(redirectUrl);
                         }, 5000);
                     } else {
                         throw new Error(response.data.message || 'Payment verification failed');
@@ -121,9 +131,17 @@ function PaymentSuccess() {
                     // This prevents users from seeing errors when their payment actually went through
                     setStatus('success');
                     
-                    // Redirect to home after success regardless of server error
+                    // Check for redirect in URL params
+                    const redirectParam = searchParams.get('redirect');
+                    const redirectUrl = (redirectParam && redirectParam.trim() !== '') ? 
+                                      `/${redirectParam}` : 
+                                      '/';
+                    
+                    console.log(`Will redirect to: ${redirectUrl} despite API error`);
+                    
+                    // Redirect to specified page after success regardless of server error
                     setTimeout(() => {
-                        navigate('/Home');
+                        navigate(redirectUrl);
                     }, 5000);
                 }
             } catch (error) {
@@ -153,8 +171,14 @@ function PaymentSuccess() {
                         <div className="success-icon">✓</div>
                         <h2>Payment Successful!</h2>
                         <p>Thank you for your purchase. You now have premium access!</p>
-                        <p>Redirecting to home page in 5 seconds...</p>
-                        <button onClick={() => navigate('/Home')}>Go to Home Now</button>
+                        <p>Redirecting you automatically in 5 seconds...</p>
+                        <button onClick={() => {
+                            const redirectParam = searchParams.get('redirect');
+                            const redirectUrl = (redirectParam && redirectParam.trim() !== '') ? 
+                                             `/${redirectParam}` : 
+                                             '/';
+                            navigate(redirectUrl);
+                        }}>Continue Now</button>
                     </div>
                 )}
                 
