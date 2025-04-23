@@ -144,10 +144,6 @@
     "precision"
   ],
   [
-    "aches",
-    "pains"
-  ],
-  [
     "achievements",
     "swap"
   ],
@@ -304,10 +300,6 @@
     "alcoholics"
   ],
   [
-    "addition",
-    "subtraction"
-  ],
-  [
     "address",
     "device"
   ],
@@ -344,10 +336,6 @@
     "adults"
   ],
   [
-    "adoption",
-    "foster"
-  ],
-  [
     "adoptions",
     "changes"
   ],
@@ -366,18 +354,6 @@
   [
     "adults",
     "kids"
-  ],
-  [
-    "advance",
-    "retreat"
-  ],
-  [
-    "advantage",
-    "disadvantage"
-  ],
-  [
-    "advantages",
-    "disadvantages"
   ],
   [
     "advertisers",
@@ -504,10 +480,6 @@
     "police"
   ],
   [
-    "ages",
-    "genders"
-  ],
-  [
     "aggression",
     "fear"
   ],
@@ -584,10 +556,6 @@
     "equipment"
   ],
   [
-    "airframe",
-    "propulsion"
-  ],
-  [
     "alarm",
     "distress"
   ],
@@ -628,14 +596,6 @@
     "drug"
   ],
   [
-    "ales",
-    "lagers"
-  ],
-  [
-    "allergies",
-    "asthma"
-  ],
-  [
     "allies",
     "enemies"
   ],
@@ -650,10 +610,6 @@
   [
     "allies",
     "supporters"
-  ],
-  [
-    "alpha",
-    "beta"
   ],
   [
     "altitude",
@@ -728,10 +684,6 @@
     "physiology"
   ],
   [
-    "angels",
-    "demons"
-  ],
-  [
     "anger",
     "anxiety"
   ],
@@ -804,10 +756,6 @@
     "updates"
   ],
   [
-    "anorexia",
-    "bulimia"
-  ],
-  [
     "anti-semitism",
     "racism"
   ],
@@ -846,10 +794,6 @@
   [
     "apartments",
     "homes"
-  ],
-  [
-    "aperture",
-    "magnification"
   ],
   [
     "apparel",
@@ -898,14 +842,6 @@
   [
     "approach",
     "style"
-  ],
-  [
-    "approval",
-    "rejection"
-  ],
-  [
-    "architect",
-    "planner"
   ],
   [
     "architects",
@@ -984,10 +920,6 @@
     "flavors"
   ],
   [
-    "arrays",
-    "hashes"
-  ],
-  [
     "arrest",
     "conviction"
   ],
@@ -1018,10 +950,6 @@
   [
     "arrests",
     "executions"
-  ],
-  [
-    "arrivals",
-    "departures"
   ],
   [
     "art",
@@ -1196,10 +1124,6 @@
     "sciences"
   ],
   [
-    "ash",
-    "soot"
-  ],
-  [
     "assault",
     "abuse"
   ],
@@ -1244,20 +1168,12 @@
     "comets"
   ],
   [
-    "atheists",
-    "agnostics"
-  ],
-  [
     "athletes",
     "officials"
   ],
   [
     "athleticism",
     "power"
-  ],
-  [
-    "atmosphere",
-    "oceans"
   ],
   [
     "atoms",
@@ -1274,10 +1190,6 @@
   [
     "attack",
     "stroke"
-  ],
-  [
-    "attacker",
-    "defender"
   ],
   [
     "attacks",
@@ -1298,10 +1210,6 @@
   [
     "attention",
     "legitimacy"
-  ],
-  [
-    "attitude",
-    "outlook"
   ],
   [
     "attitudes",
@@ -1326,10 +1234,6 @@
   [
     "aunt",
     "uncle"
-  ],
-  [
-    "aunts",
-    "uncles"
   ],
   [
     "austerity",
@@ -1378,14 +1282,6 @@
   [
     "authors",
     "publishers"
-  ],
-  [
-    "authorship",
-    "ghostwriting"
-  ],
-  [
-    "automation",
-    "robotics"
   ],
   [
     "autonomy",
@@ -1476,10 +1372,6 @@
     "bond"
   ],
   [
-    "bait",
-    "switch"
-  ],
-  [
     "ball",
     "chain"
   ],
@@ -1558,10 +1450,6 @@
   [
     "baseball",
     "football"
-  ],
-  [
-    "baseline",
-    "humming"
   ],
   [
     "basketball",
@@ -1672,20 +1560,12 @@
     "end"
   ],
   [
-    "beginner",
-    "intermediate"
-  ],
-  [
     "beginning",
     "end"
   ],
   [
     "behavior",
     "anxiety"
-  ],
-  [
-    "beings",
-    "organisms"
   ],
   [
     "belief",
@@ -1720,14 +1600,6 @@
     "values"
   ],
   [
-    "believers",
-    "nonbelievers"
-  ],
-  [
-    "bells",
-    "whistles"
-  ],
-  [
     "benefits",
     "costs"
   ],
@@ -1744,16 +1616,8 @@
     "protections"
   ],
   [
-    "beta-carotene",
-    "vitamin"
-  ],
-  [
     "beverages",
     "liquids"
-  ],
-  [
-    "bicycle",
-    "station"
   ],
   [
     "bicyclists",
@@ -1822,10 +1686,6 @@
   [
     "bisexuals",
     "transgender"
-  ],
-  [
-    "bitch",
-    "moan"
   ],
   [
     "bits",
@@ -1914,10 +1774,6 @@
   [
     "boards",
     "committees"
-  ],
-  [
-    "boas",
-    "pythons"
   ],
   [
     "bodies",
@@ -2052,14 +1908,6 @@
     "video"
   ],
   [
-    "boom",
-    "bust"
-  ],
-  [
-    "booms",
-    "busts"
-  ],
-  [
     "boots",
     "shoes"
   ],
@@ -2078,10 +1926,6 @@
   [
     "bourbon",
     "rye"
-  ],
-  [
-    "bow",
-    "arrow"
   ],
   [
     "bowl",
@@ -2132,10 +1976,6 @@
     "men"
   ],
   [
-    "bracelets",
-    "necklaces"
-  ],
-  [
     "brain",
     "body"
   ],
@@ -2180,10 +2020,6 @@
     "lunch"
   ],
   [
-    "breaking",
-    "entering"
-  ],
-  [
     "breast",
     "prostate"
   ],
@@ -2204,24 +2040,12 @@
     "money"
   ],
   [
-    "bribes",
-    "kickbacks"
-  ],
-  [
     "brick",
     "mortar"
   ],
   [
     "bricks",
     "mortar"
-  ],
-  [
-    "bride",
-    "groom"
-  ],
-  [
-    "brides",
-    "grooms"
   ],
   [
     "bridges",
@@ -2286,10 +2110,6 @@
   [
     "budget",
     "tax"
-  ],
-  [
-    "buffalo",
-    "bison"
   ],
   [
     "bugs",
@@ -2512,10 +2332,6 @@
     "schools"
   ],
   [
-    "businessman",
-    "politician"
-  ],
-  [
     "businessmen",
     "politicians"
   ],
@@ -2540,16 +2356,8 @@
     "breasts"
   ],
   [
-    "buy",
-    "hold"
-  ],
-  [
     "buybacks",
     "dividends"
-  ],
-  [
-    "buyer",
-    "seller"
   ],
   [
     "buyers",
@@ -2584,24 +2392,12 @@
     "wireless"
   ],
   [
-    "cafe",
-    "bakery"
-  ],
-  [
     "cafes",
     "bars"
   ],
   [
     "cafes",
     "restaurants"
-  ],
-  [
-    "cake",
-    "eat"
-  ],
-  [
-    "calcium",
-    "magnesium"
   ],
   [
     "call",
@@ -2632,10 +2428,6 @@
     "texts"
   ],
   [
-    "calm",
-    "carry"
-  ],
-  [
     "camera",
     "fingerprint"
   ],
@@ -2654,10 +2446,6 @@
   [
     "cameras",
     "microphones"
-  ],
-  [
-    "camp",
-    "preseason"
   ],
   [
     "campaign",
@@ -2712,10 +2500,6 @@
     "speed"
   ],
   [
-    "cape",
-    "cowl"
-  ],
-  [
     "capital",
     "operating"
   ],
@@ -2730,10 +2514,6 @@
   [
     "captain",
     "crew"
-  ],
-  [
-    "captains",
-    "majors"
   ],
   [
     "capture",
@@ -2850,14 +2630,6 @@
   [
     "career",
     "life"
-  ],
-  [
-    "carriers",
-    "ravens"
-  ],
-  [
-    "carrot",
-    "stick"
   ],
   [
     "carrots",
@@ -3052,14 +2824,6 @@
     "millennia"
   ],
   [
-    "cervix",
-    "corpus"
-  ],
-  [
-    "cesium",
-    "strontium"
-  ],
-  [
     "chain",
     "logistics"
   ],
@@ -3098,10 +2862,6 @@
   [
     "chaos",
     "confusion"
-  ],
-  [
-    "chapter",
-    "verse"
   ],
   [
     "character",
@@ -3178,10 +2938,6 @@
   [
     "chart",
     "number"
-  ],
-  [
-    "charts",
-    "graphs"
   ],
   [
     "check",
@@ -3264,10 +3020,6 @@
     "council"
   ],
   [
-    "chiefs",
-    "sheriffs"
-  ],
-  [
     "child",
     "adult"
   ],
@@ -3282,10 +3034,6 @@
   [
     "childcare",
     "health"
-  ],
-  [
-    "childhood",
-    "adolescence"
   ],
   [
     "children",
@@ -3352,16 +3100,8 @@
     "youth"
   ],
   [
-    "chimps",
-    "bonobos"
-  ],
-  [
     "chips",
     "mayonnaise"
-  ],
-  [
-    "chlorine",
-    "chloramine"
   ],
   [
     "chocolate",
@@ -3386,10 +3126,6 @@
   [
     "cholesterol",
     "heart"
-  ],
-  [
-    "chorus",
-    "hook"
   ],
   [
     "chromatography",
@@ -3600,20 +3336,8 @@
     "weather"
   ],
   [
-    "climbers",
-    "guides"
-  ],
-  [
     "clinics",
     "hospitals"
-  ],
-  [
-    "cloak",
-    "dagger"
-  ],
-  [
-    "clockwise",
-    "counterclockwise"
   ],
   [
     "clothes",
@@ -3718,10 +3442,6 @@
   [
     "coal",
     "steel"
-  ],
-  [
-    "coastal",
-    "inland"
   ],
   [
     "cocaine",
@@ -3836,10 +3556,6 @@
     "communities"
   ],
   [
-    "collectors",
-    "enthusiasts"
-  ],
-  [
     "college",
     "career"
   ],
@@ -3862,10 +3578,6 @@
   [
     "colonels",
     "generals"
-  ],
-  [
-    "colonialism",
-    "imperialism"
   ],
   [
     "color",
@@ -3920,10 +3632,6 @@
     "civilians"
   ],
   [
-    "comedy",
-    "drama"
-  ],
-  [
     "comfort",
     "convenience"
   ],
@@ -3940,16 +3648,8 @@
     "style"
   ],
   [
-    "comforts",
-    "luxuries"
-  ],
-  [
     "comics",
     "video"
-  ],
-  [
-    "comings",
-    "goings"
   ],
   [
     "command",
@@ -4136,10 +3836,6 @@
     "organization"
   ],
   [
-    "compare",
-    "contrast"
-  ],
-  [
     "compassion",
     "care"
   ],
@@ -4150,10 +3846,6 @@
   [
     "compassion",
     "understanding"
-  ],
-  [
-    "compensation",
-    "tenure"
   ],
   [
     "competition",
@@ -4290,10 +3982,6 @@
   [
     "confidence",
     "trust"
-  ],
-  [
-    "configuration",
-    "era"
   ],
   [
     "confusion",
@@ -4456,10 +4144,6 @@
     "abortion"
   ],
   [
-    "contraceptives",
-    "abortifacients"
-  ],
-  [
     "contract",
     "bid"
   ],
@@ -4544,20 +4228,8 @@
     "heating"
   ],
   [
-    "cooks",
-    "cashiers"
-  ],
-  [
-    "coordinator",
-    "quarterbacks"
-  ],
-  [
     "copper",
     "aluminum"
-  ],
-  [
-    "cops",
-    "robbers"
   ],
   [
     "copy",
@@ -4578,14 +4250,6 @@
   [
     "copyrights",
     "trademarks"
-  ],
-  [
-    "core",
-    "shell"
-  ],
-  [
-    "cores",
-    "threads"
   ],
   [
     "corn",
@@ -4638,14 +4302,6 @@
   [
     "corporations",
     "unions"
-  ],
-  [
-    "correction",
-    "update"
-  ],
-  [
-    "corrections",
-    "clarifications"
   ],
   [
     "corruption",
@@ -5044,14 +4700,6 @@
     "abuse"
   ],
   [
-    "crying",
-    "wailing"
-  ],
-  [
-    "crystal",
-    "silicon"
-  ],
-  [
     "culture",
     "art"
   ],
@@ -5124,10 +4772,6 @@
     "handle"
   ],
   [
-    "curb",
-    "edge"
-  ],
-  [
     "curiosity",
     "enthusiasm"
   ],
@@ -5188,10 +4832,6 @@
     "tax"
   ],
   [
-    "cycle",
-    "motorcycle"
-  ],
-  [
     "cyclists",
     "motorists"
   ],
@@ -5238,10 +4878,6 @@
   [
     "damages",
     "attorney"
-  ],
-  [
-    "dams",
-    "reservoirs"
   ],
   [
     "dance",
@@ -5556,10 +5192,6 @@
     "command"
   ],
   [
-    "delusion",
-    "enlightenment"
-  ],
-  [
     "demand",
     "price"
   ],
@@ -5580,32 +5212,12 @@
     "justice"
   ],
   [
-    "denudation",
-    "deposition"
-  ],
-  [
-    "department",
-    "agency"
-  ],
-  [
     "departments",
     "agencies"
   ],
   [
     "deportation",
     "transfer"
-  ],
-  [
-    "deposit",
-    "withdrawal"
-  ],
-  [
-    "deposits",
-    "withdrawals"
-  ],
-  [
-    "depreciation",
-    "amortization"
   ],
   [
     "depression",
@@ -5646,10 +5258,6 @@
   [
     "depth",
     "time"
-  ],
-  [
-    "desertion",
-    "misbehavior"
   ],
   [
     "design",
@@ -5738,10 +5346,6 @@
   [
     "designers",
     "engineers"
-  ],
-  [
-    "designs",
-    "manufactures"
   ],
   [
     "desire",
@@ -5928,10 +5532,6 @@
     "action"
   ],
   [
-    "dies",
-    "withdraws"
-  ],
-  [
     "diesel",
     "petrol"
   ],
@@ -5962,10 +5562,6 @@
   [
     "dignity",
     "rights"
-  ],
-  [
-    "dimes",
-    "quarters"
   ],
   [
     "dinner",
@@ -6064,10 +5660,6 @@
     "pain"
   ],
   [
-    "discount",
-    "premium"
-  ],
-  [
     "discrimination",
     "abuse"
   ],
@@ -6138,10 +5730,6 @@
   [
     "disruption",
     "violence"
-  ],
-  [
-    "dissociation",
-    "powerlessness"
   ],
   [
     "distance",
@@ -6312,16 +5900,8 @@
     "gold"
   ],
   [
-    "dollars",
-    "cents"
-  ],
-  [
     "dolphins",
     "whales"
-  ],
-  [
-    "domain",
-    "hobbyist"
   ],
   [
     "domicile",
@@ -6372,16 +5952,8 @@
     "hundreds"
   ],
   [
-    "drag",
-    "drop"
-  ],
-  [
     "dreams",
     "reality"
-  ],
-  [
-    "dribs",
-    "drabs"
   ],
   [
     "drinking",
@@ -6508,26 +6080,6 @@
     "vocals"
   ],
   [
-    "drying",
-    "dehydration"
-  ],
-  [
-    "dualism",
-    "monotheism"
-  ],
-  [
-    "ducks",
-    "geese"
-  ],
-  [
-    "dungeons",
-    "dragons"
-  ],
-  [
-    "duplication",
-    "redundancy"
-  ],
-  [
     "duration",
     "intensity"
   ],
@@ -6556,20 +6108,12 @@
     "responsibilities"
   ],
   [
-    "dynasty",
-    "keeper"
-  ],
-  [
     "earnings",
     "savings"
   ],
   [
     "earth",
     "sky"
-  ],
-  [
-    "earthquake",
-    "tsunami"
   ],
   [
     "east",
@@ -6586,14 +6130,6 @@
   [
     "eating",
     "drinking"
-  ],
-  [
-    "ebb",
-    "flow"
-  ],
-  [
-    "ebbs",
-    "flows"
   ],
   [
     "ecology",
@@ -6844,20 +6380,12 @@
     "emotions"
   ],
   [
-    "eighties",
-    "nineties"
-  ],
-  [
     "elbow",
     "shoulder"
   ],
   [
     "elbows",
     "knees"
-  ],
-  [
-    "elders",
-    "deacons"
   ],
   [
     "election",
@@ -6938,14 +6466,6 @@
   [
     "emails",
     "texts"
-  ],
-  [
-    "embassies",
-    "consulates"
-  ],
-  [
-    "emergence",
-    "persistence"
   ],
   [
     "emissions",
@@ -7188,10 +6708,6 @@
     "technicians"
   ],
   [
-    "enrolment",
-    "confirmation"
-  ],
-  [
     "enslavement",
     "rape"
   ],
@@ -7222,10 +6738,6 @@
   [
     "entrance",
     "exit"
-  ],
-  [
-    "entrances",
-    "exits"
   ],
   [
     "entrepreneur",
@@ -7322,14 +6834,6 @@
   [
     "error",
     "omission"
-  ],
-  [
-    "errors",
-    "omissions"
-  ],
-  [
-    "estimates",
-    "assumptions"
   ],
   [
     "estrogen",
@@ -7556,10 +7060,6 @@
     "body"
   ],
   [
-    "expulsion",
-    "extraction"
-  ],
-  [
     "extent",
     "nature"
   ],
@@ -7676,10 +7176,6 @@
     "refusal"
   ],
   [
-    "fair",
-    "square"
-  ],
-  [
     "fairness",
     "integrity"
   ],
@@ -7718,10 +7214,6 @@
   [
     "faiths",
     "none"
-  ],
-  [
-    "fakes",
-    "forgeries"
   ],
   [
     "fall",
@@ -7880,10 +7372,6 @@
     "ranchers"
   ],
   [
-    "farming",
-    "grazing"
-  ],
-  [
     "farms",
     "businesses"
   ],
@@ -7914,10 +7402,6 @@
   [
     "fat",
     "muscle"
-  ],
-  [
-    "fate",
-    "whereabouts"
   ],
   [
     "father",
@@ -8148,10 +7632,6 @@
     "store"
   ],
   [
-    "fiber",
-    "antioxidants"
-  ],
-  [
     "fiction",
     "fantasy"
   ],
@@ -8174,10 +7654,6 @@
   [
     "field",
     "storage"
-  ],
-  [
-    "fifth",
-    "sixth"
   ],
   [
     "fight",
@@ -8400,20 +7876,12 @@
     "hunting"
   ],
   [
-    "fit",
-    "finish"
-  ],
-  [
     "fitness",
     "form"
   ],
   [
     "fitness",
     "health"
-  ],
-  [
-    "fits",
-    "starts"
   ],
   [
     "fixes",
@@ -8456,10 +7924,6 @@
     "bone"
   ],
   [
-    "flocks",
-    "herds"
-  ],
-  [
     "floods",
     "earthquakes"
   ],
@@ -8470,10 +7934,6 @@
   [
     "flora",
     "fauna"
-  ],
-  [
-    "flotsam",
-    "jetsam"
   ],
   [
     "flour",
@@ -8712,14 +8172,6 @@
     "relations"
   ],
   [
-    "fore",
-    "aft"
-  ],
-  [
-    "foreclosures",
-    "gentrification"
-  ],
-  [
     "forests",
     "fields"
   ],
@@ -8746,10 +8198,6 @@
   [
     "fort",
     "prison"
-  ],
-  [
-    "forward",
-    "backward"
   ],
   [
     "forwards",
@@ -8790,14 +8238,6 @@
   [
     "frame",
     "athleticism"
-  ],
-  [
-    "fraternities",
-    "sororities"
-  ],
-  [
-    "fraternity",
-    "sorority"
   ],
   [
     "fraud",
@@ -8900,20 +8340,8 @@
     "voltage"
   ],
   [
-    "freshman",
-    "sophomore"
-  ],
-  [
-    "freshmen",
-    "sophomores"
-  ],
-  [
     "friction",
     "tension"
-  ],
-  [
-    "fridge",
-    "freezer"
   ],
   [
     "friend",
@@ -9054,10 +8482,6 @@
   [
     "friendships",
     "relationships"
-  ],
-  [
-    "frogs",
-    "toads"
   ],
   [
     "front",
@@ -9228,10 +8652,6 @@
     "losses"
   ],
   [
-    "gallantry",
-    "intrepidity"
-  ],
-  [
     "game",
     "brand"
   ],
@@ -9290,10 +8710,6 @@
   [
     "gangs",
     "drugs"
-  ],
-  [
-    "garage",
-    "basement"
   ],
   [
     "gas",
@@ -9360,10 +8776,6 @@
     "lesbians"
   ],
   [
-    "gear",
-    "flaps"
-  ],
-  [
     "gender",
     "age"
   ],
@@ -9406,10 +8818,6 @@
   [
     "generation",
     "transmission"
-  ],
-  [
-    "generator",
-    "discriminator"
   ],
   [
     "genes",
@@ -9476,16 +8884,8 @@
     "steel"
   ],
   [
-    "glitz",
-    "glamour"
-  ],
-  [
     "gloom",
     "doom"
-  ],
-  [
-    "gloves",
-    "mittens"
   ],
   [
     "goal",
@@ -9792,10 +9192,6 @@
     "people"
   ],
   [
-    "growers",
-    "processors"
-  ],
-  [
     "growth",
     "activity"
   ],
@@ -9984,10 +9380,6 @@
     "girls"
   ],
   [
-    "hack",
-    "slash"
-  ],
-  [
     "hair",
     "beard"
   ],
@@ -10112,20 +9504,12 @@
     "violence"
   ],
   [
-    "hat",
-    "sunglasses"
-  ],
-  [
     "hate",
     "bigotry"
   ],
   [
     "hate",
     "fear"
-  ],
-  [
-    "haves",
-    "have-nots"
   ],
   [
     "head",
@@ -10174,10 +9558,6 @@
   [
     "heads",
     "wings"
-  ],
-  [
-    "headsets",
-    "controllers"
   ],
   [
     "health",
@@ -10420,10 +9800,6 @@
     "support"
   ],
   [
-    "herbicides",
-    "pesticides"
-  ],
-  [
     "herbs",
     "spices"
   ],
@@ -10434,10 +9810,6 @@
   [
     "heritage",
     "history"
-  ],
-  [
-    "heroes",
-    "villains"
   ],
   [
     "heroin",
@@ -10460,10 +9832,6 @@
     "seek"
   ],
   [
-    "highs",
-    "lows"
-  ],
-  [
     "highway",
     "lane"
   ],
@@ -10476,16 +9844,8 @@
     "transit"
   ],
   [
-    "hikers",
-    "backpackers"
-  ],
-  [
     "hills",
     "valleys"
-  ],
-  [
-    "hints",
-    "clues"
   ],
   [
     "hip",
@@ -10752,10 +10112,6 @@
     "plans"
   ],
   [
-    "hormone",
-    "testosterone"
-  ],
-  [
     "horse",
     "dog"
   ],
@@ -10774,10 +10130,6 @@
   [
     "horses",
     "mules"
-  ],
-  [
-    "hospital",
-    "clinic"
   ],
   [
     "hospitals",
@@ -10830,10 +10182,6 @@
   [
     "hotels",
     "restaurants"
-  ],
-  [
-    "hotter",
-    "drier"
   ],
   [
     "hour",
@@ -10912,14 +10260,6 @@
     "cry"
   ],
   [
-    "huff",
-    "puff"
-  ],
-  [
-    "hugs",
-    "kisses"
-  ],
-  [
     "human",
     "animal"
   ],
@@ -10960,14 +10300,6 @@
     "war"
   ],
   [
-    "hunter",
-    "fisherman"
-  ],
-  [
-    "hunters",
-    "anglers"
-  ],
-  [
     "hunting",
     "fishing"
   ],
@@ -11004,14 +10336,6 @@
     "wives"
   ],
   [
-    "hustle",
-    "bustle"
-  ],
-  [
-    "hydrochlorothiazide",
-    "chlorthalidone"
-  ],
-  [
     "hydrogen",
     "helium"
   ],
@@ -11024,20 +10348,12 @@
     "frostbite"
   ],
   [
-    "i",
-    "j"
-  ],
-  [
     "ice",
     "salt"
   ],
   [
     "ice",
     "snow"
-  ],
-  [
-    "idealization",
-    "devaluation"
   ],
   [
     "ideals",
@@ -11252,10 +10568,6 @@
     "use"
   ],
   [
-    "importers",
-    "exporters"
-  ],
-  [
     "imports",
     "exports"
   ],
@@ -11330,14 +10642,6 @@
   [
     "incompetence",
     "corruption"
-  ],
-  [
-    "inconsistencies",
-    "incompatibilities"
-  ],
-  [
-    "increase",
-    "decrease"
   ],
   [
     "increases",
@@ -11472,10 +10776,6 @@
     "poverty"
   ],
   [
-    "infantry",
-    "cavalry"
-  ],
-  [
     "infants",
     "children"
   ],
@@ -11514,10 +10814,6 @@
   [
     "influence",
     "power"
-  ],
-  [
-    "influences",
-    "loyalties"
   ],
   [
     "information",
@@ -11606,14 +10902,6 @@
   [
     "infringement",
     "trademark"
-  ],
-  [
-    "ingress",
-    "egress"
-  ],
-  [
-    "inheritance",
-    "gift"
   ],
   [
     "initiation",
@@ -11716,14 +11004,6 @@
     "output"
   ],
   [
-    "inputs",
-    "outputs"
-  ],
-  [
-    "ins",
-    "outs"
-  ],
-  [
     "insight",
     "analysis"
   ],
@@ -11812,10 +11092,6 @@
     "temperament"
   ],
   [
-    "intellectualizations",
-    "rationalizations"
-  ],
-  [
     "intellectuals",
     "artists"
   ],
@@ -11900,10 +11176,6 @@
     "hardware"
   ],
   [
-    "interior",
-    "exterior"
-  ],
-  [
     "internet",
     "computer"
   ],
@@ -11914,10 +11186,6 @@
   [
     "interpretation",
     "application"
-  ],
-  [
-    "interpreters",
-    "compilers"
   ],
   [
     "interrogation",
@@ -12036,10 +11304,6 @@
     "account"
   ],
   [
-    "inward",
-    "outward"
-  ],
-  [
     "iron",
     "bronze"
   ],
@@ -12054,10 +11318,6 @@
   [
     "iron",
     "zinc"
-  ],
-  [
-    "irrigation",
-    "drainage"
   ],
   [
     "islands",
@@ -12312,16 +11572,8 @@
     "decrees"
   ],
   [
-    "judo",
-    "jiujitsu"
-  ],
-  [
     "jungles",
     "forests"
-  ],
-  [
-    "juniors",
-    "seniors"
   ],
   [
     "jurisdiction",
@@ -12372,10 +11624,6 @@
     "adult"
   ],
   [
-    "ketchup",
-    "mustard"
-  ],
-  [
     "keyboard",
     "mouse"
   ],
@@ -12394,10 +11642,6 @@
   [
     "kick",
     "punt"
-  ],
-  [
-    "kicking",
-    "screaming"
   ],
   [
     "kickoff",
@@ -12444,10 +11688,6 @@
     "wife"
   ],
   [
-    "killing",
-    "slaughter"
-  ],
-  [
     "killings",
     "attacks"
   ],
@@ -12458,14 +11698,6 @@
   [
     "kindness",
     "compassion"
-  ],
-  [
-    "king",
-    "queen"
-  ],
-  [
-    "kings",
-    "queens"
   ],
   [
     "knee",
@@ -12482,10 +11714,6 @@
   [
     "knife",
     "weapon"
-  ],
-  [
-    "knights",
-    "dames"
   ],
   [
     "knives",
@@ -12554,10 +11782,6 @@
   [
     "knowledge",
     "wisdom"
-  ],
-  [
-    "l",
-    "m"
   ],
   [
     "labor",
@@ -12640,10 +11864,6 @@
     "cell"
   ],
   [
-    "landowners",
-    "capitalists"
-  ],
-  [
     "lands",
     "resources"
   ],
@@ -12714,10 +11934,6 @@
   [
     "laptops",
     "desktops"
-  ],
-  [
-    "latitude",
-    "longitude"
   ],
   [
     "laundering",
@@ -12964,10 +12180,6 @@
     "tournaments"
   ],
   [
-    "leaps",
-    "bounds"
-  ],
-  [
     "learning",
     "data"
   ],
@@ -12978,10 +12190,6 @@
   [
     "learning",
     "memory"
-  ],
-  [
-    "leaves",
-    "stems"
   ],
   [
     "left",
@@ -13050,14 +12258,6 @@
   [
     "letters",
     "numbers"
-  ],
-  [
-    "lettuce",
-    "tomato"
-  ],
-  [
-    "level",
-    "above"
   ],
   [
     "liabilities",
@@ -13140,10 +12340,6 @@
     "schools"
   ],
   [
-    "library",
-    "museum"
-  ],
-  [
     "licence",
     "insurance"
   ],
@@ -13154,14 +12350,6 @@
   [
     "license",
     "registration"
-  ],
-  [
-    "licenses",
-    "identification"
-  ],
-  [
-    "licentiousness",
-    "justify"
   ],
   [
     "lichens",
@@ -13308,10 +12496,6 @@
     "exceptions"
   ],
   [
-    "line",
-    "sinker"
-  ],
-  [
     "lines",
     "genes"
   ],
@@ -13322,10 +12506,6 @@
   [
     "lions",
     "tigers"
-  ],
-  [
-    "lip",
-    "palate"
   ],
   [
     "liquid",
@@ -13400,10 +12580,6 @@
     "loan"
   ],
   [
-    "loaves",
-    "fishes"
-  ],
-  [
     "lobbying",
     "campaign"
   ],
@@ -13436,10 +12612,6 @@
     "orientation"
   ],
   [
-    "lock",
-    "key"
-  ],
-  [
     "logic",
     "data"
   ],
@@ -13458,10 +12630,6 @@
   [
     "look",
     "feel"
-  ],
-  [
-    "looks",
-    "feels"
   ],
   [
     "loopholes",
@@ -13574,10 +12742,6 @@
   [
     "lunch",
     "dinner"
-  ],
-  [
-    "lynching",
-    "mob"
   ],
   [
     "mac",
@@ -13740,10 +12904,6 @@
     "resources"
   ],
   [
-    "mansions",
-    "palaces"
-  ],
-  [
     "manufacture",
     "sale"
   ],
@@ -13802,10 +12962,6 @@
   [
     "maps",
     "scrolls"
-  ],
-  [
-    "march",
-    "rally"
   ],
   [
     "marijuana",
@@ -13874,10 +13030,6 @@
   [
     "marriage",
     "sexuality"
-  ],
-  [
-    "masculinity",
-    "femininity"
   ],
   [
     "mask",
@@ -14084,10 +13236,6 @@
     "phone"
   ],
   [
-    "melodies",
-    "rhythms"
-  ],
-  [
     "member",
     "friend"
   ],
@@ -14180,10 +13328,6 @@
     "women"
   ],
   [
-    "mensuration",
-    "estimation"
-  ],
-  [
     "merchandise",
     "fan"
   ],
@@ -14202,10 +13346,6 @@
   [
     "merger",
     "acquisition"
-  ],
-  [
-    "mergers",
-    "acquisitions"
   ],
   [
     "meshes",
@@ -14268,20 +13408,12 @@
     "tools"
   ],
   [
-    "metrics",
-    "dimensions"
-  ],
-  [
     "mice",
     "humans"
   ],
   [
     "mice",
     "rats"
-  ],
-  [
-    "micro",
-    "macro"
   ],
   [
     "microphone",
@@ -14344,10 +13476,6 @@
     "water"
   ],
   [
-    "millionaires",
-    "billionaires"
-  ],
-  [
     "millions",
     "billions"
   ],
@@ -14358,10 +13486,6 @@
   [
     "mills",
     "refineries"
-  ],
-  [
-    "min",
-    "max"
   ],
   [
     "mind",
@@ -14400,14 +13524,6 @@
     "oil"
   ],
   [
-    "minima",
-    "maxima"
-  ],
-  [
-    "minimum",
-    "maximum"
-  ],
-  [
     "mining",
     "energy"
   ],
@@ -14434,10 +13550,6 @@
   [
     "minority",
     "majority"
-  ],
-  [
-    "mint",
-    "basil"
   ],
   [
     "minute",
@@ -14474,10 +13586,6 @@
   [
     "mix",
     "match"
-  ],
-  [
-    "mixing",
-    "matching"
   ],
   [
     "mobile",
@@ -14518,10 +13626,6 @@
   [
     "mom",
     "pop"
-  ],
-  [
-    "moms",
-    "dads"
   ],
   [
     "money",
@@ -14632,10 +13736,6 @@
     "ethics"
   ],
   [
-    "morbidity",
-    "mortality"
-  ],
-  [
     "morning",
     "afternoon"
   ],
@@ -14650,10 +13750,6 @@
   [
     "mortar",
     "pestle"
-  ],
-  [
-    "mortise",
-    "tenon"
   ],
   [
     "mosses",
@@ -14756,14 +13852,6 @@
     "power"
   ],
   [
-    "mover",
-    "shaker"
-  ],
-  [
-    "movers",
-    "shakers"
-  ],
-  [
     "movie",
     "television"
   ],
@@ -14794,14 +13882,6 @@
   [
     "mum",
     "dad"
-  ],
-  [
-    "mumps",
-    "rubella"
-  ],
-  [
-    "municipality",
-    "treaty"
   ],
   [
     "murder",
@@ -14910,10 +13990,6 @@
   [
     "musicians",
     "dancers"
-  ],
-  [
-    "mussels",
-    "clams"
   ],
   [
     "mythology",
@@ -15128,10 +14204,6 @@
     "society"
   ],
   [
-    "nausea",
-    "vomiting"
-  ],
-  [
     "navigation",
     "control"
   ],
@@ -15304,10 +14376,6 @@
     "weather"
   ],
   [
-    "newsletters",
-    "alerts"
-  ],
-  [
     "newspaper",
     "magazine"
   ],
@@ -15340,10 +14408,6 @@
     "nephew"
   ],
   [
-    "nieces",
-    "nephews"
-  ],
-  [
     "night",
     "day"
   ],
@@ -15358,14 +14422,6 @@
   [
     "nitrogen",
     "water"
-  ],
-  [
-    "nook",
-    "cranny"
-  ],
-  [
-    "nooks",
-    "crannies"
   ],
   [
     "norms",
@@ -15388,14 +14444,6 @@
     "mouth"
   ],
   [
-    "note",
-    "chord"
-  ],
-  [
-    "notes",
-    "diaries"
-  ],
-  [
     "notice",
     "comment"
   ],
@@ -15404,28 +14452,12 @@
     "opportunity"
   ],
   [
-    "noughts",
-    "crosses"
-  ],
-  [
-    "noun",
-    "verb"
-  ],
-  [
-    "nouns",
-    "verbs"
-  ],
-  [
     "novels",
     "comics"
   ],
   [
     "novels",
     "movies"
-  ],
-  [
-    "null",
-    "void"
   ],
   [
     "number",
@@ -15466,10 +14498,6 @@
   [
     "numbers",
     "letters"
-  ],
-  [
-    "numerator",
-    "denominator"
   ],
   [
     "nurse",
@@ -15558,10 +14586,6 @@
   [
     "observations",
     "experiences"
-  ],
-  [
-    "odds",
-    "ends"
   ],
   [
     "offense",
@@ -15788,16 +14812,8 @@
     "tomatoes"
   ],
   [
-    "opening",
-    "closing"
-  ],
-  [
     "openness",
     "transparency"
-  ],
-  [
-    "operand",
-    "returns"
   ],
   [
     "operating",
@@ -15900,10 +14916,6 @@
     "subpoena"
   ],
   [
-    "orders",
-    "directions"
-  ],
-  [
     "ores",
     "minerals"
   ],
@@ -15950,14 +14962,6 @@
   [
     "origin",
     "destination"
-  ],
-  [
-    "origins",
-    "evolution"
-  ],
-  [
-    "outbound",
-    "inbound"
   ],
   [
     "outer",
@@ -16052,24 +15056,12 @@
     "water"
   ],
   [
-    "p",
-    "q"
-  ],
-  [
-    "p.m.",
-    "midnight"
-  ],
-  [
     "pace",
     "space"
   ],
   [
     "packages",
     "maintenance"
-  ],
-  [
-    "page",
-    "browser"
   ],
   [
     "pages",
@@ -16136,14 +15128,6 @@
     "trauma"
   ],
   [
-    "painting",
-    "sculpture"
-  ],
-  [
-    "paintings",
-    "sculptures"
-  ],
-  [
     "pan",
     "cover"
   ],
@@ -16176,20 +15160,12 @@
     "books"
   ],
   [
-    "papilla",
-    "matrix"
-  ],
-  [
     "paralysis",
     "death"
   ],
   [
     "paramedics",
     "police"
-  ],
-  [
-    "parasites",
-    "predators"
   ],
   [
     "parent",
@@ -16290,10 +15266,6 @@
   [
     "parks",
     "squares"
-  ],
-  [
-    "parole",
-    "probation"
   ],
   [
     "part",
@@ -16572,10 +15544,6 @@
     "valleys"
   ],
   [
-    "peanuts",
-    "crackers"
-  ],
-  [
     "peasants",
     "workers"
   ],
@@ -16602,14 +15570,6 @@
   [
     "pencil",
     "paper"
-  ],
-  [
-    "penis",
-    "vagina"
-  ],
-  [
-    "pens",
-    "pencils"
   ],
   [
     "pension",
@@ -16876,10 +15836,6 @@
     "children"
   ],
   [
-    "petulance",
-    "narcissism"
-  ],
-  [
     "philosophers",
     "scientists"
   ],
@@ -17036,10 +15992,6 @@
     "rolls"
   ],
   [
-    "picks",
-    "bans"
-  ],
-  [
     "picture",
     "sound"
   ],
@@ -17072,10 +16024,6 @@
     "cows"
   ],
   [
-    "pilot",
-    "co-pilot"
-  ],
-  [
     "pilots",
     "air"
   ],
@@ -17086,22 +16034,6 @@
   [
     "pins",
     "pads"
-  ],
-  [
-    "pint",
-    "tulip"
-  ],
-  [
-    "pipes",
-    "cables"
-  ],
-  [
-    "pitchers",
-    "catchers"
-  ],
-  [
-    "pitchforks",
-    "torches"
   ],
   [
     "place",
@@ -17138,10 +16070,6 @@
   [
     "plain",
     "simple"
-  ],
-  [
-    "plaintiff",
-    "defendant"
   ],
   [
     "plan",
@@ -17232,14 +16160,6 @@
     "metal"
   ],
   [
-    "plate",
-    "screws"
-  ],
-  [
-    "plates",
-    "glasses"
-  ],
-  [
     "platforms",
     "devices"
   ],
@@ -17324,10 +16244,6 @@
     "teams"
   ],
   [
-    "please",
-    "thank"
-  ],
-  [
     "plot",
     "character"
   ],
@@ -17342,10 +16258,6 @@
   [
     "point",
     "shoot"
-  ],
-  [
-    "poker",
-    "blackjack"
   ],
   [
     "poles",
@@ -17640,14 +16552,6 @@
     "beef"
   ],
   [
-    "portrait",
-    "signature"
-  ],
-  [
-    "ports",
-    "airports"
-  ],
-  [
     "position",
     "movement"
   ],
@@ -17658,10 +16562,6 @@
   [
     "positioning",
     "leadership"
-  ],
-  [
-    "positives",
-    "negatives"
   ],
   [
     "possession",
@@ -17694,10 +16594,6 @@
   [
     "posts",
     "videos"
-  ],
-  [
-    "pots",
-    "pans"
   ],
   [
     "poverty",
@@ -17912,18 +16808,6 @@
     "criticism"
   ],
   [
-    "prayer",
-    "contemplation"
-  ],
-  [
-    "prefix",
-    "suffix"
-  ],
-  [
-    "pregnancies",
-    "abortions"
-  ],
-  [
     "pregnancy",
     "abortion"
   ],
@@ -17948,20 +16832,12 @@
     "discrimination"
   ],
   [
-    "premiums",
-    "deductibles"
-  ],
-  [
     "presence",
     "absence"
   ],
   [
     "presentation",
     "content"
-  ],
-  [
-    "preservatives",
-    "additives"
   ],
   [
     "president",
@@ -17998,10 +16874,6 @@
   [
     "president",
     "vice"
-  ],
-  [
-    "presidents",
-    "chancellors"
   ],
   [
     "press",
@@ -18110,10 +16982,6 @@
   [
     "primaries",
     "caucuses"
-  ],
-  [
-    "primary",
-    "caucus"
   ],
   [
     "principals",
@@ -18396,14 +17264,6 @@
     "issues"
   ],
   [
-    "proliferation",
-    "differentiation"
-  ],
-  [
-    "promises",
-    "perils"
-  ],
-  [
     "promotion",
     "marketing"
   ],
@@ -18450,10 +17310,6 @@
   [
     "props",
     "state"
-  ],
-  [
-    "pros",
-    "cons"
   ],
   [
     "prosecution",
@@ -18540,10 +17396,6 @@
     "electrons"
   ],
   [
-    "provider",
-    "user"
-  ],
-  [
     "province",
     "territory"
   ],
@@ -18606,10 +17458,6 @@
   [
     "pulp",
     "paper"
-  ],
-  [
-    "pump",
-    "dump"
   ],
   [
     "punches",
@@ -18676,16 +17524,8 @@
     "use"
   ],
   [
-    "purse",
-    "wallet"
-  ],
-  [
     "pursuit",
     "capture"
-  ],
-  [
-    "push",
-    "pull"
   ],
   [
     "putt",
@@ -18726,18 +17566,6 @@
   [
     "quantity",
     "quality"
-  ],
-  [
-    "quarks",
-    "gluons"
-  ],
-  [
-    "quarterback",
-    "tailback"
-  ],
-  [
-    "question",
-    "answer"
   ],
   [
     "questions",
@@ -18892,10 +17720,6 @@
     "sexist"
   ],
   [
-    "racists",
-    "misogynists"
-  ],
-  [
     "radiation",
     "pressure"
   ],
@@ -19008,20 +17832,12 @@
     "torture"
   ],
   [
-    "rapist",
-    "murderer"
-  ],
-  [
     "rapists",
     "criminals"
   ],
   [
     "rapists",
     "murderers"
-  ],
-  [
-    "raspberries",
-    "blueberries"
   ],
   [
     "rate",
@@ -19050,10 +17866,6 @@
   [
     "ratings",
     "reviews"
-  ],
-  [
-    "razor",
-    "blades"
   ],
   [
     "reader",
@@ -19172,10 +17984,6 @@
     "migrants"
   ],
   [
-    "refunds",
-    "exchanges"
-  ],
-  [
     "registration",
     "voting"
   ],
@@ -19198,10 +18006,6 @@
   [
     "rehabilitation",
     "recovery"
-  ],
-  [
-    "relapse",
-    "recurrence"
   ],
   [
     "relatives",
@@ -19628,10 +18432,6 @@
     "role"
   ],
   [
-    "rest",
-    "relaxation"
-  ],
-  [
     "restaurant",
     "bar"
   ],
@@ -19654,10 +18454,6 @@
   [
     "restrictions",
     "limitations"
-  ],
-  [
-    "restroom",
-    "fitting"
   ],
   [
     "retention",
@@ -19840,10 +18636,6 @@
     "fall"
   ],
   [
-    "rises",
-    "falls"
-  ],
-  [
     "risk",
     "benefit"
   ],
@@ -19886,10 +18678,6 @@
   [
     "risks",
     "uncertainties"
-  ],
-  [
-    "rituals",
-    "ceremonies"
   ],
   [
     "rivers",
@@ -19980,10 +18768,6 @@
     "minerals"
   ],
   [
-    "rod",
-    "curtain"
-  ],
-  [
     "role",
     "value"
   ],
@@ -19998,14 +18782,6 @@
   [
     "room",
     "board"
-  ],
-  [
-    "root",
-    "branch"
-  ],
-  [
-    "row",
-    "column"
   ],
   [
     "rows",
@@ -20060,10 +18836,6 @@
     "traditions"
   ],
   [
-    "rum",
-    "whiskey"
-  ],
-  [
     "rumor",
     "speculation"
   ],
@@ -20086,10 +18858,6 @@
   [
     "run",
     "pass"
-  ],
-  [
-    "running",
-    "gunning"
   ],
   [
     "s",
@@ -20260,10 +19028,6 @@
     "revenue"
   ],
   [
-    "scabies",
-    "lice"
-  ],
-  [
     "scale",
     "complexity"
   ],
@@ -20274,10 +19038,6 @@
   [
     "scale",
     "scope"
-  ],
-  [
-    "scarves",
-    "wraps"
   ],
   [
     "schizophrenia",
@@ -20492,10 +19252,6 @@
     "science"
   ],
   [
-    "scoop",
-    "swoop"
-  ],
-  [
     "scope",
     "nature"
   ],
@@ -20546,10 +19302,6 @@
   [
     "sea",
     "land"
-  ],
-  [
-    "seals",
-    "incantations"
   ],
   [
     "search",
@@ -20610,10 +19362,6 @@
   [
     "sections",
     "items"
-  ],
-  [
-    "securities",
-    "wire"
   ],
   [
     "security",
@@ -20728,10 +19476,6 @@
     "refugees"
   ],
   [
-    "segregation",
-    "sterilization"
-  ],
-  [
     "seizure",
     "forfeiture"
   ],
@@ -20760,10 +19504,6 @@
     "representatives"
   ],
   [
-    "send",
-    "receive"
-  ],
-  [
     "sender",
     "receiver"
   ],
@@ -20780,20 +19520,12 @@
     "respond"
   ],
   [
-    "sensitivity",
-    "specificity"
-  ],
-  [
     "sensor",
     "camera"
   ],
   [
     "sensors",
     "cameras"
-  ],
-  [
-    "sergeants",
-    "inspectors"
   ],
   [
     "series",
@@ -21032,10 +19764,6 @@
     "rescue"
   ],
   [
-    "ship",
-    "canoe"
-  ],
-  [
     "shipping",
     "customs"
   ],
@@ -21054,10 +19782,6 @@
   [
     "shirt",
     "tie"
-  ],
-  [
-    "shits",
-    "giggles"
   ],
   [
     "shock",
@@ -21116,10 +19840,6 @@
     "socks"
   ],
   [
-    "shots",
-    "chances"
-  ],
-  [
     "shoulder",
     "arm"
   ],
@@ -21176,10 +19896,6 @@
     "trade"
   ],
   [
-    "signal",
-    "idler"
-  ],
-  [
     "signs",
     "markings"
   ],
@@ -21204,20 +19920,12 @@
     "differences"
   ],
   [
-    "similarity",
-    "difference"
-  ],
-  [
     "simplicity",
     "clarity"
   ],
   [
     "sin",
     "death"
-  ],
-  [
-    "sine",
-    "cosine"
   ],
   [
     "singer",
@@ -21242,10 +19950,6 @@
   [
     "singles",
     "doubles"
-  ],
-  [
-    "sink",
-    "toilet"
   ],
   [
     "sins",
@@ -21460,10 +20164,6 @@
     "hair"
   ],
   [
-    "skull",
-    "crossbones"
-  ],
-  [
     "slavery",
     "racism"
   ],
@@ -21540,10 +20240,6 @@
     "obesity"
   ],
   [
-    "snakes",
-    "lizards"
-  ],
-  [
     "snow",
     "ice"
   ],
@@ -21558,14 +20254,6 @@
   [
     "soccer",
     "hockey"
-  ],
-  [
-    "socialism",
-    "barbarism"
-  ],
-  [
-    "socialist",
-    "communist"
   ],
   [
     "societies",
@@ -21594,10 +20282,6 @@
   [
     "soda",
     "fruit"
-  ],
-  [
-    "sodium",
-    "potassium"
   ],
   [
     "software",
@@ -21704,10 +20388,6 @@
     "video"
   ],
   [
-    "songs",
-    "albums"
-  ],
-  [
     "songwriter",
     "guitarist"
   ],
@@ -21718,10 +20398,6 @@
   [
     "sons",
     "daughters"
-  ],
-  [
-    "sorbet",
-    "sherbet"
   ],
   [
     "soul",
@@ -21782,14 +20458,6 @@
   [
     "space",
     "time"
-  ],
-  [
-    "speakers",
-    "whistle-blowers"
-  ],
-  [
-    "spear",
-    "shield"
   ],
   [
     "species",
@@ -22112,10 +20780,6 @@
     "territory"
   ],
   [
-    "statement",
-    "certificate"
-  ],
-  [
     "statements",
     "actions"
   ],
@@ -22168,10 +20832,6 @@
     "studies"
   ],
   [
-    "statuses",
-    "elements"
-  ],
-  [
     "statute",
     "court"
   ],
@@ -22200,10 +20860,6 @@
     "wood"
   ],
   [
-    "steps",
-    "risers"
-  ],
-  [
     "stereotypes",
     "prejudices"
   ],
@@ -22230,14 +20886,6 @@
   [
     "stock",
     "index"
-  ],
-  [
-    "stocks",
-    "bonds"
-  ],
-  [
-    "stomach",
-    "intestines"
   ],
   [
     "stone",
@@ -22330,10 +20978,6 @@
   [
     "story",
     "world"
-  ],
-  [
-    "stoves",
-    "heaters"
   ],
   [
     "strategies",
@@ -22636,10 +21280,6 @@
     "objects"
   ],
   [
-    "subsidiaries",
-    "affiliates"
-  ],
-  [
     "subsidies",
     "tax"
   ],
@@ -22700,10 +21340,6 @@
     "tie"
   ],
   [
-    "suits",
-    "ties"
-  ],
-  [
     "summer",
     "fall"
   ],
@@ -22726,14 +21362,6 @@
   [
     "sun",
     "sky"
-  ],
-  [
-    "sunrise",
-    "sunset"
-  ],
-  [
-    "sunrises",
-    "sunsets"
   ],
   [
     "supplies",
@@ -22884,10 +21512,6 @@
     "reconnaissance"
   ],
   [
-    "survival",
-    "patriotism"
-  ],
-  [
     "survivors",
     "advocates"
   ],
@@ -22902,14 +21526,6 @@
   [
     "sweat",
     "tears"
-  ],
-  [
-    "sweet",
-    "spicy"
-  ],
-  [
-    "swimming",
-    "diving"
   ],
   [
     "swings",
@@ -22930,10 +21546,6 @@
   [
     "symbols",
     "footprints"
-  ],
-  [
-    "symptom",
-    "functioning"
   ],
   [
     "symptoms",
@@ -22996,10 +21608,6 @@
     "phones"
   ],
   [
-    "tachycardia",
-    "fibrillation"
-  ],
-  [
     "tackle",
     "guard"
   ],
@@ -23012,16 +21620,8 @@
     "techniques"
   ],
   [
-    "tags",
-    "profiles"
-  ],
-  [
     "takeoff",
     "landing"
-  ],
-  [
-    "takeoffs",
-    "landings"
   ],
   [
     "talent",
@@ -23050,10 +21650,6 @@
   [
     "talents",
     "skills"
-  ],
-  [
-    "task",
-    "project"
   ],
   [
     "taste",
@@ -23376,10 +21972,6 @@
     "sea"
   ],
   [
-    "tenements",
-    "hereditaments"
-  ],
-  [
     "tens",
     "hundreds"
   ],
@@ -23504,10 +22096,6 @@
     "appreciation"
   ],
   [
-    "theaters",
-    "participants"
-  ],
-  [
     "theft",
     "fraud"
   ],
@@ -23518,10 +22106,6 @@
   [
     "theft",
     "vandalism"
-  ],
-  [
-    "thefts",
-    "disclosures"
   ],
   [
     "themes",
@@ -23686,10 +22270,6 @@
   [
     "threats",
     "intimidation"
-  ],
-  [
-    "thresher",
-    "hammerhead"
   ],
   [
     "thumb",
@@ -23888,10 +22468,6 @@
     "onions"
   ],
   [
-    "tongue",
-    "cheek"
-  ],
-  [
     "tonight",
     "tomorrow"
   ],
@@ -23958,10 +22534,6 @@
   [
     "top",
     "bottom"
-  ],
-  [
-    "tops",
-    "bottoms"
   ],
   [
     "torture",
@@ -24188,10 +22760,6 @@
     "buses"
   ],
   [
-    "transcripts",
-    "tapes"
-  ],
-  [
     "transfer",
     "sale"
   ],
@@ -24304,10 +22872,6 @@
     "error"
   ],
   [
-    "trials",
-    "tribulations"
-  ],
-  [
     "tricks",
     "tips"
   ],
@@ -24404,10 +22968,6 @@
     "fees"
   ],
   [
-    "tuna",
-    "salmon"
-  ],
-  [
     "tunnels",
     "chambers"
   ],
@@ -24428,24 +22988,8 @@
     "posts"
   ],
   [
-    "twenties",
-    "thirties"
-  ],
-  [
     "twenty",
     "thirty"
-  ],
-  [
-    "twigs",
-    "branches"
-  ],
-  [
-    "twist",
-    "turn"
-  ],
-  [
-    "twists",
-    "turns"
   ],
   [
     "type",
@@ -24524,10 +23068,6 @@
     "college"
   ],
   [
-    "unwillingness",
-    "inability"
-  ],
-  [
     "updates",
     "analysis"
   ],
@@ -24550,14 +23090,6 @@
   [
     "ups",
     "reviews"
-  ],
-  [
-    "upstream",
-    "downstream"
-  ],
-  [
-    "uranium",
-    "plutonium"
   ],
   [
     "use",
@@ -24624,10 +23156,6 @@
     "abuses"
   ],
   [
-    "vaccination",
-    "waiver"
-  ],
-  [
     "vaccine",
     "autism"
   ],
@@ -24672,10 +23200,6 @@
     "way"
   ],
   [
-    "vampires",
-    "werewolves"
-  ],
-  [
     "vanilla",
     "chocolate"
   ],
@@ -24688,16 +23212,8 @@
     "air"
   ],
   [
-    "variables",
-    "pss"
-  ],
-  [
     "variation",
     "selection"
-  ],
-  [
-    "varnishes",
-    "enamels"
   ],
   [
     "vegans",
@@ -24754,10 +23270,6 @@
   [
     "vertices",
     "edges"
-  ],
-  [
-    "vesicle",
-    "urethra"
   ],
   [
     "victim",
@@ -25048,10 +23560,6 @@
     "video"
   ],
   [
-    "voices",
-    "visions"
-  ],
-  [
     "volleyball",
     "water"
   ],
@@ -25196,24 +23704,12 @@
     "cooling"
   ],
   [
-    "warms",
-    "cools"
-  ],
-  [
     "warmth",
     "friendliness"
   ],
   [
     "warmth",
     "humor"
-  ],
-  [
-    "warnings",
-    "precautions"
-  ],
-  [
-    "warp",
-    "weft"
   ],
   [
     "warrant",
@@ -25230,10 +23726,6 @@
   [
     "warships",
     "aircraft"
-  ],
-  [
-    "washer",
-    "dryer"
   ],
   [
     "waste",
@@ -25436,10 +23928,6 @@
     "vehicles"
   ],
   [
-    "wear",
-    "tear"
-  ],
-  [
     "weather",
     "climate"
   ],
@@ -25466,14 +23954,6 @@
   [
     "websites",
     "documents"
-  ],
-  [
-    "weddings",
-    "funerals"
-  ],
-  [
-    "weekend",
-    "holiday"
   ],
   [
     "weekends",
@@ -25540,24 +24020,12 @@
     "rye"
   ],
   [
-    "wheel",
-    "pedals"
-  ],
-  [
-    "wheeling",
-    "dealing"
-  ],
-  [
     "whites",
     "blacks"
   ],
   [
     "whole",
     "part"
-  ],
-  [
-    "widows",
-    "orphans"
   ],
   [
     "width",
@@ -25686,10 +24154,6 @@
   [
     "wings",
     "tail"
-  ],
-  [
-    "winners",
-    "losers"
   ],
   [
     "wins",
@@ -26020,24 +24484,12 @@
     "youth"
   ],
   [
-    "working-class",
-    "middle-class"
-  ],
-  [
-    "workshops",
-    "presentations"
-  ],
-  [
     "world",
     "story"
   ],
   [
     "world",
     "worlds"
-  ],
-  [
-    "worries",
-    "complexities"
   ],
   [
     "worry",
@@ -26196,10 +24648,6 @@
     "tens"
   ],
   [
-    "yeas",
-    "nays"
-  ],
-  [
     "yeast",
     "bacteria"
   ],
@@ -26210,14 +24658,6 @@
   [
     "yesterday",
     "today"
-  ],
-  [
-    "yin",
-    "yang"
-  ],
-  [
-    "yoga",
-    "meditation"
   ],
   [
     "youth",

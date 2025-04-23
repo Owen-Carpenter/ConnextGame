@@ -68,8 +68,8 @@ def save_to_json(binomials, filename="openwebtext_binomials.json"):
     print(f"\u2705 Saved {len(binomials)} binomial expressions to {filename}")
 
 if __name__ == "__main__":
-    MIN_FREQUENCY = 1
-    NUM_SAMPLES = 5000
+    MIN_FREQUENCY = 3
+    NUM_SAMPLES = 50000
 
     binomials = process_openwebtext(num_samples=NUM_SAMPLES, min_frequency=MIN_FREQUENCY)
     save_to_json(binomials)
