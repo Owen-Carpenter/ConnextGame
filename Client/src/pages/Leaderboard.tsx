@@ -41,7 +41,6 @@ export function Leaderboard() {
         classic: "",
         infinite: ""
     });
-    const [refreshing, setRefreshing] = useState(false);
     const location = useLocation();
     
     // Function to fetch classic leaderboard data
@@ -86,7 +85,6 @@ export function Leaderboard() {
     
     // Function to refresh all leaderboards
     const refreshLeaderboards = async () => {
-        setRefreshing(true);
         try {
             await Promise.all([
                 fetchClassicLeaderboard(),
@@ -94,8 +92,6 @@ export function Leaderboard() {
             ]);
         } catch (error) {
             console.error("Error refreshing leaderboards:", error);
-        } finally {
-            setRefreshing(false);
         }
     };
     
