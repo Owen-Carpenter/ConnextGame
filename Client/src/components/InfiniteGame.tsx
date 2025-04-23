@@ -307,21 +307,6 @@ export function InfiniteGame() {
           if (username) {
             console.log("Sending infinite top score update with username:", username);
             
-            // First try the test route to see if basic communication works
-            try {
-              console.log("Testing server connection with test route...");
-              const testResponse = await axios.post(`${API_BASE_URL}/test`, 
-                { 
-                  test: true,
-                  username: username
-                }
-              );
-              console.log("Test route response:", testResponse.data);
-            } catch (testError) {
-              console.error("Test route failed:", testError);
-            }
-            
-            // Then try the actual route
             const url = `${API_BASE_URL}/game/infinite/score`;
             console.log("Attempting to POST to URL:", url);
             
@@ -339,6 +324,14 @@ export function InfiniteGame() {
               );
               
               console.log("Top score update response:", response.data);
+              
+              // If server reports a higher score than our local value, update it
+              if (response.data.currentScore > newTopScore) {
+                setTopScore(response.data.currentScore);
+                localStorage.setItem("infiniteTopScore", response.data.currentScore.toString());
+                console.log("Updated local top score to match server value:", response.data.currentScore);
+                return response.data.currentScore;
+              }
             } catch (error) {
               console.error("Axios error details:", error);
               
@@ -356,12 +349,14 @@ export function InfiniteGame() {
               } else {
                 console.error("Unexpected error:", error);
               }
+              // Continue with local score update even if API fails
             }
           } else {
             console.error("Could not determine username, cannot update top score");
           }
         } catch (error) {
           console.error("Error updating top score:", error);
+          // Continue with local score update even if API fails
         }
       } else {
         console.log("No auth token found, top score only saved locally");

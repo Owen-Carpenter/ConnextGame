@@ -41,6 +41,7 @@ export function Leaderboard() {
         classic: "",
         infinite: ""
     });
+    const [refreshing, setRefreshing] = useState(false);
     const location = useLocation();
     
     // Function to fetch classic leaderboard data
@@ -83,10 +84,46 @@ export function Leaderboard() {
         }
     };
     
+    // Function to refresh all leaderboards
+    const refreshLeaderboards = async () => {
+        setRefreshing(true);
+        try {
+            await Promise.all([
+                fetchClassicLeaderboard(),
+                fetchInfiniteLeaderboard()
+            ]);
+        } catch (error) {
+            console.error("Error refreshing leaderboards:", error);
+        } finally {
+            setRefreshing(false);
+        }
+    };
+    
     // Fetch data when component mounts or location changes
     useEffect(() => {
         fetchClassicLeaderboard();
         fetchInfiniteLeaderboard();
+        
+        // Set up auto-refresh interval (every 10 seconds)
+        const refreshInterval = setInterval(() => {
+            console.log("Auto-refreshing leaderboards...");
+            refreshLeaderboards();
+        }, 10000); // 10 seconds
+        
+        // Listen for localStorage changes that might indicate new scores
+        const handleStorageChange = (e: StorageEvent) => {
+            if (e.key === "classicStreak" || e.key === "infiniteTopScore") {
+                console.log("Storage change detected, refreshing leaderboards");
+                refreshLeaderboards();
+            }
+        };
+        
+        window.addEventListener("storage", handleStorageChange);
+        
+        return () => {
+            clearInterval(refreshInterval);
+            window.removeEventListener("storage", handleStorageChange);
+        };
     }, [location.key]); // Re-fetch when location changes
     
     const randomWords = [

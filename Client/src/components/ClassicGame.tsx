@@ -287,11 +287,19 @@ export function ClassicGame() {
               );
               
               console.log("Streak update response:", response.data);
+              
+              // If server reports a higher streak than our local value, update it
+              if (response.data.currentStreak > newStreak) {
+                setStreak(response.data.currentStreak);
+                localStorage.setItem("classicStreak", response.data.currentStreak.toString());
+                console.log("Updated local streak to match server value:", response.data.currentStreak);
+              }
             } else {
               console.error("Could not determine username, cannot update streak");
             }
           } catch (error) {
             console.error("Error updating streak:", error);
+            // Continue with local streak even if server update fails
           }
         } else {
           console.log("No auth token found, streak only saved locally");
@@ -302,6 +310,36 @@ export function ClassicGame() {
         // Reset streak on loss
         localStorage.setItem("classicStreak", "0");
         setStreak(0);
+        
+        // Also update server to reset streak if user is logged in
+        const token = localStorage.getItem("userToken");
+        if (token) {
+          try {
+            const userResponse = await axios.get(`${API_BASE_URL}/game/user`, {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            });
+            
+            if (userResponse.data && userResponse.data.username) {
+              // Submit a streak of 0 to reset on the server
+              await axios.post(`${API_BASE_URL}/game/classic/streak`, 
+                { 
+                  username: userResponse.data.username,
+                  streak: 0
+                },
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`
+                  }
+                }
+              );
+            }
+          } catch (error) {
+            console.error("Error resetting streak on server:", error);
+          }
+        }
+        
         return 0;
       }
     } catch (error) {

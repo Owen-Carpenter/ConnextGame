@@ -111,27 +111,3 @@
         opacity: 0.6;
     }
 }
-
-.refresh-button {
-    background-color: rgba(57, 231, 95, 0.2);
-    color: #333;
-    border: 2px solid #39e75f;
-    padding: 8px 15px;
-    border-radius: 20px;
-    margin: 10px auto;
-    display: block;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s ease;
-}
-
-.refresh-button:hover:not(:disabled) {
-    background-color: #39e75f;
-    color: white;
-    box-shadow: 0 0 8px rgba(57, 231, 95, 0.8);
-}
-
-.refresh-button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
