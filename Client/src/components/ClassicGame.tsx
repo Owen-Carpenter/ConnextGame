@@ -21,7 +21,7 @@ export function ClassicGame() {
   const [lifeChangeAnimation, setLifeChangeAnimation] = useState<"gain" | "lose" | null>(null);
   const [isProcessingGuess, setIsProcessingGuess] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [rawChain, setRawChain] = useState<string>("");
+  const [, setRawChain] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
