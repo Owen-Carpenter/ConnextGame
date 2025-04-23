@@ -7,23 +7,9 @@ import { API_BASE_URL } from '../config';
 import { HealthChain } from "./HealthChain";
 import { HelpModal } from "./HelpModal";
 
-// Fallback word list in case API fails
-const fallbackWordList = [
-  ["start", "dog"],
-  ["dog", "house"],
-  ["house", "key"],
-  ["key", "chain"],
-  ["chain", "fence"],
-  ["fence", "yard"],
-  ["yard", "garden"],
-  ["garden", "flower"],
-  ["flower", "bee"],
-  ["bee", "honey"]
-];
-
 export function ClassicGame() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [wordList, setWordList] = useState<string[][]>(fallbackWordList);
+  const [wordList, setWordList] = useState<string[][]>([]);
   const [inputValue, setInputValue] = useState("");
   const [lives, setLives] = useState(5);
   const [gameOver, setGameOver] = useState(false);
@@ -34,6 +20,8 @@ export function ClassicGame() {
   const [showConfetti, setShowConfetti] = useState(false);
   const [lifeChangeAnimation, setLifeChangeAnimation] = useState<"gain" | "lose" | null>(null);
   const [isProcessingGuess, setIsProcessingGuess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [rawChain, setRawChain] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
 
@@ -42,34 +30,68 @@ export function ClassicGame() {
     const fetchWordChain = async () => {
       try {
         setLoading(true);
+        setError(null);
+        
+        console.log(`Making API call to ${API_BASE_URL}/chaingen/generate with game type classic`);
+        
         const response = await axios.post(`${API_BASE_URL}/chaingen/generate`, {
           gameType: 'classic',
           length: 10
         });
         
+        console.log("API response received:", response.data);
+        
+        // Always set the raw chain data for debugging
+        setRawChain(JSON.stringify(response.data.wordChain || []));
+        
         if (response.data && response.data.wordChain) {
+          if (response.data.wordChain.length === 0) {
+            console.error("API returned an empty word chain");
+            setError("Server returned an empty word chain. Please try again.");
+            return;
+          }
+          
+          console.log(`Word chain received with ${response.data.wordChain.length} pairs`);
           setWordList(response.data.wordChain);
+          
           // Get the first character of the second word as the hint
-          if (response.data.wordChain[1] && response.data.wordChain[1][0]) {
+          if (response.data.wordChain.length > 1 && response.data.wordChain[1] && response.data.wordChain[1][0]) {
             const initialHint = response.data.wordChain[1][0].charAt(0);
             setInputValue(initialHint);
             setHint(initialHint);
+          } else {
+            // Set empty values if no valid second word
+            setInputValue("");
+            setHint("");
           }
         } else {
-          console.error("Invalid response format from chaingen API");
-          setWordList(fallbackWordList);
-          // Get the first character of the second word as the hint
-          const initialHint = fallbackWordList[1][0].charAt(0);
-          setInputValue(initialHint);
-          setHint(initialHint);
+          console.error("Invalid response format from chaingen API or empty word chain", response.data);
+          setError("Unable to generate word chain. Please try again.");
         }
       } catch (error) {
         console.error("Error fetching word chain:", error);
-        setWordList(fallbackWordList);
-        // Get the first character of the second word as the hint
-        const initialHint = fallbackWordList[1][0].charAt(0);
-        setInputValue(initialHint);
-        setHint(initialHint);
+        
+        if (axios.isAxiosError(error)) {
+          console.error("Axios error details:", {
+            response: error.response?.data,
+            status: error.response?.status,
+            headers: error.response?.headers,
+            request: error.request ? 'Request made but no response' : 'Error setting up request',
+          });
+          
+          // More detailed error message
+          if (error.code === 'ECONNREFUSED') {
+            setError("Cannot connect to server. Please check if the server is running.");
+          } else if (error.response) {
+            setError(`Server error: ${error.response.status} - ${error.response.data.message || 'Unknown error'}`);
+          } else if (error.request) {
+            setError("No response from server. Please check your connection.");
+          } else {
+            setError("Error connecting to server. Please try again.");
+          }
+        } else {
+          setError("Error connecting to server. Please try again.");
+        }
       } finally {
         setLoading(false);
       }
@@ -80,7 +102,6 @@ export function ClassicGame() {
 
   // Load streak from localStorage on component mount and fetch from server if logged in
   useEffect(() => {
-    // First load from localStorage as a fallback
     const savedStreak = localStorage.getItem("classicStreak");
     if (savedStreak) {
       setStreak(parseInt(savedStreak, 10));
@@ -157,6 +178,7 @@ export function ClassicGame() {
     const fetchNewWordChain = async () => {
       try {
         setLoading(true);
+        setError(null);
         const response = await axios.post(`${API_BASE_URL}/chaingen/generate`, {
           gameType: 'classic',
           length: 10
@@ -164,29 +186,28 @@ export function ClassicGame() {
 
         console.log(response.data);
         
+        // Always set the raw chain data for debugging
+        setRawChain(JSON.stringify(response.data.wordChain || []));
+        
         if (response.data && response.data.wordChain) {
           setWordList(response.data.wordChain);
           // Get the first character of the second word as the hint
-          if (response.data.wordChain[1] && response.data.wordChain[1][0]) {
+          if (response.data.wordChain.length > 1 && response.data.wordChain[1] && response.data.wordChain[1][0]) {
             const initialHint = response.data.wordChain[1][0].charAt(0);
             setInputValue(initialHint);
             setHint(initialHint);
+          } else {
+            // Set empty values if no valid second word
+            setInputValue("");
+            setHint("");
           }
         } else {
-          console.error("Invalid response format from chaingen API");
-          setWordList(fallbackWordList);
-          // Get the first character of the second word as the hint
-          const initialHint = fallbackWordList[1][0].charAt(0);
-          setInputValue(initialHint);
-          setHint(initialHint);
+          console.error("Invalid response format from chaingen API or empty word chain");
+          setError("Unable to generate word chain. Please try again.");
         }
       } catch (error) {
         console.error("Error fetching word chain:", error);
-        setWordList(fallbackWordList);
-        // Get the first character of the second word as the hint
-        const initialHint = fallbackWordList[1][0].charAt(0);
-        setInputValue(initialHint);
-        setHint(initialHint);
+        setError("Error connecting to server. Please try again.");
       } finally {
         setLoading(false);
       }
@@ -297,6 +318,12 @@ export function ClassicGame() {
   };
 
   const handleGuess = () => {
+    // Check if we have a current word to guess
+    if (!wordList || wordList.length <= currentWordIndex + 1 || !wordList[currentWordIndex + 1] || !wordList[currentWordIndex + 1][0]) {
+      setError("No valid word to guess. Please restart the game.");
+      return;
+    }
+    
     // Prevent multiple rapid submissions
     if (isProcessingGuess) return;
     setIsProcessingGuess(true);
@@ -399,9 +426,12 @@ export function ClassicGame() {
     }
   };
 
-  const currentWord = wordList[currentWordIndex + 1][0];
+  // Add null checks to prevent errors when wordList is empty
+  const currentWord = wordList && wordList.length > currentWordIndex + 1 && wordList[currentWordIndex + 1] ? 
+    wordList[currentWordIndex + 1][0] : "";
+  
   // Space out underlines by adding spaces between them
-  const blanks = Array(currentWord.length - inputValue.length).fill("_").join(" ");
+  const blanks = currentWord ? Array(currentWord.length - inputValue.length).fill("_").join(" ") : "";
 
   // Function to check user info from token for debugging
   const checkUserInfo = async () => {
@@ -485,48 +515,64 @@ export function ClassicGame() {
                 loseLife={lifeChangeAnimation === "lose"}
               />
 
-              <div className="word-list">
-                {wordList.map((word, index) => (
-                  <div key={index} className="word-item">
-                    {index === 0 || index <= currentWordIndex || gameOver ? (
-                      <span className="completed-word">{Array.isArray(word) ? word[0] : word}</span>
-                    ) : index === currentWordIndex + 1 && !gameOver ? (
-                      <>
-                        <div className="input-container">
-                          <form onSubmit={(e) => {
-                            e.preventDefault(); // Prevent form submission
-                            handleGuess();
-                          }}>
-                            <input
-                              type="text"
-                              value={inputValue}
-                              onChange={handleInputChange}
-                              onKeyPress={handleKeyPress}
-                              placeholder={hint}
-                              ref={inputRef}
-                              maxLength={currentWord.length}
-                              autoComplete="off"
-                              autoCorrect="off"
-                              spellCheck="false"
-                            />
-                            <div className="blanks">{blanks}</div>
-                            <input type="submit" style={{ display: 'none' }} />
-                          </form>
-                        </div>
-                      </>
-                    ) : (
-                      <img src={hiddenWord} alt="Hidden Word" className="hidden-word" />
-                    )}
-                  </div>
-                ))}
-              </div>
+              {error && (
+                <div className="error-message">
+                  {error}
+                  <button onClick={resetGame}>Try Again</button>
+                </div>
+              )}
+
+              
+
+              {wordList.length > 0 ? (
+                <div className="word-list">
+                  {wordList.map((word, index) => (
+                    <div key={index} className="word-item">
+                      {index === 0 || index <= currentWordIndex || gameOver ? (
+                        <span className="completed-word">{Array.isArray(word) && word[0] ? word[0] : word}</span>
+                      ) : index === currentWordIndex + 1 && !gameOver ? (
+                        <>
+                          <div className="input-container">
+                            <form onSubmit={(e) => {
+                              e.preventDefault(); // Prevent form submission
+                              handleGuess();
+                            }}>
+                              <input
+                                type="text"
+                                value={inputValue}
+                                onChange={handleInputChange}
+                                onKeyPress={handleKeyPress}
+                                placeholder={hint}
+                                ref={inputRef}
+                                maxLength={currentWord ? currentWord.length : 10}
+                                autoComplete="off"
+                                autoCorrect="off"
+                                spellCheck="false"
+                              />
+                              <div className="blanks">{blanks}</div>
+                              <input type="submit" style={{ display: 'none' }} />
+                            </form>
+                          </div>
+                        </>
+                      ) : (
+                        <img src={hiddenWord} alt="Hidden Word" className="hidden-word" />
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="no-words-message">
+                  <p>No word chain available. Generated an empty list.</p>
+                  <button onClick={resetGame}>Try Again</button>
+                </div>
+              )}
 
               <div className="streak-counter">
                 <span>Streak: {streak}</span>
                 {gainedLife && <span className="life-gained-message">+1 Life!</span>}
               </div>
 
-              <button className="submit-btn" onClick={handleGuess} style={{ visibility: gameOver ? 'hidden' : 'visible' }}>Submit</button>
+              <button className="submit-btn" onClick={handleGuess} style={{ visibility: gameOver || wordList.length === 0 ? 'hidden' : 'visible' }}>Submit</button>
             </>
           )}
         </section>

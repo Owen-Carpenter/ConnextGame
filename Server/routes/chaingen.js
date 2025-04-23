@@ -8,6 +8,10 @@ const router = express.Router();
 // Public route - no authentication required
 router.post('/generate', handleChaingen.generateWordChain);
 
+// Get the raw binomials file for debugging
+// Public route - no authentication required
+router.get('/binomials-file', handleChaingen.getBinomialsFile);
+
 // Generate binomials - admin only
 router.post('/binomials', verifyToken, handleChaingen.generateBinomials);
 
