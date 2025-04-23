@@ -14,7 +14,6 @@ export function InfiniteGame() {
   const [lives, setLives] = useState(5);
   const [gameOver, setGameOver] = useState(false);
   const [hint, setHint] = useState("");
-  const [score, setScore] = useState(0);
   const [topScore, setTopScore] = useState(0);
   const [loading, setLoading] = useState(true);
   const [gainedLife, setGainedLife] = useState(false);
@@ -216,7 +215,6 @@ export function InfiniteGame() {
     setCurrentWordIndex(1); // Start from the second word for infinite mode
     setLives(5);
     setGameOver(false);
-    setScore(0);
   };
 
   // Function to check user info from token for debugging
@@ -251,10 +249,10 @@ export function InfiniteGame() {
   };
   
   // Update top score on the server when the game ends
-  const updateTopScore = async (score: number) => {
+  const updateTopScore = async (wordsCompleted: number) => {
     try {
-      // Calculate the new top score
-      const newTopScore = Math.max(topScore, score);
+      // Calculate the new top score (now equal to words completed)
+      const newTopScore = Math.max(topScore, wordsCompleted);
       
       // Update top score locally if the new score is higher
       if (newTopScore > topScore) {
@@ -331,7 +329,7 @@ export function InfiniteGame() {
               const response = await axios.post(url, 
                 { 
                   username: username,
-                  score: newTopScore 
+                  score: newTopScore
                 },
                 {
                   headers: {
@@ -372,7 +370,7 @@ export function InfiniteGame() {
       return newTopScore;
     } catch (error) {
       console.error("Error updating top score:", error);
-      return Math.max(topScore, score);
+      return Math.max(topScore, wordsCompleted);
     }
   };
 
@@ -412,10 +410,6 @@ export function InfiniteGame() {
         }, 1500);
       }
       
-      // Increase score based on word length
-      const wordScore = currentWord.length * 10;
-      setScore(prevScore => prevScore + wordScore);
-      
       // Move to the next word
       setCurrentWordIndex(prevIndex => prevIndex + 1);
       
@@ -439,13 +433,13 @@ export function InfiniteGame() {
       if (newLives === 0) {
         setGameOver(true);
         // Game over logic
-        updateTopScore(score).then(newTopScore => {
+        updateTopScore(currentWordIndex - 1).then(newTopScore => {
           navigate('/GameStats', { 
             state: { 
               gameMode: 'Infinite', 
-              score: score,
-              wordsCompleted: currentWordIndex,
-              topScore: newTopScore
+              score: currentWordIndex - 1,
+              wordsCompleted: currentWordIndex - 1,
+              bestWords: newTopScore
             } 
           });
         });
@@ -589,7 +583,7 @@ export function InfiniteGame() {
                 
                 {topScore > 0 && (
                   <div className="best-score-section">
-                    <span className="best-label">Best:</span>
+                    <span className="best-label">Best Words:</span>
                     <span className="best-value">{topScore}</span>
                   </div>
                 )}
