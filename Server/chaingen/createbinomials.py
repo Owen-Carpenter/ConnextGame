@@ -14,7 +14,7 @@ nltk.download('omw-1.4')
 
 MAX_WORDLENGTH = 7  # Ignore words longer than this
 MIN_FREQUENCY = 3    # Minimum count for a binomial to be included
-NUM_SAMPLES = 50000  # Number of OpenWebText samples to process
+NUM_SAMPLES = 5000  # Number of OpenWebText samples to process
 
 def is_in_dictionary(word):
     return bool(wn.synsets(word.lower()))

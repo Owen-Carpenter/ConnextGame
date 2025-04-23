@@ -161,6 +161,8 @@ export function ClassicGame() {
           gameType: 'classic',
           length: 10
         });
+
+        console.log(response.data);
         
         if (response.data && response.data.wordChain) {
           setWordList(response.data.wordChain);
