@@ -12,7 +12,7 @@ A word chain game where you guess the next word based on relation to the previou
 ### Installation
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/ConnextGame.git
+git clone https://github.com/Owen-Carpenter/ConnextGame.git
 cd ConnextGame
 ```
 
