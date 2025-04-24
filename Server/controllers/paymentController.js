@@ -27,15 +27,6 @@ const paymentController = {
                 CLIENT_URL: process.env.CLIENT_URL
             });
 
-            // Validate CLIENT_URL is set
-            if (!process.env.CLIENT_URL) {
-                console.error('CLIENT_URL environment variable is missing');
-                return res.status(500).json({
-                    message: 'Server configuration error: Missing CLIENT_URL',
-                    status: 'error'
-                });
-            }
-
             const { subscriptionType } = req.body;
             const username = req.user?.username;
 
@@ -52,8 +43,8 @@ const paymentController = {
             // Define payment amounts based on subscription type
             const amounts = {
                 'Monthly': 99, // $0.99
-                'Yearly': 999, // $9.99
-                'Lifetime': 9999 // $199.99
+                'Yearly': 999, // $9.99                
+                'Lifetime': 2499 // $24.99
             };
 
             if (!amounts[subscriptionType]) {
@@ -82,7 +73,7 @@ const paymentController = {
                     },
                 ],
                 mode: 'payment',
-                success_url: `${process.env.CLIENT_URL}/payment-success?session_id={CHECKOUT_SESSION_ID}&redirect=`,
+                success_url: `${process.env.CLIENT_URL}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
                 cancel_url: `${process.env.CLIENT_URL}/payment-cancel`,
                 metadata: {
                     username,
@@ -185,8 +176,7 @@ const paymentController = {
                 return res.json({
                     message: 'Payment processed successfully',
                     status: 'success',
-                    role: user.role,
-                    redirectTo: '/'
+                    role: user.role
                 });
                 
             } catch (stripeError) {
@@ -218,8 +208,7 @@ const paymentController = {
                             return res.json({
                                 message: 'Payment processed (simulated success)',
                                 status: 'success',
-                                role: 'premium',
-                                redirectTo: '/'
+                                role: 'premium'
                             });
                         }
                     }
@@ -231,8 +220,7 @@ const paymentController = {
                 return res.json({
                     message: 'Payment processed (simulated success)',
                     status: 'success',
-                    role: 'premium',
-                    redirectTo: '/'
+                    role: 'premium'
                 });
             }
         } catch (error) {
@@ -262,8 +250,7 @@ const paymentController = {
                         return res.json({
                             message: 'Payment processed (simulated success)',
                             status: 'success',
-                            role: 'premium',
-                            redirectTo: '/'
+                            role: 'premium'
                         });
                     }
                 }
@@ -276,8 +263,7 @@ const paymentController = {
             return res.json({
                 message: 'Payment processed (simulated success)',
                 status: 'success',
-                role: 'premium',
-                redirectTo: '/'
+                role: 'premium'
             });
         }
     },
